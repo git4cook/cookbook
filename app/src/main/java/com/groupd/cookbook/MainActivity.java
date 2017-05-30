@@ -7,6 +7,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Test comment/commit Glenn in android studio
     // studiob1 test branch
+    // Made branch from android studio menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
