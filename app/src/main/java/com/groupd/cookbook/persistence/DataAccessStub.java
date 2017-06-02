@@ -76,50 +76,6 @@ public class DataAccessStub
                 "milk,white vinegar,flour,white sugar,baking powder,baking soda,salt,egg,butter");
         recipes.add(recipe);
 
-        /*
-        //5.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-
-        //6.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-
-        //7.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-
-        //8.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-
-        //9.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-
-        //10.
-        recipes = new ArrayList<Recipe>();
-        recipe = new Recipe("",
-                "",
-                "");
-        recipes.add(recipe);
-        //*/
-
         System.out.println("Opened " +dbType +" database " +dbName);
     }
 
@@ -174,7 +130,7 @@ public class DataAccessStub
         index = recipes.indexOf(currentRecipe);
         if (index >= 0)
         {
-            courses.remove(index);
+            recipes.remove(index);
         }
         return null;
     }
