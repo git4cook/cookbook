@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
+        android:text="Add Recipie"
+        android:textSize="60sp" />
+
+    <EditText
+        android:id="@+id/addTitleID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:background="@android:color/holo_orange_light"
+        android:ems="10"
+        android:hint="Enter Title"
+        android:inputType="textShortMessage"
+        android:textSize="40sp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/addTagsID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="@android:color/holo_orange_light"
+        android:ems="10"
+        android:hint="Enter Tags by commas"
+        android:inputType="textShortMessage"
+        android:textSize="35sp"
+        android:layout_below="@+id/addTitleID"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/addStepsID"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addTagsID"
+        android:layout_marginTop="34dp"
+        android:background="@android:color/holo_orange_light"
+        android:ems="10"
+        android:hint="Enter Steps"
+        android:inputType="textMultiLine"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Submit Recipe"
+        android:textSize="50sp" />
+
+</RelativeLayout>
