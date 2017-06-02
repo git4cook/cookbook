@@ -1,4 +1,4 @@
-package com.groupd.cookbook.application;
+package com.groupd.cookbook.presentation;
 
 
 import android.content.Intent;
