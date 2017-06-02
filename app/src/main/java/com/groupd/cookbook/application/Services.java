@@ -3,7 +3,7 @@ package com.groupd.cookbook.application;
 /**
  * Created by siyu on 2017/6/2.
  */
-import com.groupd.cookbook.presistence.DataAccessStub;
+import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class Services {
     private static DataAccessStub dataAccessService = null;
