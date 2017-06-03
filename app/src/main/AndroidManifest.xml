@@ -22,7 +22,7 @@
 
         <activity android:name=".presentation.showRecipe"></activity>
         <activity
-            android:name=".addNewRecipe"
+            android:name=".presentation.addNewRecipe"
             android:screenOrientation="portrait"></activity>
     </application>
 

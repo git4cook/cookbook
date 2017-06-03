@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.groupd.cookbook.R;
-import com.groupd.cookbook.addNewRecipe;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
