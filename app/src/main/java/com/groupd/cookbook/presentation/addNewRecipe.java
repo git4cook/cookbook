@@ -36,4 +36,5 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         Log.i("info", "tags = " + tagsInput);
         Log.i("info", "steps = " + stepsInput);
     }
+
 }
