@@ -240,28 +240,29 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:text="Search"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:id="@+id/editText23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="By Tags"
-            android:layout_below="@+id/textView3"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp" />
+            android:text="By Tags" />
 
         <Button
             android:id="@+id/addButtonID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
             android:text="Add Recipe"
-            android:textSize="50sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="50sp" />
 
         <EditText
             android:id="@+id/editText24"
@@ -278,12 +279,12 @@
             android:id="@+id/editText25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="By Title"
             android:layout_above="@+id/addButtonID"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp" />
+            android:layout_marginBottom="11dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="By Title" />
 
         <EditText
             android:id="@+id/editText26"

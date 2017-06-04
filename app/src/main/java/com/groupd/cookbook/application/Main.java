@@ -3,6 +3,7 @@ package com.groupd.cookbook.application;
 /**
  * Created by siyu on 2017/6/2.
  */
+import com.groupd.cookbook.presentation.CLI;
 
 public class Main
 {
@@ -12,7 +13,7 @@ public class Main
     {
         startUp();
 
-        //CLI.run();
+        CLI.run();
 
         shutDown();
         System.out.println("All done");
