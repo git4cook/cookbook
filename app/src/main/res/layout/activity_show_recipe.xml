@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.groupd.cookbook.presentation.showRecipe">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="450dp"
+        android:layout_height="500dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="252dp" />
 </android.support.constraint.ConstraintLayout>
