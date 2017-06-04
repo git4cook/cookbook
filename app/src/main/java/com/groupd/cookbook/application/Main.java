@@ -4,8 +4,6 @@ package com.groupd.cookbook.application;
  * Created by siyu on 2017/6/2.
  */
 
-import com.groupd.cookbook.presentation;
-
 public class Main
 {
     public static final String dbName="SC";

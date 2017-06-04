@@ -4,14 +4,11 @@ package com.groupd.cookbook.persistence;
  * Created by wutao on 2017/6/2.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.objects.Recipe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DataAccessStub
