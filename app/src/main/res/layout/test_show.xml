@@ -20,13 +20,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.06"
         android:text="TextView"
-        android:textSize="0.2in" />
+        android:textSize="0.15in" />
 
     <TextView
         android:id="@+id/vDes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="0.2in" />
+        android:textSize="0.1in" />
 
 </LinearLayout>
