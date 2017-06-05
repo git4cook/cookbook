@@ -33,7 +33,6 @@ import android.view.View;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.business.AccessRecipe;
-import com.groupd.cookbook.objects.Recipe;
 
 public class showRecipe extends AppCompatActivity /*implements View.OnClickListener*/{
 
@@ -43,5 +42,8 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         setContentView(R.layout.test_show);
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
+        AccessRecipe AR = new AccessRecipe();
+        Recipe vRcy = AR.
+
     }
 }
