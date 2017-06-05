@@ -131,6 +131,25 @@ public class DataAccessStub
         }
         return null;
     }
+   public ArrayList<Recipe> getR(Recipe currentRecipe) {
+       ArrayList<Recipe> newRecipe;
+       Recipe re;
+       int counter;
+
+       newRecipe = new ArrayList<Recipe>();
+       for (counter = 0; counter < recipes.size(); counter++) {
+           re = recipes.get(counter);
+           if (re.getName().equals(currentRecipe.getName())) {
+
+               newRecipe.add(recipes.get(counter));
+           }
+       }
+        return newRecipe;
+   }
 
 }
+
+
+
+
 

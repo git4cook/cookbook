@@ -30,6 +30,26 @@ public class AccessRecipe {
         return dataAccess.getRecipeSequential(recipes);
     }
 
+    public Recipe getR(String recipeName){
+        if(recipes ==null  )
+        {
+            recipes = dataAccess.getR(new Recipe(recipeName));
+            currentRecipe = 0;
+        }
+            if(currentRecipe <recipes.size()){
+                recipe = recipes.get(currentRecipe);
+                currentRecipe++;
+            }
+          else{
+                recipes = null;
+                recipe = null;
+                currentRecipe = 0;
+
+
+            }
+            return recipe;
+    }
+
      public Recipe getSequential(){
         String result = null;
          if(recipe==null) {
