@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.groupd.cookbook.R;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     //
@@ -18,11 +19,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
 
-        Button addButton = (Button)findViewById(R.id.addButtonID);
-        addButton.setOnClickListener(this);
+        /*Button addButton = (Button)findViewById(R.id.addButtonID);
+        addButton.setOnClickListener(this);*/
         //Button addButton = (Button)findViewById(R.
 
-    }//dont delete this activity
+    }
 
 
     @Override
