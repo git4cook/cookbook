@@ -47,9 +47,9 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
         Recipe vRcy = RAC.getR(rcyTitle);
-        TextView rti = (TextView) findViewById(R.id.vtitle);
+        TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
-        TextView rct = (TextView) findViewById(R.id.vContent);
+        TextView rct = (TextView) findViewById(R.id.vDes);
         rti.setText(vRcy.getName());
         rti.setText(vRcy.getTags());
         rti.setText(vRcy.getDirection());
@@ -59,8 +59,8 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
     public void buttonOpenOnClick(View v) {
 
 
-        Intent reIntent = new Intent(this,MainActivity.class);
-
+        Intent home = new Intent(showRecipe.this, MainActivity.class);
+        showRecipe.this.startActivities(home);
 
     }
 
