@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     private ArrayList<Recipe> Rlist;
     private ArrayAdapter<Recipe> RADP;
     private int RecyPosy = -1;
+    private String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,12 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                     RecyPosy = position;
                     selectRecipeAtPosition(position);
 
+                    Intent reIntent = new Intent(MainActivity.this,showRecipe.class);
+                    Bundle b = new Bundle();
+                    b.putString("recipeName",name);
+                    reIntent.putExtras(b);
+                    MainActivity.this.startActivity(reIntent);
+
                 }
             });
 
@@ -97,7 +104,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
            public void selectRecipeAtPosition(int position) {
             Recipe selected = RADP.getItem(position);
                EditText editName = (EditText)findViewById(R.id.recyTitle);
-
+               name = selected.getName();
                editName.setText(selected.getName());
            }
 
