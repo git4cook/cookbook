@@ -26,7 +26,7 @@
         android:id="@+id/vContent"
         android:layout_width="450dp"
         android:layout_height="500dp"
-        android:text="Description"
+        android:text="Descriptions"
         tools:layout_editor_absoluteX="86dp"
         tools:layout_editor_absoluteY="252dp" />
 </android.support.constraint.ConstraintLayout>
