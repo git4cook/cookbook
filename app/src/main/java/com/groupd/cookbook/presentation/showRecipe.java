@@ -35,7 +35,7 @@ import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 
-public class showRecipe extends AppCompatActivity/* implements View.OnClickListener*/{
+public class showRecipe extends AppCompatActivity /*implements View.OnClickListener*/{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
     public void onClick(View v) {
-        Intent i = new Intent(this, addNewRecipe.class);
+        Intent i = new Intent(this, showRecipe.class);
         startActivity(i);
     }
 
