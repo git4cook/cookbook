@@ -33,7 +33,7 @@
             android:layout_column="5"
             android:layout_row="0"
             android:onClick="buttonOpenOnClick"
-            android:text="open" />
+            android:text="search" />
 
     </GridLayout>
 
