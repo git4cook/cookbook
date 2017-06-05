@@ -21,7 +21,7 @@ public class showRecipe extends AppCompatActivity {
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
-        rti.setText("Title: \n" + vRcy.getName());
+        rti.setText(/*"Title: \n" + */vRcy.getName());
         rta.setText("Tags: \n" + vRcy.getTags());
         rct.setText("How to cook: \n" + vRcy.getDirection());
 
