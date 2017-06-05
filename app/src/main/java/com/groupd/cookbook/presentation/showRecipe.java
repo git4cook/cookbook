@@ -41,5 +41,7 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_show);
+        Bundle b = getIntent().getExtras();
+        String rcyTitle = b.getString("recipeName");
     }
 }

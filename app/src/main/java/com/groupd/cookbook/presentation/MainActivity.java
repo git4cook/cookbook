@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 EditText editName = (EditText)findViewById(R.id.recyTitle);
                 String recipeName = editName.getText().toString();
 
-                Intent reIntent = new Intent(MainActivity.this,openRecipeActivity.class);
+                Intent reIntent = new Intent(MainActivity.this,showRecipe.class);
                 Bundle b = new Bundle();
                 b.putString("recipeName",recipeName);
                 reIntent.putExtras(b);
