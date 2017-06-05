@@ -5,15 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.groupd.cookbook.R;
+import com.groupd.cookbook.business.AccessRecipe;
+import com.groupd.cookbook.objects.Recipe;
+import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
     //
-
+    private AccessRecipe AR;
+    private ArrayList<Recipe> Rlist;
+    private ArrayAdapter<Recipe> RADP;
+    private int selectedCoursePosition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
