@@ -33,6 +33,7 @@ import android.view.View;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.business.AccessRecipe;
+import com.groupd.cookbook.presentation.MainActivity;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,22 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
-        //Recipe vRcy = RAC.getRecipe(rcyTitle);
+        Recipe vRcy = RAC.getR(rcyTitle);
+        TextView rti = (TextView) findViewById(R.id.vtitle);
+        TextView rta = (TextView) findViewById(R.id.vTags);
+        TextView rct = (TextView) findViewById(R.id.vContent);
+        rti.setText(vRcy.getName());
+        rti.setText(vRcy.getTags());
+        rti.setText(vRcy.getDirection());
 
     }
+
+    public void buttonOpenOnClick(View v) {
+
+
+        Intent reIntent = new Intent(this,MainActivity.class);
+
+
+    }
+
 }
