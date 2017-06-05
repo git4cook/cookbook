@@ -87,6 +87,9 @@ public class DataAccessStub
         return null;
     }
 
+    public ArrayList<Recipe> getList(){
+        return recipes;
+    }
     public ArrayList<Recipe> getRecipRandom(Recipe currentRecipe)
     {
         ArrayList<Recipe> newRecipes;

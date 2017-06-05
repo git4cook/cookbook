@@ -1,5 +1,7 @@
 package com.groupd.cookbook.application;
 
+import com.groupd.cookbook.persistence.DataAccessStub;
+
 /**
  * Created by siyu on 2017/6/2.
  */
@@ -12,7 +14,6 @@ public class Main
     public static void main(String[] args)
     {
         startUp();
-
 
 
         shutDown();

@@ -1,8 +1,10 @@
 package com.groupd.cookbook.presentation;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
-        Main.startUp();
+       Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
         String rlt = AR.getRecipe(Rlist);
@@ -101,23 +103,42 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
     }
 
-           public void selectRecipeAtPosition(int position) {
-            Recipe selected = RADP.getItem(position);
-               EditText editName = (EditText)findViewById(R.id.recyTitle);
-               name = selected.getName();
-               editName.setText(selected.getName());
-           }
+    public void selectRecipeAtPosition(int position) {
+        Recipe selected = RADP.getItem(position);
+        EditText editName = (EditText)findViewById(R.id.recyTitle);
+        name = selected.getName();
+        editName.setText(selected.getName());
+    }
 
-            public void buttonOpenOnClick(View v) {
-                EditText editName = (EditText)findViewById(R.id.recyTitle);
-                String recipeName = editName.getText().toString();
+    public void buttonOpenOnClick(View v) {
+        EditText editName = (EditText)findViewById(R.id.recyTitle);
+        String recipeName = editName.getText().toString();
+        if(AR.search(recipeName)) {
+            Intent reIntent = new Intent(MainActivity.this, showRecipe.class);
+            Bundle b = new Bundle();
+            b.putString("recipeName", recipeName);
+            reIntent.putExtras(b);
+            MainActivity.this.startActivity(reIntent);
+        }
+        else{
+            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+            alertdialogbuilder.setMessage("We couldn't find anything.");
 
-                Intent reIntent = new Intent(MainActivity.this,showRecipe.class);
-                Bundle b = new Bundle();
-                b.putString("recipeName",recipeName);
-                reIntent.putExtras(b);
-                MainActivity.this.startActivity(reIntent);
+            ;
+            alertdialogbuilder.setPositiveButton("ok",click1);
 
-            }
+            AlertDialog alertdialog1=alertdialogbuilder.create();
+
+            alertdialog1.show();
+        }
+    }
+    private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface arg0,int arg1)
+        {
+            arg0.cancel();
+        }
+    };
 
 }
