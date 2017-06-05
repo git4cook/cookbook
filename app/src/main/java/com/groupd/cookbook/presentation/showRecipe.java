@@ -34,6 +34,8 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.business.AccessRecipe;
 
+import java.util.ArrayList;
+
 public class showRecipe extends AppCompatActivity /*implements View.OnClickListener*/{
 
     @Override
@@ -42,8 +44,8 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         setContentView(R.layout.test_show);
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
-        AccessRecipe AR = new AccessRecipe();
-        Recipe vRcy = AR.
+        AccessRecipe RAC = new AccessRecipe();
+        //Recipe vRcy = RAC.getRecipe(rcyTitle);
 
     }
 }
