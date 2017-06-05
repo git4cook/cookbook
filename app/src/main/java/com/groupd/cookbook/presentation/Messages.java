@@ -7,7 +7,6 @@ package com.groupd.cookbook.presentation;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import com.groupd.cookbook.R;
 
 public class Messages {
     public static void fatalError(final Activity owner, String message) {

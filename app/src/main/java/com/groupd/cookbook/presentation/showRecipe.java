@@ -1,43 +1,14 @@
 package com.groupd.cookbook.presentation;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ArrayAdapter;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.groupd.cookbook.R;
-import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.business.AccessRecipe;
-import com.groupd.cookbook.presentation.MainActivity;
+import com.groupd.cookbook.objects.Recipe;
 
-import java.util.ArrayList;
-
-public class showRecipe extends AppCompatActivity /*implements View.OnClickListener*/{
+public class showRecipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +21,12 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
-        rti.setText(vRcy.getName());
-        rta.setText(vRcy.getTags());
-        rct.setText(vRcy.getDirection());
+        rti.setText("Title: \n" + vRcy.getName());
+        rta.setText("Tags: \n" + vRcy.getTags());
+        rct.setText("How to cook: \n" + vRcy.getDirection());
 
     }
 
-    public void buttonOpenOnClick(View v) {
-        Intent home = new Intent(showRecipe.this, MainActivity.class);
-        //showRecipe.this.startActivities(home);
-    }
+
 
 }
