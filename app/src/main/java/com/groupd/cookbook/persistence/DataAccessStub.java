@@ -44,7 +44,7 @@ public class DataAccessStub
         recipes.add(recipe);
 
         //2.
-        recipes = new ArrayList<Recipe>();
+        //recipes = new ArrayList<Recipe>();
         recipe = new Recipe("Cottage Pudding",
                 "Preheat an oven to 350 degrees F (175 degrees C). Grease a 9-inch square cake pan. Whisk the flour, baking powder, and salt together in a bowl; set aside.\n" +
                         "Beat the shortening and sugar with an electric mixer in a large bowl until light and fluffy. Beat in the egg and vanilla extract until smooth. Pour in the flour mixture alternately with the milk, mixing until just incorporated. Pour the batter into prepared pan.\n" +
@@ -53,7 +53,7 @@ public class DataAccessStub
         recipes.add(recipe);
 
         //3.
-        recipes = new ArrayList<Recipe>();
+        //recipes = new ArrayList<Recipe>();
         recipe = new Recipe("Grilled Sausage-Stuffed Calamari",
                 "Heat 1 tablespoon olive oil in a skillet over medium heat. Cook and stir onion and red pepper with a pinch of salt in hot oil until onion is soft and translucent, 5 to 7 minutes. Remove from heat and cool to room temperature.\n" +
                         "Stir sausage, minced tentacles, onion mixture, parsley, egg, smoked paprika, salt, and pepper together in a bowl until evenly combined. Transfer mixture to a piping bag.\n" +
@@ -65,7 +65,7 @@ public class DataAccessStub
         recipes.add(recipe);
 
         //4.
-        recipes = new ArrayList<Recipe>();
+        //recipes = new ArrayList<Recipe>();
         recipe = new Recipe("Fluffy Pancakes",
                 "Combine milk with vinegar in a medium bowl and set aside for 5 minutes to \"sour\".\n" +
                         "Combine flour, sugar, baking powder, baking soda, and salt in a large mixing bowl. Whisk egg and butter into \"soured\" milk. Pour the flour mixture into the wet ingredients and whisk until lumps are gone.\n" +
