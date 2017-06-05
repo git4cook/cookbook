@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.06"
         android:text="TextView"
-        android:textSize="0.15in" />
+        android:textSize="0.1in" />
 
     <TextView
         android:id="@+id/vDes"
