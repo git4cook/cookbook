@@ -16,7 +16,7 @@
         android:layout_height="300dp">
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/recyTitle"
             android:layout_width="452dp"
             android:layout_height="63dp"
             android:layout_column="0"
@@ -26,11 +26,12 @@
             android:text="Name" />
 
         <Button
-            android:id="@+id/open"
+            android:id="@+id/opRcy"
             android:layout_width="144dp"
             android:layout_height="wrap_content"
             android:layout_column="5"
             android:layout_row="0"
+            android:onClick="buttonOpenOnClick"
             android:text="open" />
 
     </GridLayout>

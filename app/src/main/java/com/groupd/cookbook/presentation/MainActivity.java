@@ -63,40 +63,21 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    //TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
 
                     text1.setText(Rlist.get(position).getName());
-                    //text2.setText(Rlist.get(position).getTags());
+
 
                     return view;
                 }
             };
-            final ListView listView = (ListView) findViewById(R.id.listRecipe);
+            final ListView listView = (ListView) findViewById(R.id.RecyList);
             listView.setAdapter(RADP);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Button updateButton = (Button) findViewById(R.id.buttonRecipeUpdate);
-                    Button deleteButton = (Button) findViewById(R.id.buttonRecipeDelete);
 
-                    if (position == RecyPosy) {
-                        listView.setItemChecked(position, false);
-                        updateButton.setEnabled(false);
-                        deleteButton.setEnabled(false);
-                        RecyPosy = -1;
-                    } else {
-                        listView.setItemChecked(position, true);
-                        updateButton.setEnabled(true);
-                        deleteButton.setEnabled(true);
-                        RecyPosy = position;
-                        selectRecipeAtPosition(position);
-                    }
-                }
-            });
 
-            final EditText editRecipeName = (EditText) findViewById(R.id.editRecipeName);
-            final Button buttonOpen = (Button) findViewById(R.id.buttonOpenRecipe);
+            final EditText editRecipeName = (EditText) findViewById(R.id.recyTitle);
+            final Button buttonOpen = (Button) findViewById(R.id.opRcy);
             editRecipeName.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -116,15 +97,15 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
     }
 
-           public void selectRecipeAtPosition(int position) {
+           /*public void selectRecipeAtPosition(int position) {
             Recipe selected = RADP.getItem(position);
-               EditText editName = (EditText)findViewById(R.id.editRecipeName);
+               EditText editName = (EditText)findViewById(R.id.recyTitle);
 
                editName.setText(selected.getName());
-           }
+           }*/
 
             public void buttonOpenOnClick(View v) {
-                EditText editName = (EditText)findViewById(R.id.editRecipeName);
+                EditText editName = (EditText)findViewById(R.id.recyTitle);
                 String recipeName = editName.getText().toString();
 
                 Intent reIntent = new Intent(MainActivity.this,openRecipeActivity.class);
@@ -135,89 +116,14 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
             }
 
-    public void buttonRecipeCreateOnClick(View v) {
-        Recipe recipe = createRecipeFromEditText();
-        String result;
-
-        result = validateRecipeData(recipe, true);
-        if (result == null) {
-            result = AR.insertRecipe(recipe);
-            if (result == null) {
-                AR.getRecipe(Rlist);
-                RADP.notifyDataSetChanged();
-                int pos = Rlist.indexOf(recipe);
-                if (pos >= 0) {
-                    ListView listView = (ListView)findViewById(R.id.listRecipe);
-                    listView.setSelection(pos);
-                }
-            } else {
-                Messages.fatalError(this, result);
-            }
-        } else {
-            Messages.warning(this, result);
-        }
-    }
-    public void buttonRecipeUpdateOnClick(View v) {
-        Recipe recipe = createRecipeFromEditText();
-        String result;
-
-        result = validateRecipeData(recipe, true);
-        if (result == null) {
-            result = AR.insertRecipe(recipe);
-            if (result == null) {
-                AR.getRecipe(Rlist);
-                RADP.notifyDataSetChanged();
-                int pos = Rlist.indexOf(recipe);
-                if (pos >= 0) {
-                    ListView listView = (ListView)findViewById(R.id.listRecipe);
-                    listView.setSelection(pos);
-                }
-            } else {
-                Messages.fatalError(this, result);
-            }
-        } else {
-            Messages.warning(this, result);
-        }
-    }
-    public void buttonRecipeDeleteOnClick(View v) {
-        Recipe recipe = createRecipeFromEditText();
-        String result;
-
-        result = AR.deleteRecipe(recipe);
-        if (result == null) {
-            int pos = Rlist.indexOf(recipe);
-            if (pos >= 0) {
-                ListView listView = (ListView) findViewById(R.id.listRecipe);
-                listView.setSelection(pos);
-            }
-            AR.getRecipe(Rlist);
-            RADP.notifyDataSetChanged();
-        } else {
-            Messages.warning(this, result);
-        }
-    }
-    private Recipe createRecipeFromEditText() {
-        EditText editName = (EditText)findViewById(R.id.editRecipeName);
-
-        Recipe recipe = new Recipe(editName.getText().toString(), editName.getText().toString());
-
-        return recipe;
-    }
-
-    private String validateRecipeData(Recipe recipe, boolean isNewRecipe) {
-        if (recipe.getName().length() == 0) {
-            return "Recipe Name required";
-        }
-
-        if (isNewRecipe && AR.getRandom(recipe.getName()) != null) {
-            return "Course ID " + recipe.getName() + " already exists.";
-        }
-
-        return null;
-    }
 
 
-        }
+
+
+
+
+
+}
 
 
 
