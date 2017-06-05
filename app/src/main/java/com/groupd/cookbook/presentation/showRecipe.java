@@ -51,8 +51,8 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
         rti.setText(vRcy.getName());
-        rti.setText(vRcy.getTags());
-        rti.setText(vRcy.getDirection());
+        rta.setText(vRcy.getTags());
+        rct.setText(vRcy.getDirection());
 
     }
 
