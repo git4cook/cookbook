@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_and_search_menu);
+        setContentView(R.layout.list_recipe /*list_and_search_menu*/);
 
         Button addButton = (Button)findViewById(R.id.addButtonID);
         addButton.setOnClickListener(this);
