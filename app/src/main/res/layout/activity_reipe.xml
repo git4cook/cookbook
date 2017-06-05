@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/listRecipe"
+        android:layout_width="match_parent"
+        android:layout_gravity="top"
+        android:layout_height="0dp"
+        android:layout_weight="0.51"
+        android:choiceMode="singleChoice"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#000000"
+        android:id="@+id/separator"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="2">
+
+        <TextView
+            android:id="@+id/textRecipeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="60dp"
+            android:text="recipe name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
+            android:ems="12"
+            android:enabled="true"
+            android:id="@+id/editRecipeName" />
+
+        <Button
+            android:id="@+id/buttonOpenRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:enabled="false"
+            android:text="@string/open"
+            android:onClick="buttonRecipeDeleteOnClick" />
+
+
+    </GridLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:id="@+id/buttonRecipeDelete"
+            android:layout_alignParentRight="true"
+            android:enabled="false"
+            android:onClick="buttonRecipeDeleteOnClick" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create"
+            android:id="@+id/buttonRecipeCreate"
+            android:layout_alignParentLeft="true"
+            android:enabled="true"
+            android:onClick="buttonCreateOnClick" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update"
+            android:id="@+id/buttonRecipeUpdate"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:onClick="buttonRecipeUpdateOnClick" />
+    </RelativeLayout>
+
+
+</LinearLayout>
