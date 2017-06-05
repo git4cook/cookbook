@@ -73,12 +73,23 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             };
             final ListView listView = (ListView) findViewById(R.id.RecyList);
             listView.setAdapter(RADP);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //Button updateButton = (Button)findViewById(R.id.buttonCourseUpdate);
+                    //Button deleteButton = (Button)findViewById(R.id.buttonCourseDelete);
 
 
+                    RecyPosy = position;
+                    selectRecipeAtPosition(position);
 
-            final EditText editRecipeName = (EditText) findViewById(R.id.recyTitle);
+                }
+            });
+
+
+            final EditText rn = (EditText) findViewById(R.id.recyTitle);
             final Button buttonOpen = (Button) findViewById(R.id.opRcy);
-            editRecipeName.addTextChangedListener(new TextWatcher() {
+            rn.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -91,18 +102,18 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    buttonOpen.setEnabled(editRecipeName.getText().toString().length() > 0);
+                    buttonOpen.setEnabled(rn.getText().toString().length() > 0);
                 }
             });
         }
     }
 
-           /*public void selectRecipeAtPosition(int position) {
+           public void selectRecipeAtPosition(int position) {
             Recipe selected = RADP.getItem(position);
                EditText editName = (EditText)findViewById(R.id.recyTitle);
 
                editName.setText(selected.getName());
-           }*/
+           }
 
             public void buttonOpenOnClick(View v) {
                 EditText editName = (EditText)findViewById(R.id.recyTitle);
