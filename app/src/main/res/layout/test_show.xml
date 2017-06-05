@@ -8,21 +8,25 @@
     <TextView
         android:id="@+id/vTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.05"
-        android:text="TextView" />
+        android:text="TextView"
+        android:gravity="center"
+        android:textSize="0.2in" />
 
     <TextView
         android:id="@+id/vTags"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.06"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="0.2in" />
 
     <TextView
         android:id="@+id/vDes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TextView" />
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="0.2in" />
 
 </LinearLayout>
