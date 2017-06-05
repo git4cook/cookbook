@@ -57,11 +57,8 @@ public class showRecipe extends AppCompatActivity /*implements View.OnClickListe
     }
 
     public void buttonOpenOnClick(View v) {
-
-
         Intent home = new Intent(showRecipe.this, MainActivity.class);
-        showRecipe.this.startActivities(home);
-
+        //showRecipe.this.startActivities(home);
     }
 
 }

@@ -4,26 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/vTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:text="TextView" />
 
-    <EditText
+    <TextView
         android:id="@+id/vTags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:text="TextView" />
 
-    <EditText
+    <TextView
         android:id="@+id/vDes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:text="TextView" />
 
     <Button
         android:id="@+id/button"
