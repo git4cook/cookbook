@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <ListView
-        android:id="@+id/recyList"
+        android:id="@+id/RecyList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="411dp"
+        android:layout_weight="3.07" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="452dp"
+            android:layout_height="63dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_column="5"
+            android:layout_row="0"
+            android:text="open" />
+
+    </GridLayout>
+
 </LinearLayout>
