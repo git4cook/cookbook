@@ -33,7 +33,7 @@ public class AccessRecipe {
     public Recipe getR(String recipeName){
         if(recipes ==null  )
         {
-            recipes = dataAccess.getR(new Recipe(recipeName));
+            recipes = dataAccess.getR(recipeName);
             currentRecipe = 0;
         }
             if(currentRecipe <recipes.size()){

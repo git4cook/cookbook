@@ -134,7 +134,7 @@ public class DataAccessStub
         }
         return null;
     }
-   public ArrayList<Recipe> getR(Recipe currentRecipe) {
+   public ArrayList<Recipe> getR(String name) {
        ArrayList<Recipe> newRecipe;
        Recipe re;
        int counter;
@@ -142,7 +142,7 @@ public class DataAccessStub
        newRecipe = new ArrayList<Recipe>();
        for (counter = 0; counter < recipes.size(); counter++) {
            re = recipes.get(counter);
-           if (re.getName().equals(currentRecipe.getName())) {
+           if (re.getName().toLowerCase().equals(name.toLowerCase())) {
 
                newRecipe.add(recipes.get(counter));
            }
