@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
+
        Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
@@ -65,8 +66,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //Button updateButton = (Button)findViewById(R.id.buttonCourseUpdate);
-                    //Button deleteButton = (Button)findViewById(R.id.buttonCourseDelete);
 
 
                     RecyPosy = position;
@@ -80,27 +79,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
                 }
             });
-
-
-            final EditText rn = (EditText) findViewById(R.id.recyTitle);
-            final Button buttonOpen = (Button) findViewById(R.id.opRcy);
-            rn.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    buttonOpen.setEnabled(rn.getText().toString().length() > 0);
-                }
-            });
-
         }
     }
 
@@ -108,38 +86,14 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         Recipe selected = RADP.getItem(position);
         EditText editName = (EditText)findViewById(R.id.recyTitle);
         name = selected.getName();
-        //editName.setText(selected.getName());
     }
 
 
     public void buttonOpenOnClick(View v) {
-        EditText editName = (EditText)findViewById(R.id.recyTitle);
-        String recipeName = editName.getText().toString().trim();
-        if(AR.search(recipeName)) {
-            Intent reIntent = new Intent(MainActivity.this, showRecipe.class);
-            Bundle b = new Bundle();
-            b.putString("recipeName", recipeName);
-            reIntent.putExtras(b);
-            MainActivity.this.startActivity(reIntent);
-        }
-        else{
-            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            alertdialogbuilder.setMessage("We can't find this recipe.");
+        Intent reIntent = new Intent(MainActivity.this, search.class);
+        MainActivity.this.startActivity(reIntent);
 
-            alertdialogbuilder.setPositiveButton("ok",click1);
 
-            AlertDialog alertdialog1=alertdialogbuilder.create();
-
-            alertdialog1.show();
-        }
     }
-    private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
-    {
-        @Override
-        public void onClick(DialogInterface arg0,int arg1)
-        {
-            arg0.cancel();
-        }
-    };
 
 }

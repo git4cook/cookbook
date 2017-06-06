@@ -2,20 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="10"
     android:orientation="vertical">
-        <ListView
-            android:id="@+id/RecyList"
+
+
+
+        <EditText
+            android:id="@+id/recyTitle"
             android:layout_width="match_parent"
-            android:layout_height="467dp"
-            android:layout_weight="9"
-            />
+            android:layout_height="63dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:ems="10"
+            android:hint="Input title to search"
+            android:inputType="textNoSuggestions" />
+
         <Button
             android:id="@+id/opRcy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="buttonOpenOnClick"
-            android:text="search"
-            android:layout_weight="1"
-            />
+            android:text="search" />
+
+
 </LinearLayout>

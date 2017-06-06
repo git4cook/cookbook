@@ -1,12 +1,7 @@
 package com.groupd.cookbook.persistence;
 
-/**
- * Created by wutao on 2017/6/2.
- */
-
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.objects.Recipe;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,27 +76,10 @@ public class DataAccessStub
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
-    public String getRecipeSequential(List<Recipe> recipeResult)
-    {
-        recipeResult.addAll(recipes);
-        return null;
-    }
+
 
     public ArrayList<Recipe> getList(){
         return recipes;
-    }
-    public ArrayList<Recipe> getRecipRandom(Recipe currentRecipe)
-    {
-        ArrayList<Recipe> newRecipes;
-        int index;
-
-        newRecipes = new ArrayList<Recipe>();
-        index = recipes.indexOf(currentRecipe);
-        if (index >= 0)
-        {
-            newRecipes.add(recipes.get(index));
-        }
-        return newRecipes;
     }
 
     public String insertRecipe(Recipe currentRecipe)
@@ -149,6 +127,11 @@ public class DataAccessStub
        }
         return newRecipe;
    }
+    public String getRecipeSequential(List<Recipe> recipeResult)
+    {
+        recipeResult.addAll(recipes);
+        return null;
+    }
 
 }
 

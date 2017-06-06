@@ -20,7 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.showRecipe"></activity>
+        <activity android:name=".presentation.showRecipe"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".presentation.search"
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".presentation.addNewRecipe"
             android:screenOrientation="portrait"></activity>
