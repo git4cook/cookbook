@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                     buttonOpen.setEnabled(rn.getText().toString().length() > 0);
                 }
             });
+
         }
     }
 
@@ -107,12 +108,13 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         Recipe selected = RADP.getItem(position);
         EditText editName = (EditText)findViewById(R.id.recyTitle);
         name = selected.getName();
-        editName.setText(selected.getName());
+        //editName.setText(selected.getName());
     }
+
 
     public void buttonOpenOnClick(View v) {
         EditText editName = (EditText)findViewById(R.id.recyTitle);
-        String recipeName = editName.getText().toString();
+        String recipeName = editName.getText().toString().trim();
         if(AR.search(recipeName)) {
             Intent reIntent = new Intent(MainActivity.this, showRecipe.class);
             Bundle b = new Bundle();
@@ -122,9 +124,8 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
         else{
             AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            alertdialogbuilder.setMessage("We couldn't find anything.");
+            alertdialogbuilder.setMessage("We can't find this recipe.");
 
-            ;
             alertdialogbuilder.setPositiveButton("ok",click1);
 
             AlertDialog alertdialog1=alertdialogbuilder.create();
