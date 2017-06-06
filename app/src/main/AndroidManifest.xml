@@ -23,7 +23,7 @@
         <activity android:name=".presentation.showRecipe"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".presentation.search"
+        <activity android:name=".business.search"
             android:screenOrientation="portrait"></activity>
 
         <activity

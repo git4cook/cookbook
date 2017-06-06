@@ -1,4 +1,4 @@
-package com.groupd.cookbook.presentation;
+package com.groupd.cookbook.business;
 
 
 import android.content.DialogInterface;
@@ -9,18 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 //
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
-import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.presentation.Messages;
+import com.groupd.cookbook.presentation.showRecipe;
 
 import java.util.ArrayList;
 
