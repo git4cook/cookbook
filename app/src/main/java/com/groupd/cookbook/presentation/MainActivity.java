@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
-import com.groupd.cookbook.business.search;
 import com.groupd.cookbook.objects.Recipe;
 
 import java.util.ArrayList;
