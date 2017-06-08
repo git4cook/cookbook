@@ -1,5 +1,5 @@
 # Cookbook
-### Members: Glenn Jayasuriya, Jiashen Zhang, Siyu Pan, Tao Wu, David
+### Members: Glenn Jayasuriya, Jiashen Zhang, Siyu Pan, Tao Wu, Junwei Wang
 
 The project is broken up into 5 packages.
 1. application
