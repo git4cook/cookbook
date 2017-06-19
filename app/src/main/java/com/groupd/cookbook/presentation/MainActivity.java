@@ -2,6 +2,8 @@ package com.groupd.cookbook.presentation;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,13 +30,14 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     private ArrayAdapter<Recipe> RADP;
     private int RecyPosy = -1;
     private String name = "";
+    final int ADD_REQUEST_CODE = 1; //request code for adding recipes's startActivityForResult
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
 
-       Main.startUp();
+        Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
         String rlt = AR.getRecipe(Rlist);
@@ -85,10 +88,54 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
     public void buttonOpenOnClick(View v) {
-        Intent reIntent = new Intent(MainActivity.this, search.class);
-        MainActivity.this.startActivity(reIntent);
+        //Intent reIntent = new Intent(MainActivity.this, search.class);
+        //MainActivity.this.startActivity(reIntent);
+
+        // Added by Glenn b/c added new button for add
+        switch (v.getId())
+        {
+            case R.id.opRcy:
+                // moved Tao's code here
+                Intent reIntent = new Intent(MainActivity.this, search.class);
+                MainActivity.this.startActivity(reIntent);
+                break;
+
+            case R.id.addButton:
+                Intent i;
+                i = new Intent(this, addNewRecipe.class);
+                //startActivity(i);
+                // when request code >0 go to onActivityResult when activity exists.
+                startActivityForResult(i, ADD_REQUEST_CODE);
+                break;
+
+        }
+    }
+
+    // By Glenn starts when addRecipe is done.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == ADD_REQUEST_CODE)
+        {
+            if (resultCode == RESULT_OK)
+            {
+                //Uri addURI = data.getData();
+                System.out.println("we get here");
 
 
+                String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
+
+                Recipe addedRecipe = new Recipe(returnedArray[0],returnedArray[1],returnedArray[2]);
+
+
+                System.out.println("titleMain: " +returnedArray[0]);
+                System.out.println("tagsMain: " +returnedArray[1]);
+                System.out.println("directionsMain: " + returnedArray[2]);
+
+                AR.insertRecipe(addedRecipe);
+
+            }
+        }
     }
 
 }
