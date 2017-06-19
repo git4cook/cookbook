@@ -71,10 +71,10 @@ public class AccessRecipe {
             return recipe;
      }
 
-//    public String insertRecipe(Recipe currentRecipe)
-//    {
-//        return dataAccess.insertRecipe(currentRecipe);
-//    }
+    public String insertRecipe(Recipe currentRecipe)
+    {
+        return dataAccess.insertRecipe(currentRecipe);
+    }
 //
 //    public String updateRecipe(Recipe currentRecipe)
 //    {
