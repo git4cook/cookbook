@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     }
 
     // By Glenn starts when addRecipe is done.
+    // for commit
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
