@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     private int RecyPosy = -1;
     private String name = "";
     final int ADD_REQUEST_CODE = 1; //request code for adding recipes's startActivityForResult
+    private final int INPUT_TITLE_INDEX = 0;
+    private final int INPUT_TAGS_INDEX = 1;
+    private final int INPUT_STEPS_INDEX = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,14 +128,16 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
                 String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
 
-                Recipe addedRecipe = new Recipe(returnedArray[0],returnedArray[1],returnedArray[2]);
+                Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
+                        returnedArray[INPUT_STEPS_INDEX],returnedArray[INPUT_TAGS_INDEX]);
 
 
                 System.out.println("titleMain: " +returnedArray[0]);
-                System.out.println("tagsMain: " +returnedArray[1]);
-                System.out.println("directionsMain: " + returnedArray[2]);
+                System.out.println("directionsMain: " + returnedArray[1]);
+                System.out.println("tagsMain: " +returnedArray[2]);
 
                 AR.insertRecipe(addedRecipe);
+                RADP.add(addedRecipe);
 
             }
         }
