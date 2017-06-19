@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             {
                 //Uri addURI = data.getData();
                 System.out.println("we get here");
+                System.out.println("well done");
 
 
                 String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
