@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
-        android:text="TextView"
         android:gravity="center"
+        android:text="TextView"
         android:textSize="0.2in" />
 
     <TextView
@@ -28,5 +28,20 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="0.1in" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="update" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:onClick="buttonDeleteOnClick"
+        android:text="delete" />
 
 </LinearLayout>

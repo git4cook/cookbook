@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 //startActivity(i);
                 // when request code >0 go to onActivityResult when activity exists.
                startActivityForResult(i, ADD_REQUEST_CODE);
-                //MainActivity.this.startActivity(i);
+
                 break;
 
         }
@@ -144,5 +144,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         }
     }
+
 
 }
