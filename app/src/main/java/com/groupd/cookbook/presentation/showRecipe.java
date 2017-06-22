@@ -3,18 +3,16 @@ package com.groupd.cookbook.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
 
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
-import java.util.ArrayList;
+
 
 public class showRecipe extends AppCompatActivity {
-    private AccessRecipe AR;
-    private ArrayList<Recipe> recipeList;
+
     private String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +37,22 @@ public class showRecipe extends AppCompatActivity {
          Recipe vRcy = RAC.getR(title);
          String result = RAC.deleteRecipe(vRcy);
          if(result == null) {
-             Intent i;
-             i = new Intent(this, MainActivity.class);
-             showRecipe.this.startActivity(i);
+             Intent delete;
+             delete = new Intent(this, MainActivity.class);
+             showRecipe.this.startActivity(delete);
          }
          else {
              Messages.warning(this, result);
          }
          }
+
+    public void buttonUpdateOnClick(View v){
+        Intent update;
+        update = new Intent(this, UpdateRecipe.class);
+        showRecipe.this.startActivity(update);
+
+    }
+
      }
 
 
