@@ -8,9 +8,8 @@
         <ListView
             android:id="@+id/RecyList"
             android:layout_width="match_parent"
-            android:layout_height="467dp"
-            android:layout_weight="9"
-            />
+            android:layout_height="409dp"
+            android:layout_weight="8.90" />
         <Button
             android:id="@+id/opRcy"
             android:layout_width="match_parent"
@@ -27,4 +26,5 @@
             android:layout_weight="9"
             android:onClick="buttonOpenOnClick"
             android:text="Add Recipe" />
+
 </LinearLayout>

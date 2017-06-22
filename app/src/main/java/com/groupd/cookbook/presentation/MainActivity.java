@@ -103,10 +103,11 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
             case R.id.addButton:
                 Intent i;
-                i = new Intent(this, addNewRecipe.class);
+                i = new Intent(MainActivity.this, addNewRecipe.class);
                 //startActivity(i);
                 // when request code >0 go to onActivityResult when activity exists.
-                startActivityForResult(i, ADD_REQUEST_CODE);
+               startActivityForResult(i, ADD_REQUEST_CODE);
+
                 break;
 
         }
@@ -146,5 +147,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         }
     }
+
 
 }

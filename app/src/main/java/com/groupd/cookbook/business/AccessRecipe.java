@@ -81,9 +81,9 @@ public class AccessRecipe {
 //        return dataAccess.updateRecipe(currentRecipe);
 //    }
 //
-//    public String deleteRecipe(Recipe currentRecipe)
-//    {
-//        return dataAccess.deleteRecipe(currentRecipe);
-//    }
+    public String deleteRecipe(Recipe currentRecipe)
+    {
+        return dataAccess.deleteRecipe(currentRecipe);
+    }
 
 }
