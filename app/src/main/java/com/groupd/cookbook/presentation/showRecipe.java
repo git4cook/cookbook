@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class showRecipe extends AppCompatActivity {
     private AccessRecipe AR;
     private ArrayList<Recipe> recipeList;
+    private String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class showRecipe extends AppCompatActivity {
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
         Recipe vRcy = RAC.getR(rcyTitle);
+        title = vRcy.getName();
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
@@ -33,10 +35,9 @@ public class showRecipe extends AppCompatActivity {
     }
 
      public void buttonDeleteOnClick (View v) {
-         TextView rti = (TextView) findViewById(R.id.vTitle);
-         String reName = rti.getText().toString().trim();
-         Recipe delete = AR.getR(reName);
-         String result = AR.deleteRecipe(delete);
+         AccessRecipe RAC = new AccessRecipe();
+         Recipe vRcy = RAC.getR(title);
+         String result = RAC.deleteRecipe(vRcy);
          if(result == null) {
              Intent i;
              i = new Intent(this, MainActivity.class);
