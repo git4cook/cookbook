@@ -30,13 +30,13 @@ public class showRecipe extends AppCompatActivity {
         rta.setText("Tags: \n" + vRcy.getTags());
         rct.setText("How to cook: \n" + vRcy.getDirection());
 
-        Intent update;
+       /* Intent update;
         update = new Intent(this, UpdateRecipe.class);
         b.putString("recipeName",title);
         b.putString("tags",vRcy.getTags());
         b.putString("des",vRcy.getDirection());
         update.putExtras(b);
-        showRecipe.this.startActivity(update);
+        showRecipe.this.startActivity(update);*/
     }
 
      public void buttonDeleteOnClick (View v) {
