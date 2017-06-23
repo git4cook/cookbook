@@ -1,24 +1,34 @@
 package com.groupd.cookbook.application;
 
-/**
- * Created by siyu on 2017/6/2.
- */
-import com.groupd.cookbook.persistence.DataAccessStub;
 
-public class Services {
-    private static DataAccessStub dataAccessService = null;
+import com.groupd.cookbook.persistence.DataAccess;
+import com.groupd.cookbook.persistence.DataAccessObj;
 
-    public static DataAccessStub createDataAccess(String dbName)
+public class Services
+{
+    private static DataAccess dataAccessService = null;
+
+    public static DataAccess createDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
-            dataAccessService = new DataAccessStub(dbName);
-            dataAccessService.open(Main.dbName);
+            dataAccessService = new DataAccessObj(dbName);
+            dataAccessService.open(Main.getDBPathName());
         }
         return dataAccessService;
     }
 
-    public static DataAccessStub getDataAccess(String dbName)
+    public static DataAccess createDataAccess(DataAccess alternateDataAccessService)
+    {
+        if (dataAccessService == null)
+        {
+            dataAccessService = alternateDataAccessService;
+            dataAccessService.open(Main.getDBPathName());
+        }
+        return dataAccessService;
+    }
+
+    public static DataAccess getDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
@@ -36,7 +46,4 @@ public class Services {
         }
         dataAccessService = null;
     }
-    }
-
-
-
+}

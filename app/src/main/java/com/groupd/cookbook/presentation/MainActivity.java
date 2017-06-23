@@ -1,7 +1,9 @@
 package com.groupd.cookbook.presentation;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,10 @@ import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
-
+        copyDatabaseToDevice();
         Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
@@ -83,6 +89,55 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
     }
 
+    private void copyDatabaseToDevice() {
+        final String DB_PATH = "db";
+
+        String[] assetNames;
+        Context context = getApplicationContext();
+        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        AssetManager assetManager = getAssets();
+
+        try {
+
+            assetNames = assetManager.list(DB_PATH);
+            for (int i = 0; i < assetNames.length; i++) {
+                assetNames[i] = DB_PATH + "/" + assetNames[i];
+            }
+
+            copyAssetsToDirectory(assetNames, dataDirectory);
+
+            Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
+
+        } catch (IOException ioe) {
+            Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
+        }
+    }
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+        AssetManager assetManager = getAssets();
+
+        for (String asset : assets) {
+            String[] components = asset.split("/");
+            String copyPath = directory.toString() + "/" + components[components.length - 1];
+            char[] buffer = new char[1024];
+            int count;
+
+            File outFile = new File(copyPath);
+
+            if (!outFile.exists()) {
+                InputStreamReader in = new InputStreamReader(assetManager.open(asset));
+                FileWriter out = new FileWriter(outFile);
+
+                count = in.read(buffer);
+                while (count != -1) {
+                    out.write(buffer, 0, count);
+                    count = in.read(buffer);
+                }
+
+                out.close();
+                in.close();
+            }
+        }
+    }
     public void selectRecipeAtPosition(int position) {
         Recipe selected = RADP.getItem(position);
         EditText editName = (EditText)findViewById(R.id.recyTitle);
@@ -103,14 +158,13 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 MainActivity.this.startActivity(reIntent);
                 break;
 
-            case R.id.addButton:
-                Intent i;
-                i = new Intent(MainActivity.this, addNewRecipe.class);
-                //startActivity(i);
-                // when request code >0 go to onActivityResult when activity exists.
-               startActivityForResult(i, ADD_REQUEST_CODE);
-
-                break;
+//            case R.id.addButton:
+//                Intent i;
+//                i = new Intent(this, addNewRecipe.class);
+//                //startActivity(i);
+//                // when request code >0 go to onActivityResult when activity exists.
+//                startActivityForResult(i, ADD_REQUEST_CODE);
+//                break;
 
         }
     }
@@ -144,6 +198,5 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         }
     }
-
 
 }
