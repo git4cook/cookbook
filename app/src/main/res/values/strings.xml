@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">cookbook</string>
+    <string name="title_activity_update_recipe">updateRecipe</string>
 </resources>

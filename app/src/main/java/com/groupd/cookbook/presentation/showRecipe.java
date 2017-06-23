@@ -14,6 +14,7 @@ import com.groupd.cookbook.objects.Recipe;
 public class showRecipe extends AppCompatActivity {
 
     private String title;
+    private Recipe vRcy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,22 +22,16 @@ public class showRecipe extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
-        Recipe vRcy = RAC.getR(rcyTitle);
+        vRcy = RAC.getR(rcyTitle);
         title = vRcy.getName();
+
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
-        rti.setText(/*"Title: \n" + */vRcy.getName());
+        rti.setText(/*"Title: \n" + */title);
         rta.setText("Tags: \n" + vRcy.getTags());
-        rct.setText("How to cook: \n" + vRcy.getDirection());
+        rct.setText("How to cook: \n" +  vRcy.getDirection());
 
-        Intent update;
-        update = new Intent(this, UpdateRecipe.class);
-        b.putString("recipeName",title);
-        b.putString("tags",vRcy.getTags());
-        b.putString("des",vRcy.getDirection());
-        update.putExtras(b);
-        showRecipe.this.startActivity(update);
     }
 
      public void buttonDeleteOnClick (View v) {
@@ -54,9 +49,15 @@ public class showRecipe extends AppCompatActivity {
          }
 
     public void buttonUpdateOnClick(View v){
-        Intent update;
-        update = new Intent(this, UpdateRecipe.class);
+
+        Intent update = new Intent(this, update.class);
+        Bundle a =  new Bundle();
+        a.putString("recipeName",vRcy.getName());
+        a.putString("tags",vRcy.getTags());
+        a.putString("des",vRcy.getDirection());
+        update.putExtras(a);
         showRecipe.this.startActivity(update);
+
 
     }
 

@@ -78,12 +78,12 @@ public class AccessRecipe {
     {
         return dataAccess.insertRecipe(currentRecipe);
     }
-//
-//    public String updateRecipe(Recipe currentRecipe)
-//    {
-//        return dataAccess.updateRecipe(currentRecipe);
-//    }
-//
+
+    public String updateRecipe(Recipe currentRecipe)
+  {
+      return dataAccess.updateRecipe(currentRecipe);
+  }
+
     public String deleteRecipe(Recipe currentRecipe)
     {
         return dataAccess.deleteRecipe(currentRecipe);

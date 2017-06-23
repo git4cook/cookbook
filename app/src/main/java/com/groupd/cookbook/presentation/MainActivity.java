@@ -146,8 +146,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
     public void buttonOpenOnClick(View v) {
-        //Intent reIntent = new Intent(MainActivity.this, search.class);
-        //MainActivity.this.startActivity(reIntent);
 
         // Added by Glenn b/c added new button for add
         switch (v.getId())
@@ -169,8 +167,18 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
     }
 
-    // By Glenn starts when addRecipe is done.
-    // for commit
+    /*
+    PURPOSE:
+                Runs after the calling startActivityForResult is done
+                Performs action based on the request code.
+                Retrieves input from layout as a string array and adds recipe to GUI and Logic AL
+
+    PARAMETERS:
+                requestCode that identifies which activity we exited from and on.
+                resultCode created by exited activity to say there is data to return.
+                data, holds a string array of input that will be extracted.
+    AUTHOR: Glenn
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -186,11 +194,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
                 Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
                         returnedArray[INPUT_STEPS_INDEX],returnedArray[INPUT_TAGS_INDEX]);
-
-
-                System.out.println("titleMain: " +returnedArray[0]);
-                System.out.println("directionsMain: " + returnedArray[1]);
-                System.out.println("tagsMain: " +returnedArray[2]);
 
                 AR.insertRecipe(addedRecipe);
                 RADP.add(addedRecipe);

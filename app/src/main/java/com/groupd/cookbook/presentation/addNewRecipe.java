@@ -19,8 +19,7 @@ import java.util.ArrayList;
 
 public class addNewRecipe extends AppCompatActivity implements View.OnClickListener {
 
-    String[] inputArray = new String[3];
-    ArrayList<String> inputAL = new ArrayList<String>();
+    private String[] inputArray = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         String stepsInput = stepsQuery.getText().toString();
 
         // Note decided to pass a array instead of making a new record
-        // Reason: Keep GUI and Logic seperate, GUI is independant of Recipe class - Glenn
+        // Reason: Keep GUI and Logic separate, GUI is independent of Recipe class - Glenn
 
 
         System.out.println("The title is: " + titleInput);
@@ -56,23 +55,21 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         return;
     }
 
-    public String[] createInputArray(String titleInput, String tagsInput, String stepsInput)
+    /*
+    PURPOSE: Create array of input parameters and intent to pass array to main menu,
+                then close activity
+    AUTHOR: Glenn
+     */
+    public void createInputArray(String titleInput, String tagsInput, String stepsInput)
     {
         inputArray[0] = titleInput;
         inputArray[1] = tagsInput;
         inputArray[2] = stepsInput;
 
-        inputAL.add(0,titleInput);
-        inputAL.add(1,tagsInput);
-        inputAL.add(2,tagsInput);
-
         Intent createdIntent = new Intent();
-        //createdIntent.putStringArrayListExtra("RECIPE_DATA",inputAL);
         createdIntent.putExtra("RECIPE_DATA",inputArray);
         setResult(RESULT_OK, createdIntent);
         finish();
-
-        return inputArray;
     }
 
 }
