@@ -12,11 +12,11 @@ public interface DataAccess {
     void close();
     String getRecipeSequential(List<Recipe> studentResult);
 
-    String insertRecipe(Recipe student);
+    String insertRecipe(Recipe recipe);
 
-    String updateRecipe(Recipe student);
+    String updateRecipe(Recipe recipe);
 
-    String deleteRecipe(Recipe student);
+    String deleteRecipe(Recipe recipe);
 
     String getFavoriteSequential(List<Recipe> courseResult);
 
