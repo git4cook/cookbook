@@ -9,11 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.groupd.cookbook.R;
-import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.persistence.DataAccessStub;
-
-import java.sql.Array;
-import java.util.ArrayList;
 
 // By Glenn
 

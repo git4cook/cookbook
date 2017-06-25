@@ -76,40 +76,40 @@ public class DataAccessObj implements DataAccess{
 
     public List<Recipe> getR(String name){
         Recipe recipe;
-        String myID, myRecipeName, myTags, myDirection;
+        String myRecipeName, myTags, myDirection;
+        recipe = new Recipe( "aaa", "bbb","ccc");
         myRecipeName = EOF;
         myTags = EOF;
-        myID = EOF;
         myDirection = EOF;
 
         List<Recipe> result = null;
-        try
-        {
-            cmdString = "Select * from Recipes Where UPPER(Name)="+name.toUpperCase();
-            rs2 = st1.executeQuery(cmdString);
-            //ResultSetMetaData md2 = rs2.getMetaData();
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-        try
-        {
-            while (rs2.next())
-            {
-                myID = rs2.getString("RecipeID");
-                myRecipeName = rs2.getString("Name");
-                myTags = rs2.getString("tags");
-                myDirection = rs2.getString("Direction");
-                recipe = new Recipe( myRecipeName, myDirection,myTags);
-                result.add(recipe);
-            }
-            rs2.close();
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
+        result.add(recipe);
+//        try
+//        {
+//            cmdString = "Select * from R Where Name="+name;
+//            rs2 = st1.executeQuery(cmdString);
+//            //ResultSetMetaData md2 = rs2.getMetaData();
+//        }
+//        catch (Exception e)
+//        {
+//            processSQLError(e);
+//        }
+//        try
+//        {
+//            while (rs2.next())
+//            {
+//                myRecipeName = rs2.getString("Name");
+//                myTags = rs2.getString("Category");
+//                myDirection = rs2.getString("Direction");
+//                recipe = new Recipe( myRecipeName, myDirection,myTags);
+//                result.add(recipe);
+//            }
+//            rs2.close();
+//        }
+//        catch (Exception e)
+//        {
+//            processSQLError(e);
+//        }
 
         return result;
     }
@@ -130,7 +130,7 @@ public class DataAccessObj implements DataAccess{
         result = null;
         try
         {
-            cmdString = "Select * from Recipes";
+            cmdString = "Select * from R";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
@@ -139,10 +139,7 @@ public class DataAccessObj implements DataAccess{
             result = " getRecipeSequential1";
             //result = processSQLError(e);
         }
-        String hehe = "";
-        if(rs2==null){
-             hehe = "hehehhehhee";
-        }
+
         try
         {
             while (rs2.next())
@@ -157,7 +154,7 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = hehe;//result = processSQLError(e);
+            result = processSQLError(e);
         }
 
         return result;
@@ -176,7 +173,7 @@ public class DataAccessObj implements DataAccess{
                     +"', '" +currentRecipe.getTags()
                     +"', '" +currentRecipe.getDirection()
                     +"'";
-            cmdString = "Insert into Recipes " +" Values(" +values +")";
+            cmdString = "Insert into R " +" Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -202,7 +199,7 @@ public class DataAccessObj implements DataAccess{
                     +"', Direction='" +currentRecipe.getDirection()
                     +"'";
             where = "where UPPER(Name)=" +currentRecipe.getName().toUpperCase();
-            cmdString = "Update Recipes " +" Set " +values +" " +where;
+            cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -222,7 +219,7 @@ public class DataAccessObj implements DataAccess{
         try
         {
             values = currentRecipe.getName();
-            cmdString = "Delete from Recipes where UPPER(Name)=" +values.toUpperCase();
+            cmdString = "Delete from R where UPPER(Name)=" +values.toUpperCase();
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -246,7 +243,7 @@ public class DataAccessObj implements DataAccess{
         result = null;
         try
         {
-            cmdString = "Select * from Recipes";
+            cmdString = "Select * from R";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
@@ -288,7 +285,7 @@ public class DataAccessObj implements DataAccess{
                     +"', '" +currentFavorite.getTags()
                     +"', '" +currentFavorite.getDirection()
                     +"'";
-            cmdString = "Insert into Recipes " +" Values(" +values +")";
+            cmdString = "Insert into R " +" Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -314,7 +311,7 @@ public class DataAccessObj implements DataAccess{
                     +"', Direction='" +currentFavorite.getDirection()
                     +"'";
             where = "where UPPER(Name)=" +currentFavorite.getName().toUpperCase();
-            cmdString = "Update Recipes " +" Set " +values +" " +where;
+            cmdString = "Update F " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -334,7 +331,7 @@ public class DataAccessObj implements DataAccess{
         try
         {
             values = currentFavorite.getName();
-            cmdString = "Delete from Recipes where UPPER(Name)=" +values.toUpperCase();
+            cmdString = "Delete from F where UPPER(Name)=" +values.toUpperCase();
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);

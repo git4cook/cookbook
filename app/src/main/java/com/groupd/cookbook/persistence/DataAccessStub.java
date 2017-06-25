@@ -78,7 +78,7 @@ public class DataAccessStub
 
 
 
-    public ArrayList<Recipe> getList(){
+    public ArrayList<Recipe> getRecipeList(){
         return recipes;
     }
 

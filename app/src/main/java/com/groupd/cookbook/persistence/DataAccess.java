@@ -25,7 +25,7 @@ public interface DataAccess {
     String updateFavorite(Recipe course);
 
     String deleteFavorite(Recipe course);
-    List<Recipe> getR(String id);
+    List<Recipe> getR(String name);
     List<Recipe> getRecipeList();
 }
 

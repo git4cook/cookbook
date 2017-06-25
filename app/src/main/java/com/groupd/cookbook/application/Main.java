@@ -1,18 +1,5 @@
 package com.groupd.cookbook.application;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
-
-
-import com.groupd.cookbook.persistence.DataAccessStub;
-import com.groupd.cookbook.presentation.Messages;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 /**
  * Created by siyu on 2017/6/2.
  */
