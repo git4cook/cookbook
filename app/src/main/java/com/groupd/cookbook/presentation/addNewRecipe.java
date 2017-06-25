@@ -117,7 +117,10 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+    public void deleteDucplicate (String delete){
+        if((tagString.indexOf(delete))>=0)
+            tagString.replace(delete,"");
+    }
 
 
 
