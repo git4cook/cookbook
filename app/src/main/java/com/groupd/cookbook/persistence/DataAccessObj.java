@@ -77,12 +77,12 @@ public class DataAccessObj implements DataAccess{
     public List<Recipe> getR(String name){
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
-        recipe = new Recipe( "aaa", "bbb","ccc");
         myRecipeName = EOF;
         myTags = EOF;
         myDirection = EOF;
 
-        List<Recipe> result = null;
+        List<Recipe> result =new ArrayList<Recipe>();
+        recipe = new Recipe( "aaa", "bbb","ccc");
         result.add(recipe);
 //        try
 //        {
@@ -99,7 +99,7 @@ public class DataAccessObj implements DataAccess{
 //            while (rs2.next())
 //            {
 //                myRecipeName = rs2.getString("Name");
-//                myTags = rs2.getString("Category");
+//                myTags = rs2.getString("Tags");
 //                myDirection = rs2.getString("Direction");
 //                recipe = new Recipe( myRecipeName, myDirection,myTags);
 //                result.add(recipe);
@@ -114,8 +114,8 @@ public class DataAccessObj implements DataAccess{
         return result;
     }
     public List<Recipe> getRecipeList(){
-        List<Recipe> result = null;
-        getRecipeSequential(result);
+        List<Recipe> result = new ArrayList<Recipe>();
+       getRecipeSequential(result);
         return result;
     }
 
