@@ -20,7 +20,7 @@ public class update extends AppCompatActivity {
     private String title ;
     private String tags;
     private String des;
-
+    private String tagString="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,10 @@ public class update extends AppCompatActivity {
         tags = b.getString("tags");
         des = b.getString("des");
         TextView editName =(TextView) findViewById(R.id.viewName);
-        EditText editTags = (EditText)findViewById(R.id.editTags) ;
-        EditText editDec  = (EditText)findViewById(R.id.editDec) ;
+        TextView tag =(TextView) findViewById(R.id.tagudt);
+        EditText editDec  = (EditText)findViewById(R.id.editDec);
         editName.setText(title);
-        editTags.setText(tags);
+        tag.setText(tags);
         editDec.setText(des);
 
     }
