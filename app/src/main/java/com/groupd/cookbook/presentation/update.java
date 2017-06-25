@@ -42,14 +42,14 @@ public class update extends AppCompatActivity {
     public void buttonConfirmOnClick (View v) {
         AccessRecipe AR = new AccessRecipe();
 
-        TextView editName = (TextView)findViewById(R.id.viewName);
+        TextView editName =(TextView) findViewById(R.id.viewName);
         EditText editTags = (EditText)findViewById(R.id.editTags);
         EditText editDec  = (EditText)findViewById(R.id.editDec);
 
-        Recipe newRecipe = new Recipe (editDec.getText().toString(),editTags.getText().toString());
+        Recipe newRecipe = new Recipe (editName.getText().toString(),editDec.getText().toString(),editTags.getText().toString());
         String result = validateRecipeData(newRecipe);
 
-        if(result == null) {
+       if(result == null) {
             result = AR.updateRecipe(newRecipe);
             if (result == null) {
                 Intent c;
@@ -58,8 +58,8 @@ public class update extends AppCompatActivity {
             } else {
                 Messages.fatalError(this, result);
             }
-        } else{
-            Messages.warning(this,result);
+       } else{
+          Messages.warning(this,result);
         }
 
     }
