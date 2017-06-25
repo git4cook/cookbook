@@ -29,19 +29,30 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:id="@+id/tagsS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/addTagsID"
+        android:layout_alignEnd="@+id/tag5"
+        android:layout_alignTop="@+id/addTagsID"
+        android:layout_toEndOf="@+id/tag2"
+        android:text="TextView"
+        android:visibility="visible" />
+
     <EditText
         android:id="@+id/addTagsID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/addTitleID"
-        android:layout_marginTop="21dp"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
         android:hint="Pick Tags"
         android:inputType="textShortMessage"
         android:textSize="35sp"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/addTitleID"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/tagsS" />
 
     <EditText
         android:id="@+id/addStepsID"
@@ -72,6 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/addTagsID"
+        android:onClick="onClick1"
         android:text="Vegi" />
 
     <Button
@@ -80,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTagsID"
         android:layout_toEndOf="@+id/tag1"
+        android:onClick="onClick2"
         android:text="Meat" />
 
     <Button
@@ -88,6 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTagsID"
         android:layout_toEndOf="@+id/tag2"
+        android:onClick="onClick3"
         android:text="breakfast" />
 
     <Button
@@ -96,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTagsID"
         android:layout_toEndOf="@+id/tag3"
+        android:onClick="onClick4"
         android:text="lunch" />
 
     <Button
@@ -104,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTagsID"
         android:layout_toEndOf="@+id/tag4"
+        android:onClick="onClick5"
         android:text="dinner" />
 
 </RelativeLayout>

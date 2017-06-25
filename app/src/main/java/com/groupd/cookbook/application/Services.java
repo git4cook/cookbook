@@ -3,6 +3,7 @@ package com.groupd.cookbook.application;
 
 import com.groupd.cookbook.persistence.DataAccess;
 import com.groupd.cookbook.persistence.DataAccessObj;
+import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class Services
 {
@@ -13,6 +14,7 @@ public class Services
         if (dataAccessService == null)
         {
             dataAccessService = new DataAccessObj(dbName);
+            //dataAccessService = new DataAccessStub(dbName);
             dataAccessService.open(Main.getDBPathName());
         }
         return dataAccessService;

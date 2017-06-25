@@ -7,15 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.groupd.cookbook.R;
 
-// By Glenn
+// By Glenn, Tao Wu
 
 public class addNewRecipe extends AppCompatActivity implements View.OnClickListener {
 
     private String[] inputArray = new String[3];
-
+    private String tagString=null;
+    TextView tag = (TextView) findViewById(R.id.tagsS);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +25,28 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         Button submitButton = (Button)findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
 
+        Button tag1 = (Button)findViewById(R.id.tag1);
+        tag1.setOnClickListener(this);
+        Button tag2 = (Button)findViewById(R.id.tag2);
+        tag2.setOnClickListener(this);
+        Button tag3 = (Button)findViewById(R.id.tag3);
+        tag3.setOnClickListener(this);
+        Button tag4 = (Button)findViewById(R.id.tag4);
+        tag4.setOnClickListener(this);
+        Button tag5 = (Button)findViewById(R.id.tag5);
+        tag5.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
 
         EditText titleQuery = (EditText)findViewById(R.id.addTitleID);
-        EditText tagsQuery = (EditText)findViewById(R.id.addTagsID);
+        //EditText tagsQuery = (EditText)findViewById(R.id.addTagsID);
         EditText stepsQuery = (EditText)findViewById(R.id.addStepsID);
 
         String titleInput = titleQuery.getText().toString();
-        String tagsInput = tagsQuery.getText().toString();
+        String tagsInput = tagString;//.getText().toString();
         String stepsInput = stepsQuery.getText().toString();
 
         // Note decided to pass a array instead of making a new record
@@ -47,8 +60,61 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
 
         createInputArray(titleInput,tagsInput,stepsInput);
 
-        return;
     }
+    public void onClick1(View v) {
+        if(tagString==null) {
+            tagString += "vegi";
+            tag.setText(tagString);
+        }
+        else {
+            tagString += ",vegi";
+            tag.setText(tagString);
+        }
+    }
+    public void onClick2(View v) {
+        if(tagString==null) {
+            tagString += "meat";
+            tag.setText(tagString);
+        }
+        else {
+            tagString += ",meat";
+            tag.setText(tagString);
+        }
+    }
+    public void onClick3(View v) {
+        if(tagString==null) {
+            tagString += "breakfast";
+            tag.setText(tagString);
+        }
+        else {
+            tagString += ",breakfast";
+            tag.setText(tagString);
+        }
+    }
+    public void onClick4(View v) {
+        if(tagString==null) {
+            tagString += "lunch";
+            tag.setText(tagString);
+        }
+        else {
+            tagString += ",lunch";
+            tag.setText(tagString);
+        }
+    }
+    public void onClick5(View v) {
+        if(tagString==null) {
+            tagString += "dinner";
+            tag.setText(tagString);
+        }
+        else {
+            tagString += ",dinner";
+            tag.setText(tagString);
+        }
+    }
+
+
+
+
 
     /*
     PURPOSE: Create array of input parameters and intent to pass array to main menu,
