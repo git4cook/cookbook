@@ -148,24 +148,23 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     public void buttonOpenOnClick(View v) {
 
         // Added by Glenn b/c added new button for add
-        /*switch (v.getId())
+        switch (v.getId())
         {
             case R.id.opRcy:
                 // moved Tao's code here
                 Intent reIntent = new Intent(MainActivity.this, search.class);
                 MainActivity.this.startActivity(reIntent);
-                break;*/
+                break;
 
-           //case R.id.addButton:
-                Intent i;
+           case R.id.addButton:
+               Intent i;
                 i = new Intent(this, addNewRecipe.class);
-                MainActivity.this.startActivity(i);
-                //startActivity(i);
-//                // when request code >0 go to onActivityResult when activity exists.
-//                startActivityForResult(i, ADD_REQUEST_CODE);
-                //break;
+               //startActivity(i);
+               // when request code >0 go to onActivityResult when activity exists.
+               startActivityForResult(i, ADD_REQUEST_CODE);
+              break;
 
-        //}
+        }
     }
 
     /*
