@@ -7,9 +7,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+
 public class AccessRecipeTest {
     private AccessRecipe test;
     private String recipeName;
+
     @Before
     public void setUp(){
          test = new AccessRecipe();
@@ -19,14 +22,15 @@ public class AccessRecipeTest {
     public void tearDown(){
         test = null;
     }
+
     @Test
-    public void testGetR(){
-        assertEquals("error message",recipeName,);
-        assertEquals("sad",)
-        assertTrue("asd",false);
+   public void testGetRValid(){
 
+       assertEquals("pancake",recipeName);
+   }
+  @Test
+    public void testGetRNumber(){
 
-    }
-
+  }
 
 }
