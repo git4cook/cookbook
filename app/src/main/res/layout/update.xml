@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <EditText
-        android:id="@+id/editName"
+    <TextView
+        android:id="@+id/viewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:text="TextView" />
 
     <EditText
         android:id="@+id/editTags"

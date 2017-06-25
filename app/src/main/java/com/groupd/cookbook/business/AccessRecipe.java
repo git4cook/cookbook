@@ -8,7 +8,7 @@ import com.groupd.cookbook.persistence.DataAccess;
 import com.groupd.cookbook.persistence.DataAccessStub;
 
 
-public class AccessRecipe {
+public class AccessRecipe implements AccessRecipeInterface {
    // private DataAccessStub dataAccess;
     private DataAccess dataAccess;
     private List<Recipe> recipes;

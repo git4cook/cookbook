@@ -2,12 +2,13 @@ package com.groupd.cookbook.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import android.view.View;
 import android.content.Intent;
 
 import android.view.View;
 
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
@@ -30,7 +31,7 @@ public class update extends AppCompatActivity {
         title = b.getString("recipeName");
         tags = b.getString("tags");
         des = b.getString("des");
-        EditText editName =(EditText)findViewById(R.id.editName);
+        TextView editName =(TextView) findViewById(R.id.viewName);
         EditText editTags = (EditText)findViewById(R.id.editTags) ;
         EditText editDec  = (EditText)findViewById(R.id.editDec) ;
         editName.setText(title);
@@ -41,11 +42,11 @@ public class update extends AppCompatActivity {
     public void buttonConfirmOnClick (View v) {
         AccessRecipe AR = new AccessRecipe();
 
-        EditText editName = (EditText)findViewById(R.id.editName);
+        TextView editName = (TextView)findViewById(R.id.viewName);
         EditText editTags = (EditText)findViewById(R.id.editTags);
         EditText editDec  = (EditText)findViewById(R.id.editDec);
 
-        Recipe newRecipe = new Recipe (editName.getText().toString(),editDec.getText().toString(),editTags.getText().toString());
+        Recipe newRecipe = new Recipe (editDec.getText().toString(),editTags.getText().toString());
         String result = validateRecipeData(newRecipe);
 
         if(result == null) {

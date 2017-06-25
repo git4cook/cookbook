@@ -16,9 +16,9 @@ public class Recipe
         direction = null;
     }
 
-    public Recipe(String name, String direction)
+    public Recipe(String direction, String tags)
     {
-        this.name = name;
+        this.name = tags;
         this.direction = direction;
     }
 
@@ -44,11 +44,11 @@ public class Recipe
         return (tags);
     }
 
-    public String toString()
+    /*public String toString()
     {
         return "Recipe: " +name +"\nDirection: " +direction+"\nTags: "+tags;
     }
-
+*/
     public boolean equals(Object object)
     {
         boolean result;
