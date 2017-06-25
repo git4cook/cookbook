@@ -26,34 +26,36 @@
         android:inputType="textShortMessage"
         android:textSize="40sp"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/addTagsID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addTitleID"
+        android:layout_marginTop="21dp"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
-        android:hint="Enter Tags by commas"
+        android:hint="Pick Tags"
         android:inputType="textShortMessage"
         android:textSize="35sp"
-        android:layout_below="@+id/addTitleID"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/addStepsID"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/addTagsID"
-        android:layout_marginTop="34dp"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
         android:hint="Enter Steps"
         android:inputType="textMultiLine"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_above="@+id/submitButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/submitButton"
@@ -63,5 +65,45 @@
         android:layout_centerHorizontal="true"
         android:text="Submit Recipe"
         android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/tag1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addTagsID"
+        android:text="Vegi" />
+
+    <Button
+        android:id="@+id/tag2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTagsID"
+        android:layout_toEndOf="@+id/tag1"
+        android:text="Meat" />
+
+    <Button
+        android:id="@+id/tag3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTagsID"
+        android:layout_toEndOf="@+id/tag2"
+        android:text="breakfast" />
+
+    <Button
+        android:id="@+id/tag4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTagsID"
+        android:layout_toEndOf="@+id/tag3"
+        android:text="lunch" />
+
+    <Button
+        android:id="@+id/tag5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTagsID"
+        android:layout_toEndOf="@+id/tag4"
+        android:text="dinner" />
 
 </RelativeLayout>
