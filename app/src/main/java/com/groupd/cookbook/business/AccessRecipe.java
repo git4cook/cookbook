@@ -10,7 +10,7 @@ import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class AccessRecipe implements AccessRecipeInterface {
    // private DataAccessStub dataAccess;
-    private DataAccess dataAccess;
+    private DataAccessStub dataAccess;
     private List<Recipe> recipes;
     private Recipe recipe;
     private int currentRecipe;

@@ -156,13 +156,13 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 MainActivity.this.startActivity(reIntent);
                 break;
 
-//            case R.id.addButton:
-//                Intent i;
-//                i = new Intent(this, addNewRecipe.class);
-//                //startActivity(i);
-//                // when request code >0 go to onActivityResult when activity exists.
-//                startActivityForResult(i, ADD_REQUEST_CODE);
-//                break;
+           case R.id.addButton:
+               Intent i;
+                i = new Intent(this, addNewRecipe.class);
+               //startActivity(i);
+               // when request code >0 go to onActivityResult when activity exists.
+               startActivityForResult(i, ADD_REQUEST_CODE);
+              break;
 
         }
     }

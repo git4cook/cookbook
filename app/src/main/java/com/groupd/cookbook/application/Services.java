@@ -3,22 +3,24 @@ package com.groupd.cookbook.application;
 
 import com.groupd.cookbook.persistence.DataAccess;
 import com.groupd.cookbook.persistence.DataAccessObj;
+import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class Services
 {
-    private static DataAccess dataAccessService = null;
+    private static DataAccessStub dataAccessService = null;
 
-    public static DataAccess createDataAccess(String dbName)
+    public static DataAccessStub createDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
-            dataAccessService = new DataAccessObj(dbName);
+            //dataAccessService = new DataAccessObj(dbName);
+            dataAccessService = new DataAccessStub(dbName);
             dataAccessService.open(Main.getDBPathName());
         }
         return dataAccessService;
     }
 
-    public static DataAccess createDataAccess(DataAccess alternateDataAccessService)
+    public static DataAccessStub createDataAccess(DataAccessStub alternateDataAccessService)
     {
         if (dataAccessService == null)
         {
@@ -28,7 +30,7 @@ public class Services
         return dataAccessService;
     }
 
-    public static DataAccess getDataAccess(String dbName)
+    public static DataAccessStub getDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
