@@ -23,6 +23,8 @@ public class AccessRecipe implements AccessRecipeInterface {
 }
 
     public Recipe getR(String recipeName){
+        if(recipeName==null)
+            return null;
         if(recipes ==null  )
         {
             recipes = dataAccess.getR(recipeName);
@@ -36,8 +38,6 @@ public class AccessRecipe implements AccessRecipeInterface {
                 recipes = null;
                 recipe = null;
                 currentRecipe = 0;
-
-
             }
             return recipe;
     }
@@ -56,7 +56,7 @@ public class AccessRecipe implements AccessRecipeInterface {
         recipes.clear();
         return dataAccess.getRecipeSequential(recipes);
     }
-    public Recipe getSequential(){
+   /* public Recipe getSequential(){
          if(recipe==null) {
              currentRecipe = 0;
          }
@@ -72,7 +72,7 @@ public class AccessRecipe implements AccessRecipeInterface {
              currentRecipe = 0;
          }
             return recipe;
-     }
+     }*/
 
     public String insertRecipe(Recipe currentRecipe)
     {
