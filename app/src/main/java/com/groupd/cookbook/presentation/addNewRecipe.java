@@ -16,8 +16,8 @@ import com.groupd.cookbook.R;
 public class addNewRecipe extends AppCompatActivity implements View.OnClickListener {
 
     private String[] inputArray = new String[3];
-    private String tagString=null;
-    TextView tag = (TextView) findViewById(R.id.tagsS);
+    private String tagString="";
+    //TextView tag = (TextView) findViewById(R.id.tagsS);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +25,16 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         Button submitButton = (Button)findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
 
-        Button tag1 = (Button)findViewById(R.id.tag1);
-        tag1.setOnClickListener(this);
+        /*Button tag1 = (Button)findViewById(R.id.tag1);
+        //tag1.setOnClickListener(this);
         Button tag2 = (Button)findViewById(R.id.tag2);
-        tag2.setOnClickListener(this);
+        //tag2.setOnClickListener(this);
         Button tag3 = (Button)findViewById(R.id.tag3);
-        tag3.setOnClickListener(this);
+        //tag3.setOnClickListener(this);
         Button tag4 = (Button)findViewById(R.id.tag4);
-        tag4.setOnClickListener(this);
+        //tag4.setOnClickListener(this);
         Button tag5 = (Button)findViewById(R.id.tag5);
-        tag5.setOnClickListener(this);
+        //tag5.setOnClickListener(this);*/
 
     }
 
@@ -62,7 +62,8 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
 
     }
     public void onClick1(View v) {
-        if(tagString==null) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if(tagString.equalsIgnoreCase("")) {
             tagString += "vegi";
             tag.setText(tagString);
         }
@@ -72,7 +73,8 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void onClick2(View v) {
-        if(tagString==null) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if(tagString.equalsIgnoreCase("")) {
             tagString += "meat";
             tag.setText(tagString);
         }
@@ -82,7 +84,8 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void onClick3(View v) {
-        if(tagString==null) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if(tagString.equalsIgnoreCase("")) {
             tagString += "breakfast";
             tag.setText(tagString);
         }
@@ -92,7 +95,8 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void onClick4(View v) {
-        if(tagString==null) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if(tagString.equalsIgnoreCase("")) {
             tagString += "lunch";
             tag.setText(tagString);
         }
@@ -102,7 +106,8 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void onClick5(View v) {
-        if(tagString==null) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if(tagString.equalsIgnoreCase("")) {
             tagString += "dinner";
             tag.setText(tagString);
         }
