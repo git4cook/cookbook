@@ -63,67 +63,81 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
     }
     public void onClick1(View v) {
         TextView tag = (TextView) findViewById(R.id.tagsS);
-        if(tagString.equalsIgnoreCase("")) {
+        if (tagString.equalsIgnoreCase("")) {
             tagString += "vegi";
             tag.setText(tagString);
-        }
-        else {
-            tagString += ",vegi";
-            tag.setText(tagString);
-        }
-    }
-    public void onClick2(View v) {
-        TextView tag = (TextView) findViewById(R.id.tagsS);
-        if(tagString.equalsIgnoreCase("")) {
-            tagString += "meat";
-            tag.setText(tagString);
-        }
-        else {
-            tagString += ",meat";
-            tag.setText(tagString);
-        }
-    }
-    public void onClick3(View v) {
-        TextView tag = (TextView) findViewById(R.id.tagsS);
-        if(tagString.equalsIgnoreCase("")) {
-            tagString += "breakfast";
-            tag.setText(tagString);
-        }
-        else {
-            tagString += ",breakfast";
-            tag.setText(tagString);
-        }
-    }
-    public void onClick4(View v) {
-        TextView tag = (TextView) findViewById(R.id.tagsS);
-        if(tagString.equalsIgnoreCase("")) {
-            tagString += "lunch";
-            tag.setText(tagString);
-        }
-        else {
-            tagString += ",lunch";
-            tag.setText(tagString);
-        }
-    }
-    public void onClick5(View v) {
-        TextView tag = (TextView) findViewById(R.id.tagsS);
-        if(tagString.equalsIgnoreCase("")) {
-            tagString += "dinner";
-            tag.setText(tagString);
-        }
-        else {
-            tagString += ",dinner";
-            tag.setText(tagString);
+        } else {
+            if(!deleteDucplicate("vegi")) {
+                tagString += ",vegi";
+                tag.setText(tagString);
+            }
         }
     }
 
-    public void deleteDucplicate (String delete){
-        String delete1 = ","+delete;
-        String delete2 = delete+",";
-        if((tagString.indexOf(delete1))>=0)
-            tagString.replace(delete1,"");
-        if((tagString.indexOf(delete2))>=0)
-            tagString.replace(delete2,"");
+    public void onClick2(View v) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if (tagString.equalsIgnoreCase("")) {
+            tagString += "meat";
+            tag.setText(tagString);
+        } else {
+            if(!deleteDucplicate("meat")) {
+                tagString += ",meat";
+                tag.setText(tagString);
+            }
+        }
+    }
+
+    public void onClick3(View v) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if (tagString.equalsIgnoreCase("")) {
+            tagString += "breakfast";
+            tag.setText(tagString);
+        } else {
+            if(!deleteDucplicate("breakfast")) {
+                tagString += ",breakfast";
+                tag.setText(tagString);
+            }
+        }
+    }
+
+    public void onClick4(View v) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if (tagString.equalsIgnoreCase("")) {
+            tagString += "lunch";
+            tag.setText(tagString);
+        } else {
+            if(!deleteDucplicate("lunch")) {
+                tagString += ",lunch";
+                tag.setText(tagString);
+            }
+        }
+    }
+
+    public void onClick5(View v) {
+        TextView tag = (TextView) findViewById(R.id.tagsS);
+        if (tagString.equalsIgnoreCase("")) {
+            tagString += "dinner";
+            tag.setText(tagString);
+        } else {
+            if(!deleteDucplicate("dinner")) {
+                tagString += ",dinner";
+                tag.setText(tagString);
+            }
+        }
+    }
+
+    public boolean deleteDucplicate(String delete) {
+        String delete1 = "," + delete;
+        String delete2 = delete + ",";
+        if ((tagString.indexOf(delete1)) >= 0){
+            tagString.replace(delete1, "");
+            return true;
+        }
+        if ((tagString.indexOf(delete2)) >= 0) {
+            tagString.replace(delete2, "");
+            return true;
+        }
+        return false;
     }
 
 

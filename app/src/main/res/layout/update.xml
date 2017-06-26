@@ -20,7 +20,7 @@
         <TextView
             android:id="@+id/tagudt"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/viewName"
             android:text="Tags"
@@ -30,9 +30,10 @@
             android:id="@+id/b1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/tagudt"
-            android:layout_alignParentStart="true" />
+            android:onClick="onClick1"
+            android:text="vegi" />
 
         <Button
             android:id="@+id/b2"
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tagudt"
             android:layout_toEndOf="@+id/b1"
-            android:text="Button" />
+            android:onClick="onClick2"
+            android:text="meat" />
 
         <Button
             android:id="@+id/b3"
@@ -48,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b2"
             android:layout_toEndOf="@+id/b2"
-            android:text="Button" />
+            android:onClick="onClick3"
+            android:text="breakfast" />
 
         <Button
             android:id="@+id/b4"
@@ -56,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b3"
             android:layout_toEndOf="@+id/b3"
-            android:text="Button" />
+            android:onClick="onClick4"
+            android:text="lunch" />
 
         <Button
             android:id="@+id/b5"
@@ -64,18 +68,23 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b4"
             android:layout_toEndOf="@+id/b4"
-            android:text="Button" />
+            android:onClick="onClick5"
+            android:text="dinner" />
 
         <EditText
             android:id="@+id/editDec"
+            style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/button"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/b1"
             android:layout_weight="0.65"
             android:ems="10"
             android:inputType="textPersonName"
-            android:layout_below="@+id/b1" />
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
 
         <Button
             android:id="@+id/button"
