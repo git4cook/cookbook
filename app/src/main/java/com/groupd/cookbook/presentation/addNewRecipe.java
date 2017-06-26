@@ -137,6 +137,10 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             tagString.replace(delete2, "");
             return true;
         }
+        if ((tagString.indexOf(delete)) >= 0) {
+            tagString.replace(delete, "");
+            return true;
+        }
         return false;
     }
 
