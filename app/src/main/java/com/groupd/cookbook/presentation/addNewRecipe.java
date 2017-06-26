@@ -69,8 +69,9 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         } else {
             if(!deleteDucplicate("vegi")) {
                 tagString += ",vegi";
-                tag.setText(tagString);
+
             }
+            tag.setText(tagString);
         }
     }
 
@@ -82,8 +83,9 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         } else {
             if(!deleteDucplicate("meat")) {
                 tagString += ",meat";
-                tag.setText(tagString);
+
             }
+            tag.setText(tagString);
         }
     }
 
@@ -95,8 +97,9 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         } else {
             if(!deleteDucplicate("breakfast")) {
                 tagString += ",breakfast";
-                tag.setText(tagString);
+
             }
+            tag.setText(tagString);
         }
     }
 
@@ -108,8 +111,9 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         } else {
             if(!deleteDucplicate("lunch")) {
                 tagString += ",lunch";
-                tag.setText(tagString);
+
             }
+            tag.setText(tagString);
         }
     }
 
@@ -121,27 +125,28 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         } else {
             if(!deleteDucplicate("dinner")) {
                 tagString += ",dinner";
-                tag.setText(tagString);
+
             }
+            tag.setText(tagString);
         }
     }
 
     public boolean deleteDucplicate(String delete) {
         String delete1 = "," + delete;
         String delete2 = delete + ",";
+        String result;
         if ((tagString.indexOf(delete1)) >= 0){
-            tagString.replace(delete1, "");
+            result = tagString.replace(delete1, "");
+            tagString = result;
             return true;
         }
         if ((tagString.indexOf(delete2)) >= 0) {
-            tagString.replace(delete2, "");
+            result = tagString.replace(delete2, "");
+            tagString=  result;
             return true;
         }
-        if ((tagString.indexOf(delete)) >= 0) {
-            tagString.replace(delete, "");
-            return true;
-        }
-        return false;//
+
+        return false;
     }
 
 
