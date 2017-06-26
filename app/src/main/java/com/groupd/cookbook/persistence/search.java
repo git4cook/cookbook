@@ -1,4 +1,4 @@
-package com.groupd.cookbook.presentation;
+package com.groupd.cookbook.persistence;
 
 
 import android.content.DialogInterface;
@@ -17,6 +17,8 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.presentation.Messages;
+import com.groupd.cookbook.presentation.showRecipe;
 
 import java.util.ArrayList;
 

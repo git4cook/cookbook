@@ -82,34 +82,34 @@ public class DataAccessObj implements DataAccess{
         myDirection = EOF;
 
         List<Recipe> result =new ArrayList<Recipe>();
-        recipe = new Recipe( "aaa", "bbb","ccc");
-        result.add(recipe);
-//        try
-//        {
-//            cmdString = "Select * from R Where Name="+name;
-//            rs2 = st1.executeQuery(cmdString);
-//            //ResultSetMetaData md2 = rs2.getMetaData();
-//        }
-//        catch (Exception e)
-//        {
-//            processSQLError(e);
-//        }
-//        try
-//        {
-//            while (rs2.next())
-//            {
-//                myRecipeName = rs2.getString("Name");
-//                myTags = rs2.getString("Tags");
-//                myDirection = rs2.getString("Direction");
-//                recipe = new Recipe( myRecipeName, myDirection,myTags);
-//                result.add(recipe);
-//            }
-//            rs2.close();
-//        }
-//        catch (Exception e)
-//        {
-//            processSQLError(e);
-//        }
+//        recipe = new Recipe( "aaa", "bbb","ccc");
+//        result.add(recipe);
+        try
+        {
+            cmdString = "Select * from R Where Name = '"+name+"'";
+            rs2 = st1.executeQuery(cmdString);
+            //ResultSetMetaData md2 = rs2.getMetaData();
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
+        try
+        {
+            while (rs2.next())
+            {
+                myRecipeName = rs2.getString("Name");
+                myTags = rs2.getString("Tags");
+                myDirection = rs2.getString("Direction");
+                recipe = new Recipe( myRecipeName, myDirection,myTags);
+                result.add(recipe);
+            }
+            rs2.close();
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
 
         return result;
     }

@@ -4,8 +4,6 @@ package com.groupd.cookbook.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,6 +18,7 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.persistence.search;
 
 import java.io.File;
 import java.io.FileWriter;
