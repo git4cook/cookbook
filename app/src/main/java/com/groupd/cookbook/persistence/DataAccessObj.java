@@ -86,7 +86,7 @@ public class DataAccessObj implements DataAccess{
 //        result.add(recipe);
         try
         {
-            cmdString = "Select * from R Where Name = '"+name+"'";
+            cmdString = "Select * from R Where UPPER(Name) = '"+name.toUpperCase()+"'";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
@@ -136,8 +136,7 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = " getRecipeSequential1";
-            //result = processSQLError(e);
+             result = processSQLError(e);
         }
 
         try
@@ -145,8 +144,8 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-//                myTags = rs2.getString("tags");
-//                myDirection = rs2.getString("Direction");
+                myTags = rs2.getString("tags");
+                myDirection = rs2.getString("Direction");
                 recipe = new Recipe(myRecipeName, myDirection,myTags);
                 recipeResult.add(recipe);
             }
@@ -194,11 +193,14 @@ public class DataAccessObj implements DataAccess{
         try
         {
             // Should check for empty values and not update them
-            values = "Name='" +currentRecipe.getName()
-                    +"', Tags='" +currentRecipe.getTags()
+            values = "Tags='" +currentRecipe.getTags()
                     +"', Direction='" +currentRecipe.getDirection()
                     +"'";
-            where = "where UPPER(Name)=" +currentRecipe.getName().toUpperCase();
+
+
+
+
+            where = "where UPPER(Name)='" +currentRecipe.getName().toUpperCase()+"'";
             cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
@@ -219,7 +221,7 @@ public class DataAccessObj implements DataAccess{
         try
         {
             values = currentRecipe.getName();
-            cmdString = "Delete from R where UPPER(Name)=" +values.toUpperCase();
+            cmdString = "Delete from R where UPPER(Name)='" +values.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -310,7 +312,7 @@ public class DataAccessObj implements DataAccess{
                     +"', Tags='" +currentFavorite.getTags()
                     +"', Direction='" +currentFavorite.getDirection()
                     +"'";
-            where = "where UPPER(Name)=" +currentFavorite.getName().toUpperCase();
+            where = "where UPPER(Name)='" +currentFavorite.getName().toUpperCase()+"'";
             cmdString = "Update F " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
@@ -331,7 +333,7 @@ public class DataAccessObj implements DataAccess{
         try
         {
             values = currentFavorite.getName();
-            cmdString = "Delete from F where UPPER(Name)=" +values.toUpperCase();
+            cmdString = "Delete from F where UPPER(Name)='" +values.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);

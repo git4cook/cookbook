@@ -7,20 +7,19 @@ import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class Services
 {
-    private static DataAccessStub dataAccessService = null;
+    private static DataAccess dataAccessService = null;
 
-    public static DataAccessStub createDataAccess(String dbName)
+    public static DataAccess createDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
-            //dataAccessService = new DataAccessObj(dbName);
-            dataAccessService = new DataAccessStub(dbName);
+            dataAccessService = new DataAccessObj(dbName);
             dataAccessService.open(Main.getDBPathName());
         }
         return dataAccessService;
     }
 
-    public static DataAccessStub createDataAccess(DataAccessStub alternateDataAccessService)
+    public static DataAccess createDataAccess(DataAccess alternateDataAccessService)
     {
         if (dataAccessService == null)
         {
@@ -30,7 +29,7 @@ public class Services
         return dataAccessService;
     }
 
-    public static DataAccessStub getDataAccess(String dbName)
+    public static DataAccess getDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
