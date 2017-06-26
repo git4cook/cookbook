@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/tagudt"
-            android:onClick="onClick1"
+            android:onClick="onClick11"
             android:text="vegi" />
 
         <Button
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tagudt"
             android:layout_toEndOf="@+id/b1"
-            android:onClick="onClick2"
+            android:onClick="onClick22"
             android:text="meat" />
 
         <Button
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b2"
             android:layout_toEndOf="@+id/b2"
-            android:onClick="onClick3"
+            android:onClick="onClick33"
             android:text="breakfast" />
 
         <Button
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b3"
             android:layout_toEndOf="@+id/b3"
-            android:onClick="onClick4"
+            android:onClick="onClick44"
             android:text="lunch" />
 
         <Button
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/b4"
             android:layout_toEndOf="@+id/b4"
-            android:onClick="onClick5"
+            android:onClick="onClick55"
             android:text="dinner" />
 
         <EditText
