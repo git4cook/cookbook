@@ -18,13 +18,13 @@ public interface DataAccess {
 
     String deleteRecipe(Recipe recipe);
 
-    String getFavoriteSequential(List<Recipe> courseResult);
+    String getFavoriteSequential(List<Recipe> favorite);
 
-    String insertFavorite(Recipe course);
+    String insertFavorite(Recipe favorite);
 
-    String updateFavorite(Recipe course);
+    String updateFavorite(Recipe favorite);
 
-    String deleteFavorite(Recipe course);
+    String deleteFavorite(Recipe favorite);
     List<Recipe> getR(String name);
     List<Recipe> getRecipeList();
 }

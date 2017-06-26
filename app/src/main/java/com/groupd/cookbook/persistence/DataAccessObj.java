@@ -283,7 +283,7 @@ public class DataAccessObj implements DataAccess{
         result = null;
         try
         {
-            values = currentFavorite.getName()
+            values = "'"+currentFavorite.getName()
                     +"', '" +currentFavorite.getTags()
                     +"', '" +currentFavorite.getDirection()
                     +"'";
