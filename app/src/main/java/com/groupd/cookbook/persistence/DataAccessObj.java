@@ -168,7 +168,7 @@ public class DataAccessObj implements DataAccess{
         result = null;
         try
         {
-            values = currentRecipe.getName()
+            values = "'"+currentRecipe.getName()
                     +"', '" +currentRecipe.getTags()
                     +"', '" +currentRecipe.getDirection()
                     +"'";
