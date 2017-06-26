@@ -4,32 +4,97 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <EditText
-        android:id="@+id/editName"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTags"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/viewName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="TextView"
+            android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/editDec"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_weight="0.65" />
+        <TextView
+            android:id="@+id/tagudt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/viewName"
+            android:text="Tags"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="buttonConfirmOnClick"
-        android:text="Confirm" />
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tagudt"
+            android:onClick="onClick11"
+            android:text="vegi" />
+
+        <Button
+            android:id="@+id/b2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tagudt"
+            android:layout_toEndOf="@+id/b1"
+            android:onClick="onClick22"
+            android:text="meat" />
+
+        <Button
+            android:id="@+id/b3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/b2"
+            android:layout_toEndOf="@+id/b2"
+            android:onClick="onClick33"
+            android:text="breakfast" />
+
+        <Button
+            android:id="@+id/b4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/b3"
+            android:layout_toEndOf="@+id/b3"
+            android:onClick="onClick44"
+            android:text="lunch" />
+
+        <Button
+            android:id="@+id/b5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/b4"
+            android:layout_toEndOf="@+id/b4"
+            android:onClick="onClick55"
+            android:text="dinner" />
+
+        <EditText
+            android:id="@+id/editDec"
+            style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/b1"
+            android:layout_weight="0.65"
+            android:ems="10"
+            android:inputType="textMultiLine|textImeMultiLine"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:layout_above="@+id/button" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:onClick="buttonConfirmOnClick"
+            android:text="Confirm" />
+
+    </RelativeLayout>
+
 </LinearLayout>

@@ -18,41 +18,41 @@
     <EditText
         android:id="@+id/addTitleID"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="59dp"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
         android:hint="Enter Title"
         android:inputType="textShortMessage"
-        android:textSize="40sp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
+        android:textSize="40sp" />
 
-    <EditText
-        android:id="@+id/addTagsID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:background="@android:color/holo_orange_light"
-        android:ems="10"
-        android:hint="Enter Tags by commas"
-        android:inputType="textShortMessage"
-        android:textSize="35sp"
+    <TextView
+        android:id="@+id/tagsS"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/addTitleID"
-        android:layout_alignParentStart="true" />
+        android:text="Tags"
+        android:visibility="visible" />
 
     <EditText
         android:id="@+id/addStepsID"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
+        android:layout_above="@+id/submitButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/addTagsID"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/holo_orange_light"
         android:ems="10"
         android:hint="Enter Steps"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textImeMultiLine"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAlignment="textStart"
         android:textSize="30sp" />
 
     <Button
@@ -63,5 +63,51 @@
         android:layout_centerHorizontal="true"
         android:text="Submit Recipe"
         android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/tag1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick1"
+        android:text="Vegi"
+        android:layout_below="@+id/tagsS"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/tag2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick2"
+        android:text="Meat"
+        android:layout_below="@+id/tagsS"
+        android:layout_toEndOf="@+id/tag1" />
+
+    <Button
+        android:id="@+id/tag3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick3"
+        android:text="breakfast"
+        android:layout_below="@+id/tagsS"
+        android:layout_toEndOf="@+id/tag2" />
+
+    <Button
+        android:id="@+id/tag4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick4"
+        android:text="lunch"
+        android:layout_below="@+id/tagsS"
+        android:layout_toEndOf="@+id/tag3" />
+
+    <Button
+        android:id="@+id/tag5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick5"
+        android:text="dinner"
+        android:layout_alignBaseline="@+id/tag4"
+        android:layout_alignBottom="@+id/tag4"
+        android:layout_toEndOf="@+id/tag4" />
 
 </RelativeLayout>

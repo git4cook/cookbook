@@ -35,7 +35,7 @@ public class DataAccessStub
                             "    Mix flour and paprika together on a large plate. Beat eggs with salt and pepper in a shallow bowl. Mix bread crumbs and lemon zest together on a separate large plate. Dredge each chicken piece in flour mixture, then egg, and then bread crumbs mixture and set aside in 1 layer on a clean plate. Repeat with remaining chicken.\n" +
                             "    Remove baking sheet from oven and arrange chicken in 1 layer on the sheet. Drizzle more olive oil over each piece of coated chicken.\n" +
                             "    Bake in the preheated oven for 5 to 6 minutes. Flip chicken and continue baking until no longer pink in the center and the breading is lightly browned, 5 to 6 minutes more. An instant-read thermometer inserted into the center should read at least 165 degrees F (74 degrees C).",
-                "olive oil,chicken,salt,black pepper,flour,paprika,eggs,bread,lemon");
+                "meat,dinner");
         recipes.add(recipe);
 
         //2.
@@ -44,7 +44,7 @@ public class DataAccessStub
                 "Preheat an oven to 350 degrees F (175 degrees C). Grease a 9-inch square cake pan. Whisk the flour, baking powder, and salt together in a bowl; set aside.\n" +
                         "Beat the shortening and sugar with an electric mixer in a large bowl until light and fluffy. Beat in the egg and vanilla extract until smooth. Pour in the flour mixture alternately with the milk, mixing until just incorporated. Pour the batter into prepared pan.\n" +
                         "Bake in the preheated oven until a toothpick inserted into the center comes out clean, about 25 minutes. Cool in the pans for 10 minutes before removing to cool completely on a wire rack.",
-                "flour,baking powder,salt,vegetable shortening,white sugar,egg, vanilla extract,milk");
+                "dinner");
         recipes.add(recipe);
 
         //3.
@@ -56,7 +56,7 @@ public class DataAccessStub
                         "Preheat an outdoor grill for medium-high heat and lightly oil the grate.\n" +
                         "Brush tubes with remaining olive oil to coat on all sides and season with salt.\n" +
                         "Cook stuffed calamari on the preheated grill, turning occasionally, until stuffing is cooked through, 10 to 12 minutes. An instant-read thermometer inserted into the center should read at least 155 degrees F (68 degrees C).",
-                "olive oil,onion,red bell pepper,salt,black pepper,spicy Italian sausage,calamari tentacles,parsley,egg,paprika,calamari tubes");
+                "meat,lunch,dinner");
         recipes.add(recipe);
 
         //4.
@@ -65,7 +65,7 @@ public class DataAccessStub
                 "Combine milk with vinegar in a medium bowl and set aside for 5 minutes to \"sour\".\n" +
                         "Combine flour, sugar, baking powder, baking soda, and salt in a large mixing bowl. Whisk egg and butter into \"soured\" milk. Pour the flour mixture into the wet ingredients and whisk until lumps are gone.\n" +
                         "Heat a large skillet over medium heat, and coat with cooking spray. Pour 1/4 cupfuls of batter onto the skillet, and cook until bubbles appear on the surface. Flip with a spatula, and cook until browned on the other side.",
-                "milk,white vinegar,flour,white sugar,baking powder,baking soda,salt,egg,butter");
+                "breakfast");
         recipes.add(recipe);
 
         System.out.println("Opened " +dbType +" database " +dbName);

@@ -46,7 +46,7 @@ public class showRecipe extends AppCompatActivity {
          else {
              Messages.warning(this, result);
          }
-         }
+     }
 
     public void buttonUpdateOnClick(View v){
 

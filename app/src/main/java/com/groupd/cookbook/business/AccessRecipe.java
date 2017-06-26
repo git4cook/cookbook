@@ -8,9 +8,9 @@ import com.groupd.cookbook.persistence.DataAccess;
 import com.groupd.cookbook.persistence.DataAccessStub;
 
 
-public class AccessRecipe {
+public class AccessRecipe implements AccessRecipeInterface {
    // private DataAccessStub dataAccess;
-    private DataAccess dataAccess;
+    private DataAccessStub dataAccess;
     private List<Recipe> recipes;
     private Recipe recipe;
     private int currentRecipe;
@@ -23,6 +23,8 @@ public class AccessRecipe {
 }
 
     public Recipe getR(String recipeName){
+        if(recipeName==null)
+            return null;
         if(recipes ==null  )
         {
             recipes = dataAccess.getR(recipeName);
@@ -36,8 +38,6 @@ public class AccessRecipe {
                 recipes = null;
                 recipe = null;
                 currentRecipe = 0;
-
-
             }
             return recipe;
     }
@@ -56,7 +56,7 @@ public class AccessRecipe {
         recipes.clear();
         return dataAccess.getRecipeSequential(recipes);
     }
-    public Recipe getSequential(){
+   /* public Recipe getSequential(){
          if(recipe==null) {
              currentRecipe = 0;
          }
@@ -72,7 +72,7 @@ public class AccessRecipe {
              currentRecipe = 0;
          }
             return recipe;
-     }
+     }*/
 
     public String insertRecipe(Recipe currentRecipe)
     {
