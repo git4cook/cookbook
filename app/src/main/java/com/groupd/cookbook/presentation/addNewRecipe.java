@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.groupd.cookbook.R;
+import com.groupd.cookbook.business.AccessRecipe;
+import com.groupd.cookbook.objects.Recipe;
 
 // By Glenn, Tao Wu
 
@@ -53,14 +55,25 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         // Reason: Keep GUI and Logic separate, GUI is independent of Recipe class - Glenn
 
 
-        System.out.println("The title is: " + titleInput);
-        Log.i("info", "title = " + titleInput);
-        Log.i("info", "tags = " + tagsInput);
-        Log.i("info", "steps = " + stepsInput);
 
-        createInputArray(titleInput,tagsInput,stepsInput);
 
+
+
+        Recipe newRecipe = new Recipe(titleInput,stepsInput,tagsInput);
+        String result = validateRecipeData(newRecipe);
+
+        if (result == null) {
+            System.out.println("The title is: " + titleInput);
+            Log.i("info", "title = " + titleInput);
+            Log.i("info", "tags = " + tagsInput);
+            Log.i("info", "steps = " + stepsInput);
+
+            createInputArray(titleInput,tagsInput,stepsInput);
+        } else {
+            Messages.warning(this, result);
+        }
     }
+
     public void onClick1(View v) {
         TextView tag = (TextView) findViewById(R.id.tagsS);
         if (tagString.equalsIgnoreCase("")) {
@@ -145,8 +158,25 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             tagString=  result;
             return true;
         }
+        if ((tagString.indexOf(delete)) >= 0) {
+            result = tagString.replace(delete, "");
+            tagString=  result;
+            return true;
+        }
 
         return false;
+    }
+
+    private String validateRecipeData(Recipe recipe) {
+
+        if (recipe.getName().length() == 0) {
+            return "RecipeName requierd";
+        }
+        if (recipe.getTags().length() == 0) {
+            return "Tags requierd";
+        }
+
+        return null;
     }
 
 

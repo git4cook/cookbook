@@ -87,8 +87,8 @@ public class update extends AppCompatActivity {
         } else {
             if(!deleteDucplicate("vegi")) {
                 tags += ",vegi";
-                tag.setText(tags);
             }
+            tag.setText(tags);
         }
     }
 
@@ -100,8 +100,8 @@ public class update extends AppCompatActivity {
         } else {
             if(!deleteDucplicate("meat")) {
                 tags += ",meat";
-                tag.setText(tags);
             }
+            tag.setText(tags);
         }
     }
 
@@ -113,8 +113,8 @@ public class update extends AppCompatActivity {
         } else {
             if(!deleteDucplicate("breakfast")) {
                 tags += ",breakfast";
-                tag.setText(tags);
             }
+            tag.setText(tags);
         }
     }
 
@@ -126,8 +126,8 @@ public class update extends AppCompatActivity {
         } else {
             if(!deleteDucplicate("lunch")) {
                 tags += ",lunch";
-                tag.setText(tags);
             }
+            tag.setText(tags);
         }
     }
 
@@ -139,22 +139,31 @@ public class update extends AppCompatActivity {
         } else {
             if(!deleteDucplicate("dinner")) {
                 tags += ",dinner";
-                tag.setText(tags);
             }
+            tag.setText(tags);
         }
     }
 
     public boolean deleteDucplicate(String delete) {
         String delete1 = "," + delete;
         String delete2 = delete + ",";
+        String result;
         if ((tags.indexOf(delete1)) >= 0){
-            tags.replace(delete1, "");
+            result = tags.replace(delete1, "");
+            tags = result;
             return true;
         }
         if ((tags.indexOf(delete2)) >= 0) {
-            tags.replace(delete2, "");
+            result = tags.replace(delete2, "");
+            tags=  result;
             return true;
         }
+        if ((tags.indexOf(delete)) >= 0) {
+            result = tags.replace(delete, "");
+            tags=  result;
+            return true;
+        }
+
         return false;
     }
 
