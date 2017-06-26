@@ -26,7 +26,7 @@ public class DataAccessObj implements DataAccess{
 
     private ArrayList<Recipe> recipes;
     private ArrayList<Recipe> favorites;
-
+    private ArrayList<Recipe> searchResult;
     private String cmdString;
     private int updateCount;
     private String result;
@@ -164,8 +164,11 @@ public class DataAccessObj implements DataAccess{
     public String insertRecipe(Recipe currentRecipe)
     {
         String values;
-
+        String[]tags = currentRecipe.getTags().split(",");
+        String recipes = "";
+        String where;
         result = null;
+
         try
         {
             values = "'"+currentRecipe.getName()
@@ -181,6 +184,47 @@ public class DataAccessObj implements DataAccess{
         {
             result = processSQLError(e);
         }
+
+        for(int i =0;i<tags.length;i++){
+            try
+            {
+                cmdString = "Select * from C Where Name='"+tags[i]+"'";
+                rs2 = st1.executeQuery(cmdString);
+                //ResultSetMetaData md2 = rs2.getMetaData();
+            }
+            catch (Exception e)
+            {
+                result = processSQLError(e);
+            }
+            try
+            {
+                while (rs2.next())
+                {
+                   recipes = rs2.getString("Recipes");
+                }
+                rs2.close();
+            }
+            catch (Exception e)
+            {
+                result = processSQLError(e);
+            }
+            recipes =  recipes+currentRecipe.getName();
+            try
+            {
+                // Should check for empty values and not update them
+                values = "Recipes='" +recipes
+                        +"'";
+                where = "Where Name='"+tags[i]+"'";
+                cmdString = "Update C " +" Set " +values +" " +where;
+                //System.out.println(cmdString);
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            }
+            catch (Exception e)
+            {
+                result = processSQLError(e);
+            }
+    }
         return result;
     }
 
@@ -376,6 +420,52 @@ public class DataAccessObj implements DataAccess{
         // Remember, this will NOT be seen by the user!
         e.printStackTrace();
 
+        return result;
+    }
+   public  List<Recipe> getSearchResult(){
+        return searchResult;
+    }
+    public  void setSearchResult( ArrayList<Recipe> searchResult){
+        this.searchResult = new ArrayList<Recipe>();
+        for(int i = 0;i<searchResult.size();i++){
+            this.searchResult.add(searchResult.get(i));
+        }
+
+    }
+    public String search(ArrayList<Recipe> input){
+        Recipe recipe;
+        String myRecipeName, myTags, myDirection;
+        myRecipeName = EOF;
+        myTags = EOF;
+        myDirection = EOF;
+        result = null;
+        String inputstr = input.get(0).getName();
+        input.remove(0);
+
+        try
+        {
+            cmdString = "Select * from R Where Upper(Name) Like '"+inputstr.toUpperCase()+"%'";
+            rs2 = st1.executeQuery(cmdString);
+            //ResultSetMetaData md2 = rs2.getMetaData();
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        if(rs2!=null) {
+            try {
+                while (rs2.next()) {
+                    myRecipeName = rs2.getString("Name");
+                    myTags = rs2.getString("tags");
+                    myDirection = rs2.getString("Direction");
+                    recipe = new Recipe(myRecipeName, myDirection, myTags);
+                    input.add(recipe);
+                }
+                rs2.close();
+            } catch (Exception e) {
+                result = processSQLError(e);
+            }
+        }
         return result;
     }
 }

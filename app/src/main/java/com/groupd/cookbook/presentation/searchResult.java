@@ -1,5 +1,7 @@
-package com.groupd.cookbook.presentation;
+/*
 
+* */
+package com.groupd.cookbook.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-//
+
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
@@ -23,14 +25,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.List;
 
-
-public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
-
-
+public class searchResult extends AppCompatActivity {
     private AccessRecipe AR;
-    private ArrayList<Recipe> Rlist;
+    private List<Recipe> Rlist;
     private ArrayAdapter<Recipe> RADP;
     private int RecyPosy = -1;
     private String name = "";
@@ -42,17 +41,10 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_list /*list_and_search_menu*/);
-        copyDatabaseToDevice();
-        Main.startUp();
+        setContentView(R.layout.search_result /*list_and_search_menu*/);
         AR = new AccessRecipe();
-        Rlist = new ArrayList<Recipe>();
-        String rlt = AR.getRecipe(Rlist);
-        if (rlt != null) {
-            Messages.fatalError(this, rlt);
-        } else {
-
-            RADP = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
+        Rlist = AR.getSearchResult();
+       RADP = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -76,17 +68,16 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                     RecyPosy = position;
                     selectRecipeAtPosition(position);
 
-                    Intent reIntent = new Intent(MainActivity.this,showRecipe.class);
+                    Intent reIntent = new Intent(searchResult.this,showRecipe.class);
                     Bundle b = new Bundle();
                     b.putString("recipeName",name);
                     reIntent.putExtras(b);
-                    MainActivity.this.startActivity(reIntent);
+                    searchResult.this.startActivity(reIntent);
 
                 }
             });
-        }
-    }
 
+    }
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 
@@ -145,38 +136,22 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
     public void buttonOpenOnClick(View v) {
 
-        // Added by Glenn b/c added new button for add
         switch (v.getId())
         {
             case R.id.opRcy:
-                // moved Tao's code here
-                Intent reIntent = new Intent(MainActivity.this, search.class);
-                MainActivity.this.startActivity(reIntent);
+                Intent reIntent = new Intent(searchResult.this, search.class);
+                searchResult.this.startActivity(reIntent);
                 break;
 
-           case R.id.addButton:
-               Intent i;
-                i = new Intent(this, addNewRecipe.class);
-               //startActivity(i);
-               // when request code >0 go to onActivityResult when activity exists.
-               startActivityForResult(i, ADD_REQUEST_CODE);
-              break;
+            case R.id.Back:
+                Intent i = new Intent(searchResult.this, MainActivity.class);
+                searchResult.this.startActivity(i);
+                break;
 
         }
     }
 
-    /*
-    PURPOSE:
-                Runs after the calling startActivityForResult is done
-                Performs action based on the request code.
-                Retrieves input from layout as a string array and adds recipe to GUI and Logic AL
 
-    PARAMETERS:
-                requestCode that identifies which activity we exited from and on.
-                resultCode created by exited activity to say there is data to return.
-                data, holds a string array of input that will be extracted.
-    AUTHOR: Glenn
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -184,7 +159,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         {
             if (resultCode == RESULT_OK)
             {
-                //Uri addURI = data.getData();
                 System.out.println("we get here");
 
 

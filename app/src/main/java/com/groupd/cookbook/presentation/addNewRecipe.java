@@ -1,7 +1,9 @@
 package com.groupd.cookbook.presentation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +18,7 @@ import com.groupd.cookbook.objects.Recipe;
 // By Glenn, Tao Wu
 
 public class addNewRecipe extends AppCompatActivity implements View.OnClickListener {
-
+    private AccessRecipe AR;
     private String[] inputArray = new String[3];
     private String tagString="";
     //TextView tag = (TextView) findViewById(R.id.tagsS);
@@ -26,6 +28,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.add_recipie);
         Button submitButton = (Button)findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
+        AR = new AccessRecipe();
 
         /*Button tag1 = (Button)findViewById(R.id.tag1);
         //tag1.setOnClickListener(this);
@@ -54,23 +57,34 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         // Note decided to pass a array instead of making a new record
         // Reason: Keep GUI and Logic separate, GUI is independent of Recipe class - Glenn
 
+        if(AR.findRecipe(titleInput)) {
+            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+            alertdialogbuilder.setMessage("This recipe already exist, please use a different name.");
+
+            alertdialogbuilder.setPositiveButton("ok",click1);
+
+            AlertDialog alertdialog1=alertdialogbuilder.create();
+
+            alertdialog1.show();
+        }
+        //make sure there si no duplicate
+
+        else {
 
 
+            Recipe newRecipe = new Recipe(titleInput, stepsInput, tagsInput);
+            String result = validateRecipeData(newRecipe);
 
+            if (result == null) {
+                System.out.println("The title is: " + titleInput);
+                Log.i("info", "title = " + titleInput);
+                Log.i("info", "tags = " + tagsInput);
+                Log.i("info", "steps = " + stepsInput);
 
-
-        Recipe newRecipe = new Recipe(titleInput,stepsInput,tagsInput);
-        String result = validateRecipeData(newRecipe);
-
-        if (result == null) {
-            System.out.println("The title is: " + titleInput);
-            Log.i("info", "title = " + titleInput);
-            Log.i("info", "tags = " + tagsInput);
-            Log.i("info", "steps = " + stepsInput);
-
-            createInputArray(titleInput,tagsInput,stepsInput);
-        } else {
-            Messages.warning(this, result);
+                createInputArray(titleInput, tagsInput, stepsInput);
+            } else {
+                Messages.warning(this, result);
+            }
         }
     }
 
@@ -197,5 +211,14 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         setResult(RESULT_OK, createdIntent);
         finish();
     }
+
+    private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface arg0,int arg1)
+        {
+            arg0.cancel();
+        }
+    };
 
 }

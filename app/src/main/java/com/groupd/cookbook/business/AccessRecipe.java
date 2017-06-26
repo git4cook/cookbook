@@ -1,4 +1,5 @@
 package com.groupd.cookbook.business;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.groupd.cookbook.application.Main;
@@ -21,7 +22,9 @@ public class AccessRecipe implements AccessRecipeInterface {
         recipe = null;
         currentRecipe = 0;
 }
-
+public List<Recipe>getSearchResult(){
+    return dataAccess.getSearchResult();
+}
     public Recipe getR(String recipeName){
         if(recipeName==null)
             return null;
@@ -41,13 +44,18 @@ public class AccessRecipe implements AccessRecipeInterface {
             }
             return recipe;
     }
-    public boolean search(String name){
+    public boolean findRecipe(String name){
         boolean result = false;
         for(int i = 0; i<dataAccess.getRecipeList().size()&&!result;i++){
             if(dataAccess.getRecipeList().get(i).getName().toLowerCase().compareTo(name.toLowerCase())==0){
                 result = true;
             }
         }
+        return result;
+    }
+    public String search(ArrayList<Recipe> input){
+        String result = dataAccess.search(input);
+
         return result;
     }
 
@@ -87,6 +95,9 @@ public class AccessRecipe implements AccessRecipeInterface {
     public String deleteRecipe(Recipe currentRecipe)
     {
         return dataAccess.deleteRecipe(currentRecipe);
+    }
+    public void setSearchResult(ArrayList<Recipe> list){
+        dataAccess.setSearchResult((ArrayList<Recipe>) list);
     }
 
 }

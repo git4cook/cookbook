@@ -27,6 +27,10 @@ public interface DataAccess {
     String deleteFavorite(Recipe favorite);
     List<Recipe> getR(String name);
     List<Recipe> getRecipeList();
+
+    List<Recipe> getSearchResult();
+    void setSearchResult( ArrayList<Recipe> searchResult);
+    String search(ArrayList<Recipe> input);
 }
 
 

@@ -1,4 +1,4 @@
-package com.groupd.cookbook.persistence;
+package com.groupd.cookbook.presentation;
 
 
 import android.content.DialogInterface;
@@ -17,10 +17,9 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.presentation.Messages;
-import com.groupd.cookbook.presentation.showRecipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class search extends AppCompatActivity {
@@ -36,7 +35,6 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search );
-        Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
         String rlt = AR.getRecipe(Rlist);
@@ -72,24 +70,35 @@ public class search extends AppCompatActivity {
 
     public void buttonOpenOnClick(View v) {
         EditText editName = (EditText)findViewById(R.id.recyTitle);
-        String recipeName = editName.getText().toString().trim();
-        if(AR.search(recipeName)) {
-            Intent reIntent = new Intent(search.this, showRecipe.class);
-            Bundle b = new Bundle();
-            b.putString("recipeName", recipeName);
-            reIntent.putExtras(b);
-            search.this.startActivity(reIntent);
-        }
-        else{
-            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            alertdialogbuilder.setMessage("We can't find this recipe.");
+        String inputStr = editName.getText().toString().trim();
+        Recipe input = new Recipe(inputStr,"","");
+        ArrayList<Recipe> list = new ArrayList<Recipe>();
+        list.add(input);
+        String result = AR.search(list);
 
-            alertdialogbuilder.setPositiveButton("ok",click1);
+            if (result == null) {
+                if(list.size()>0) {
+                    AR.setSearchResult(list);
+                    Intent c;
+                    c = new Intent(this, searchResult.class);
+                    search.this.startActivity(c);
+                }
+                else{
+                    AR.setSearchResult(list);
+                    AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+                    alertdialogbuilder.setMessage("We can't find anything.");
 
-            AlertDialog alertdialog1=alertdialogbuilder.create();
+                    alertdialogbuilder.setPositiveButton("ok",click1);
 
-            alertdialog1.show();
-        }
+                    AlertDialog alertdialog1=alertdialogbuilder.create();
+
+                    alertdialog1.show();
+                }
+
+            } else {
+                Messages.fatalError(this, result);
+            }
+
     }
     private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
     {

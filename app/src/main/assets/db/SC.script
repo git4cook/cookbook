@@ -1,10 +1,17 @@
 CREATE SCHEMA PUBLIC AUTHORIZATION DBA
 CREATE MEMORY TABLE R(NAME VARCHAR NOT NULL PRIMARY KEY,TAGS VARCHAR,DIRECTION VARCHAR)
-CREATE MEMORY TABLE F(NAME VARCHAR NOT NULL PRIMARY KEY)
+CREATE MEMORY TABLE F(NAME VARCHAR NOT NULL PRIMARY KEY,TAGS VARCHAR,DIRECTION VARCHAR)
 CREATE MEMORY TABLE C(NAME VARCHAR NOT NULL PRIMARY KEY,RECIPES VARCHAR)
 CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
 SET WRITE_DELAY 20
 SET SCHEMA PUBLIC
-INSERT INTO R VALUES('1-Baked Chicken Schnitzel','Chicken','Direction')
-
+INSERT INTO R VALUES('Baked Chicken Schnitzel','meat,dinner','Steps')
+INSERT INTO R VALUES('Cottage Pudding','dinner','Steps')
+INSERT INTO R VALUES('Grilled Sausage-Stuffed Calamari','meat,lunch,dinner','Steps')
+INSERT INTO F VALUES('Grilled Sausage-Stuffed Calamari','meat,lunch,dinner','Steps')
+INSERT INTO C VALUES('vegi','')
+INSERT INTO C VALUES('meat','Baked Chicken Schnitzel,'Grilled Sausage-Stuffed Calamari-10002')
+INSERT INTO C VALUES('breakfast','')
+INSERT INTO C VALUES('lunch',''Grilled Sausage-Stuffed Calamari-10002')
+INSERT INTO C VALUES('dinner','Baked Chicken Schnitzel-10000,Cottage Pudding-10001,'Grilled Sausage-Stuffed Calamari-10002')

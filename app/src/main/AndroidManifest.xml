@@ -22,12 +22,16 @@
             android:name=".presentation.showRecipe"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".persistence.search"
+            android:name=".presentation.search"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.addNewRecipe"
             android:screenOrientation="portrait" />
-        <activity android:name=".presentation.update"></activity>
+        <activity android:name=".presentation.update" />
+        <activity
+            android:name=".presentation.searchResult"
+            android:label="@string/title_activity_search_result"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
