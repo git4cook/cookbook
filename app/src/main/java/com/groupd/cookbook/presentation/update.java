@@ -71,9 +71,9 @@ public class update extends AppCompatActivity {
         if (recipe.getName().length() == 0) {
             return "RecipeName requierd";
         }
-        if (recipe.getTags().length() == 0) {
-            return "Tags requierd";
-        }
+       // if (recipe.getTags().length() == 0) {
+         //   return "Tags requierd";
+        //}
 
         return null;
     }

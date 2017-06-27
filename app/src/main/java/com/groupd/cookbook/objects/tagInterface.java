@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface tagInterface {
     String getTagsName();
-    List<Recipe> getRecipeList();
-    boolean Duclipate(Recipe re);
+    //List<Recipe> getRecipeList();
+    //boolean Duclipate(Recipe re);
 
 }

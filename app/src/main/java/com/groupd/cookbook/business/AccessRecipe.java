@@ -25,7 +25,7 @@ public class AccessRecipe implements AccessRecipeInterface {
 public List<Recipe>getSearchResult(){
     return dataAccess.getSearchResult();
 }
-    public Recipe getR(String recipeName){
+    public Recipe getRecipe(String recipeName){
         if(recipeName==null)
             return null;
         if(recipes ==null  )
@@ -53,13 +53,13 @@ public List<Recipe>getSearchResult(){
         }
         return result;
     }
-    public String search(ArrayList<Recipe> input){
+   public String search(ArrayList<Recipe> input){
         String result = dataAccess.search(input);
 
         return result;
     }
 
-    public String getRecipe(List<Recipe> recipes)
+    public String getRecipeList(List<Recipe> recipes)
     {
         recipes.clear();
         return dataAccess.getRecipeSequential(recipes);
@@ -97,7 +97,7 @@ public List<Recipe>getSearchResult(){
         return dataAccess.deleteRecipe(currentRecipe);
     }
     public void setSearchResult(ArrayList<Recipe> list){
-        dataAccess.setSearchResult((ArrayList<Recipe>) list);
+        dataAccess.setSearchResult(list);
     }
 
 }

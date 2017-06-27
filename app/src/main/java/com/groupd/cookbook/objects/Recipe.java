@@ -1,5 +1,7 @@
 package com.groupd.cookbook.objects;
 
+import java.util.List;
+
 /**
  * Created by Junwei on 2017/6/2.
  */
@@ -9,11 +11,13 @@ public class Recipe implements RecipeInterface
     private String name;
     private String direction;
     private String tags;
+    //private List<tag> tags;
 
     public Recipe(String name)
     {
         this.name = name;
         direction = null;
+        tags = null;
     }
 
     public Recipe(String direction, String tags)
@@ -26,7 +30,8 @@ public class Recipe implements RecipeInterface
     {
         this.name = name;
         this.direction = direction;
-        this.tags = tags;
+        this.tags=tags;
+        //addTags(tags);
     }
 
     public String getName()
@@ -38,17 +43,33 @@ public class Recipe implements RecipeInterface
     {
         return (direction);
     }
-
     public String getTags()
     {
-        return (tags);
+        return tags;
     }
+
+    /*public List<tag> getTagsList()
+    {
+        return tags;
+    }*/
+    /*public String getTags(){
+        String result ="";
+        for(int i =0;i<tags.size();i++){
+            result+=tags.get(i).getTagsName();
+            result+=",";
+        }
+        return result;
+    }*/
 
     /*public String toString()
     {
         return "Recipe: " +name +"\nDirection: " +direction+"\nTags: "+tags;
     }
 */
+    public void addTags(String tag){
+        //tags.add(new tag(tag));
+
+    }
     public boolean equals(Object object)
     {
         boolean result;

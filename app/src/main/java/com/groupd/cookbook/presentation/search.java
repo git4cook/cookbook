@@ -37,7 +37,7 @@ public class search extends AppCompatActivity {
         setContentView(R.layout.search );
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
-        String rlt = AR.getRecipe(Rlist);
+        String rlt = AR.getRecipeList(Rlist);
         if (rlt != null) {
             Messages.fatalError(this, rlt);
         }
