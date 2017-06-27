@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface AccessRecipeInterface {
 
-    Recipe getR(String recipeName);
+    Recipe getRecipe(String recipeName);
     boolean findRecipe(String name);
     String getRecipe(List<Recipe> recipes);
     //public Recipe getSequential();
