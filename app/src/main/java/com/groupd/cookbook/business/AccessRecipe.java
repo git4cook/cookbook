@@ -6,7 +6,7 @@ import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.application.Services;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.persistence.DataAccess;
-import com.groupd.cookbook.persistence.myException;
+
 
 
 public class AccessRecipe implements AccessRecipeInterface {
@@ -25,12 +25,13 @@ public class AccessRecipe implements AccessRecipeInterface {
 public List<Recipe>getSearchResult(){
     return dataAccess.getSearchResult();
 }
+
     public Recipe getRecipe(String recipeName){
         if(recipeName==null)
             return null;
         if(recipes ==null  )
         {
-            recipes = dataAccess.getRecipe(recipeName);
+            recipes = dataAccess.getR(recipeName);
             currentRecipe = 0;
         }
             if(currentRecipe <recipes.size()){
@@ -44,7 +45,7 @@ public List<Recipe>getSearchResult(){
             }
             return recipe;
     }
-    public boolean findRecipe(String name) throws myException {
+    public boolean findRecipe(String name){
         boolean result = false;
         for(int i = 0; i<dataAccess.getRecipeList().size()&&!result;i++){
             if(dataAccess.getRecipeList().get(i).getName().toLowerCase().compareTo(name.toLowerCase())==0){

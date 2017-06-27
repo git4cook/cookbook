@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
@@ -47,10 +48,8 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         Main.startUp();
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
-        String rlt = AR.getRecipeList(Rlist);
+        List<Recipe> rlt = AR.getRecipeList(Rlist);
         if (rlt != null) {
-            Messages.fatalError(this, rlt);
-        } else {
 
             RADP = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
                 @Override
