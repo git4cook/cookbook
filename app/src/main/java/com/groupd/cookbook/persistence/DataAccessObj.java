@@ -8,24 +8,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLWarning;
-import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.persistence.DataAccess;
+import com.groupd.cookbook.objects.myException;
 
 public class DataAccessObj implements DataAccess{
 
     private Statement st1, st2, st3;
     private Connection c1;
-    private ResultSet rs2, rs3, rs4, rs5;
 
     private String dbName;
     private String dbType;
-
-    private ArrayList<Recipe> recipes;
-    private ArrayList<Recipe> favorites;
     private ArrayList<Recipe> searchResult;
     private String cmdString;
     private int updateCount;
@@ -59,8 +54,8 @@ public class DataAccessObj implements DataAccess{
         System.out.println("Opened " +dbType +" database " +dbPath);
     }
 
-    public void close()
-    {
+    public void close() throws myException {
+         ResultSet rs2;
         try
         {	// commit all changes to the database
             cmdString = "shutdown compact";
@@ -69,21 +64,47 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            processSQLError(e);
+            throw new myException(processSQLError(e));
+
         }
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
-    public List<Recipe> getR(String name){
+    public List<Recipe> getRecipe(String name) throws myException {
+        ResultSet rs2 = null;
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
         myRecipeName = EOF;
         myTags = EOF;
         myDirection = EOF;
-
         List<Recipe> result =new ArrayList<Recipe>();
 //        recipe = new Recipe( "aaa", "bbb","ccc");
 //        result.add(recipe);
+        try
+        {
+            cmdString = "Select * from R Where UPPER(Name) = '"+name.toUpperCase()+"'";
+            rs2 = st1.executeQuery(cmdString);
+            //ResultSetMetaData md2 = rs2.getMetaData();
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+        try
+        {
+            while (rs2.next())
+            {
+                myRecipeName = rs2.getString("Name");
+                myDirection = rs2.getString("Direction");
+                recipe = new Recipe( myRecipeName, myDirection,myTags);
+                result.add(recipe);
+            }
+            rs2.close();
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
         try
         {
             cmdString = "Select * from R Where UPPER(Name) = '"+name.toUpperCase()+"'";
@@ -99,8 +120,8 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                myTags = rs2.getString("Tags");
                 myDirection = rs2.getString("Direction");
+                myTags = getTags(name);
                 recipe = new Recipe( myRecipeName, myDirection,myTags);
                 result.add(recipe);
             }
@@ -113,14 +134,50 @@ public class DataAccessObj implements DataAccess{
 
         return result;
     }
-    public List<Recipe> getRecipeList(){
+    private String getTags(String name) throws myException {
+        ResultSet rs2 = null;
+        String result = "";
+        ArrayList<String> tags = new ArrayList<String>();
+        try
+        {
+            cmdString = "Select * from RC Where UPPER(RName) = '"+name.toUpperCase()+"'";
+            rs2 = st1.executeQuery(cmdString);
+            //ResultSetMetaData md2 = rs2.getMetaData()
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
+        try
+        {
+            while (rs2.next())
+            {
+                tags.add(rs2.getString("CName"));
+            }
+            rs2.close();
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+        for(int i = 0;i<tags.size();i++){
+            if(i!=tags.size()-1){
+                result = result + tags.get(i)+",";
+            }
+            else{
+                result = result + tags.get(i);
+            }
+        }
+        return result;
+    }
+    public List<Recipe> getRecipeList() throws myException {
         List<Recipe> result = new ArrayList<Recipe>();
        getRecipeSequential(result);
         return result;
     }
 
-    public String getRecipeSequential(List<Recipe> recipeResult)
-    {
+    public String getRecipeSequential(List<Recipe> recipeResult) throws myException {
+        ResultSet rs2 = null;
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
         myRecipeName = EOF;
@@ -137,6 +194,7 @@ public class DataAccessObj implements DataAccess{
         catch (Exception e)
         {
              result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
 
         try
@@ -144,7 +202,7 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                myTags = rs2.getString("tags");
+                myTags = getTags(myRecipeName);
                 myDirection = rs2.getString("Direction");
                 recipe = new Recipe(myRecipeName, myDirection,myTags);
                 recipeResult.add(recipe);
@@ -154,6 +212,8 @@ public class DataAccessObj implements DataAccess{
         catch (Exception e)
         {
             result = processSQLError(e);
+            throw new myException(processSQLError(e));
+
         }
 
         return result;
@@ -161,10 +221,10 @@ public class DataAccessObj implements DataAccess{
 
 
 
-    public String insertRecipe(Recipe currentRecipe)
-    {
+    public String insertRecipe(Recipe currentRecipe) throws myException {
+        ResultSet rs2 = null;
         String values;
-        String[]tags = currentRecipe.getTags().split(",");
+        String[]tags = currentRecipe.getRecipeTags().split(",");
         String recipes = "";
         String where;
         result = null;
@@ -172,7 +232,6 @@ public class DataAccessObj implements DataAccess{
         try
         {
             values = "'"+currentRecipe.getName()
-                    +"', '" +currentRecipe.getTags()
                     +"', '" +currentRecipe.getDirection()
                     +"'";
             cmdString = "Insert into R " +" Values(" +values +")";
@@ -184,52 +243,27 @@ public class DataAccessObj implements DataAccess{
         {
             result = processSQLError(e);
         }
-
-        for(int i =0;i<tags.length;i++){
-            try
-            {
-                cmdString = "Select * from C Where Name='"+tags[i]+"'";
-                rs2 = st1.executeQuery(cmdString);
-                //ResultSetMetaData md2 = rs2.getMetaData();
-            }
-            catch (Exception e)
-            {
-                result = processSQLError(e);
-            }
-            try
-            {
-                while (rs2.next())
-                {
-                   recipes = rs2.getString("Recipes");
-                }
-                rs2.close();
-            }
-            catch (Exception e)
-            {
-                result = processSQLError(e);
-            }
-            recipes =  recipes+currentRecipe.getName();
-            try
-            {
-                // Should check for empty values and not update them
-                values = "Recipes='" +recipes
-                        +"'";
-                where = "Where Name='"+tags[i]+"'";
-                cmdString = "Update C " +" Set " +values +" " +where;
+        insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
+        return result;
+    }
+    private void insertRecipeTags(String tags, String rName) throws myException {
+        String []myTags = tags.split(",");
+        String values;
+        for(int i = 0;i<myTags.length;i++) {
+            try {
+                 values = "'" + rName + "','"+myTags[i]+"'";
+                cmdString = "Insert into RC " + " Values(" + values + ")";
                 //System.out.println(cmdString);
                 updateCount = st1.executeUpdate(cmdString);
                 result = checkWarning(st1, updateCount);
+            } catch (Exception e) {
+                throw new myException(processSQLError(e));
             }
-            catch (Exception e)
-            {
-                result = processSQLError(e);
-            }
-    }
-        return result;
+        }
     }
 
-    public String updateRecipe(Recipe currentRecipe)
-    {
+    public String updateRecipe(Recipe currentRecipe) throws myException {
+        ResultSet rs2 = null;
         String values;
         String where;
 
@@ -237,13 +271,8 @@ public class DataAccessObj implements DataAccess{
         try
         {
             // Should check for empty values and not update them
-            values = "Tags='" +currentRecipe.getTags()
-                    +"', Direction='" +currentRecipe.getDirection()
+            values = "Direction='" +currentRecipe.getDirection()
                     +"'";
-
-
-
-
             where = "where UPPER(Name)='" +currentRecipe.getName().toUpperCase()+"'";
             cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
@@ -253,12 +282,18 @@ public class DataAccessObj implements DataAccess{
         catch (Exception e)
         {
             result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
+        deleteRecipeTags(currentRecipe.getName());
+        insertRecipeTags(currentRecipe.get,currentRecipe.getName());
         return result;
     }
+    private void deleteRecipeTags(String name) throws myException{
 
+    }
     public String deleteRecipe(Recipe currentRecipe)
     {
+        ResultSet rs2 = null;
         String values;
 
         result = null;
@@ -279,6 +314,7 @@ public class DataAccessObj implements DataAccess{
 
     public String getFavoriteSequential(List<Recipe> favoriteResult)
     {
+        ResultSet rs2 = null;
         Recipe recipe;
         String myID, myRecipeName, myTags, myDirection;
         myRecipeName = EOF;
@@ -322,13 +358,14 @@ public class DataAccessObj implements DataAccess{
 
     public String insertFavorite(Recipe currentFavorite)
     {
+        ResultSet rs2 = null;
         String values;
 
         result = null;
         try
         {
             values = "'"+currentFavorite.getName()
-                    +"', '" +currentFavorite.getTags()
+                    +"', '" +currentFavorite.getRecipeTags()
                     +"', '" +currentFavorite.getDirection()
                     +"'";
             cmdString = "Insert into R " +" Values(" +values +")";
@@ -353,7 +390,7 @@ public class DataAccessObj implements DataAccess{
         {
             // Should check for empty values and not update them
             values = "Name='" +currentFavorite.getName()
-                    +"', Tags='" +currentFavorite.getTags()
+                    +"', Tags='" +currentFavorite.getRecipeTags()
                     +"', Direction='" +currentFavorite.getDirection()
                     +"'";
             where = "where UPPER(Name)='" +currentFavorite.getName().toUpperCase()+"'";
@@ -433,6 +470,7 @@ public class DataAccessObj implements DataAccess{
 
     }
     public String search(ArrayList<Recipe> input){
+        ResultSet rs2 = null;
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
         myRecipeName = EOF;
