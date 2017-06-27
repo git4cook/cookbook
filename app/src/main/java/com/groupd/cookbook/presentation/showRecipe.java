@@ -29,7 +29,7 @@ public class showRecipe extends AppCompatActivity {
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
         rti.setText(/*"Title: \n" + */title);
-        rta.setText("Tags: \n" + vRcy.getTags());
+        rta.setText("Tags: \n" + vRcy.getRecipeTags());
         rct.setText("How to cook: \n" +  vRcy.getDirection());
 
     }
@@ -53,7 +53,7 @@ public class showRecipe extends AppCompatActivity {
         Intent update = new Intent(this, update.class);
         Bundle a =  new Bundle();
         a.putString("recipeName",vRcy.getName());
-        a.putString("tags",vRcy.getTags());
+        a.putString("tags",vRcy.getRecipeTags());
         a.putString("des",vRcy.getDirection());
         update.putExtras(a);
         showRecipe.this.startActivity(update);

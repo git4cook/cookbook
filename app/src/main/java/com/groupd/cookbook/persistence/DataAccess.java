@@ -9,12 +9,12 @@ import java.util.List;
 import com.groupd.cookbook.objects.Recipe;
 public interface DataAccess {
     void open(String string);
-    void close();
-    String getRecipeSequential(List<Recipe> studentResult);
+    void close() throws myException;
+    String getRecipeSequential(List<Recipe> studentResult) throws myException;
 
-    String insertRecipe(Recipe recipe);
+    String insertRecipe(Recipe recipe) throws myException;
 
-    String updateRecipe(Recipe recipe);
+    String updateRecipe(Recipe recipe) throws myException;
 
     String deleteRecipe(Recipe recipe);
 
@@ -25,8 +25,8 @@ public interface DataAccess {
     String updateFavorite(Recipe favorite);
 
     String deleteFavorite(Recipe favorite);
-    List<Recipe> getR(String name);
-    List<Recipe> getRecipeList();
+    List<Recipe> getRecipe(String name) throws myException;
+    List<Recipe> getRecipeList() throws myException;
 
     List<Recipe> getSearchResult();
     void setSearchResult( ArrayList<Recipe> searchResult);

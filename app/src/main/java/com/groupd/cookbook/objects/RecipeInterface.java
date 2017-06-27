@@ -13,7 +13,7 @@ public interface RecipeInterface {
     String getDirection();
 
     //List<tag> getTagsList();
-    String getTags();
+    List<tag> getRecipeTags();
     boolean equals(Object object);
 
 }

@@ -6,7 +6,6 @@ import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.application.Services;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.persistence.DataAccess;
-import com.groupd.cookbook.persistence.DataAccessStub;
 
 
 public class AccessRecipe implements AccessRecipeInterface {
@@ -30,7 +29,7 @@ public List<Recipe>getSearchResult(){
             return null;
         if(recipes ==null  )
         {
-            recipes = dataAccess.getR(recipeName);
+            recipes = dataAccess.getRecipe(recipeName);
             currentRecipe = 0;
         }
             if(currentRecipe <recipes.size()){
