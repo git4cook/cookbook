@@ -8,28 +8,18 @@ import java.util.List;
  */
 
 public class tag  implements tagInterface{
-    private List<Recipe> recipes;
     private String name;
-
-    public tag(){
-        recipes = null;
-        name = null;
-    }
 
     public tag (String name){
         name = name;
-        recipes = null;
     }
 
     public String getTagsName(){
         return name;
     }
-    public List<Recipe> getRecipeList(){
-        return recipes;
-    }
 
-    public boolean Duclipate(Recipe re){
+    /*public boolean Duclipate(Recipe re){
         return recipes.indexOf(re) >= 0;
-    }
+    }*/
 
 }
