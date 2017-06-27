@@ -58,10 +58,10 @@ public List<Recipe>getSearchResult(){
         return result;
     }
 
-    public String getRecipeList(List<Recipe> recipes)
+    public List<Recipe> getRecipeList(List<Recipe> recipes)
     {
-        recipes.clear();
-        return dataAccess.getRecipeSequential(recipes);
+
+        return recipes;
     }
    /* public Recipe getSequential(){
          if(recipe==null) {
@@ -81,19 +81,19 @@ public List<Recipe>getSearchResult(){
             return recipe;
      }*/
 
-    public String insertRecipe(Recipe currentRecipe)
+    public Recipe insertRecipe(Recipe currentRecipe)
     {
-        return dataAccess.insertRecipe(currentRecipe);
+        return currentRecipe;
     }
 
-    public String updateRecipe(Recipe currentRecipe)
+    public Recipe updateRecipe(Recipe currentRecipe)
   {
-      return dataAccess.updateRecipe(currentRecipe);
+      return currentRecipe;
   }
 
-    public String deleteRecipe(Recipe currentRecipe)
+    public Recipe deleteRecipe(Recipe currentRecipe)
     {
-        return dataAccess.deleteRecipe(currentRecipe);
+        return currentRecipe;
     }
     public void setSearchResult(ArrayList<Recipe> list){
         dataAccess.setSearchResult(list);

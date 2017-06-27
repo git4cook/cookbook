@@ -14,11 +14,11 @@ public interface AccessRecipeInterface {
 
     Recipe getRecipe(String recipeName);
     boolean findRecipe(String name);
-    String getRecipeList(List<Recipe> recipes);
+    List<Recipe> getRecipeList(List<Recipe> recipes);
     //public Recipe getSequential();
-    String insertRecipe(Recipe currentRecipe);
-    String updateRecipe(Recipe currentRecipe);
-    String deleteRecipe(Recipe currentRecipe);
+    Recipe insertRecipe(Recipe currentRecipe);
+    Recipe updateRecipe(Recipe currentRecipe);
+    Recipe deleteRecipe(Recipe currentRecipe);
     String search(ArrayList<Recipe> input);
 
     void setSearchResult(ArrayList<Recipe> list);
