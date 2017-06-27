@@ -11,7 +11,7 @@ public class tag  implements tagInterface{
     private String name;
 
     public tag (String name){
-        name = name;
+        this.name = name;
     }
 
     public String getTagsName(){
