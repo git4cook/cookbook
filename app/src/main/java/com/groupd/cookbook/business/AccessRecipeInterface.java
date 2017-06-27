@@ -14,7 +14,7 @@ public interface AccessRecipeInterface {
 
     Recipe getRecipe(String recipeName);
     boolean findRecipe(String name);
-    String getRecipe(List<Recipe> recipes);
+    String getRecipeList(List<Recipe> recipes);
     //public Recipe getSequential();
     String insertRecipe(Recipe currentRecipe);
     String updateRecipe(Recipe currentRecipe);
