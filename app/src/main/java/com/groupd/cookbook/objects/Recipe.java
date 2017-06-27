@@ -16,6 +16,7 @@ public class Recipe implements RecipeInterface
     {
         this.name = name;
         direction = null;
+        tags = null;
     }
 
     public Recipe(String direction, String tags)
@@ -24,11 +25,11 @@ public class Recipe implements RecipeInterface
         this.direction = direction;
     }
 
-    public Recipe(String name, String direction, List<tag> tags)
+    public Recipe(String name, String direction, String tags)
     {
         this.name = name;
         this.direction = direction;
-       this.tags = tags;
+        addTags(tags);
     }
 
     public String getName()
@@ -41,9 +42,17 @@ public class Recipe implements RecipeInterface
         return (direction);
     }
 
-    public List<tag> getTags()
+    public List<tag> getTagsList()
     {
         return tags;
+    }
+    public String getTags(){
+        String result ="";
+        for(int i =0;i<tags.size();i++){
+            result+=tags.get(i).getTagsName();
+            result+=",";
+        }
+        return result;
     }
 
     /*public String toString()

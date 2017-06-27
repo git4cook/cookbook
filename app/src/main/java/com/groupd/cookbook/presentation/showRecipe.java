@@ -22,7 +22,7 @@ public class showRecipe extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
-        vRcy = RAC.getR(rcyTitle);
+        vRcy = RAC.getRecipe(rcyTitle);
         title = vRcy.getName();
 
         TextView rti = (TextView) findViewById(R.id.vTitle);
@@ -36,7 +36,7 @@ public class showRecipe extends AppCompatActivity {
 
      public void buttonDeleteOnClick (View v) {
          AccessRecipe RAC = new AccessRecipe();
-         Recipe vRcy = RAC.getR(title);
+         Recipe vRcy = RAC.getRecipe(title);
          String result = RAC.deleteRecipe(vRcy);
          if(result == null) {
              Intent delete;

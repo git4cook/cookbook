@@ -12,8 +12,8 @@ public interface RecipeInterface {
 
     String getDirection();
 
-    List<tag> getTags();
-
+    List<tag> getTagsList();
+    String getTags();
     boolean equals(Object object);
 
 }
