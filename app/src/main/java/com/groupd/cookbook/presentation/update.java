@@ -53,7 +53,7 @@ public class update extends AppCompatActivity {
         Recipe rlt;
         if (result == null) {
             rlt = AR.updateRecipe(newRecipe);
-            if (rlt == null) {
+            if (rlt != null) {
                 Intent c;
                 c = new Intent(this, MainActivity.class);
                 update.this.startActivity(c);
