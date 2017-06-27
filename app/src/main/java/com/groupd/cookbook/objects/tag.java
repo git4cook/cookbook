@@ -7,7 +7,7 @@ import java.util.List;
  * Created by wutao on 2017/6/25.
  */
 
-public class tag  implements tagInterface{
+public class  tag  implements tagInterface{
     private String name;
 
     public tag (String name){
