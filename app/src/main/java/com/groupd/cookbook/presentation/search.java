@@ -34,14 +34,14 @@ public class search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search );
+        setContentView(R.layout.search);
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
-        String rlt = AR.getRecipeList(Rlist);
-        if (rlt != null) {
+        List<Recipe> rlt = AR.getRecipeList(Rlist);
+        /*if (rlt != null) {
             Messages.fatalError(this, rlt);
-        }
-
+        }*/
+        if (rlt != null) {
 
             final EditText rn = (EditText) findViewById(R.id.recyTitle);
             final Button buttonOpen = (Button) findViewById(R.id.opRcy);
@@ -63,6 +63,7 @@ public class search extends AppCompatActivity {
             });
 
         }
+    }
 
 
 

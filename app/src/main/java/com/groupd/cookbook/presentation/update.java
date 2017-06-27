@@ -50,18 +50,14 @@ public class update extends AppCompatActivity {
 
         Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tags);
         String result = validateRecipeData(newRecipe);
-
+        Recipe rlt;
         if (result == null) {
-            result = AR.updateRecipe(newRecipe);
-            if (result == null) {
+            rlt = AR.updateRecipe(newRecipe);
+            if (rlt == null) {
                 Intent c;
                 c = new Intent(this, MainActivity.class);
                 update.this.startActivity(c);
-            } else {
-                Messages.fatalError(this, result);
             }
-        } else {
-            Messages.warning(this, result);
         }
 
     }

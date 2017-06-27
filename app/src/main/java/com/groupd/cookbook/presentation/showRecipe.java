@@ -37,15 +37,13 @@ public class showRecipe extends AppCompatActivity {
      public void buttonDeleteOnClick (View v) {
          AccessRecipe RAC = new AccessRecipe();
          Recipe vRcy = RAC.getRecipe(title);
-         String result = RAC.deleteRecipe(vRcy);
+         Recipe result = RAC.deleteRecipe(vRcy);
          if(result == null) {
              Intent delete;
              delete = new Intent(this, MainActivity.class);
              showRecipe.this.startActivity(delete);
          }
-         else {
-             Messages.warning(this, result);
-         }
+
      }
 
     public void buttonUpdateOnClick(View v){
