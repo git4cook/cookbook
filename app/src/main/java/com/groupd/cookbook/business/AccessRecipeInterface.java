@@ -5,6 +5,7 @@ package com.groupd.cookbook.business;
  */
 
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.persistence.myException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface AccessRecipeInterface {
 
     Recipe getRecipe(String recipeName);
-    boolean findRecipe(String name);
+    boolean findRecipe(String name) throws myException;
     List<Recipe> getRecipeList(List<Recipe> recipes);
     //public Recipe getSequential();
     Recipe insertRecipe(Recipe currentRecipe);

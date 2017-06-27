@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 
 public class DataAccessObj implements DataAccess{
 
@@ -505,11 +506,4 @@ public class DataAccessObj implements DataAccess{
         }
         return result;
     }
-}
- class myException extends Exception {
-
-    public myException(String message){
-        super(message);
-    }
-
 }
