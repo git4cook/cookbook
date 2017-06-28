@@ -19,12 +19,11 @@ public class DataAccessObj implements DataAccess{
 
     private Statement st1, st2, st3;
     private Connection c1;
-
+    private ResultSet rs2, rs3, rs4, rs5;
     private String dbName;
     private String dbType;
     private String cmdString;
     private int updateCount;
-    private String result;
     private static String EOF = "  ";
 
     public DataAccessObj(String dbName)
@@ -54,7 +53,6 @@ public class DataAccessObj implements DataAccess{
     }
 
     public void close() throws myException {
-         ResultSet rs2;
         try
         {	// commit all changes to the database
             cmdString = "shutdown compact";
@@ -70,7 +68,6 @@ public class DataAccessObj implements DataAccess{
     }
 
     public Recipe getRecipe(String name) throws myException {
-        ResultSet rs2 = null;
         Recipe recipe = null;
         String myRecipeName, myDirection;
         myRecipeName = EOF;
@@ -104,7 +101,6 @@ public class DataAccessObj implements DataAccess{
         return recipe;
     }
     private List<tag> getTags(String name) throws myException {
-        ResultSet rs2 = null;
         String result = "";
         ArrayList<tag> tags = new ArrayList<tag>();
         try
@@ -134,28 +130,26 @@ public class DataAccessObj implements DataAccess{
     }
     public List<Recipe> getRecipeList() throws myException {
         List<Recipe> result = new ArrayList<Recipe>();
-       return getRecipeSequential();
+        return getRecipeSequential();
     }
 
     public List<Recipe> getRecipeSequential( ) throws myException {
-        ResultSet rs2 = null;
         Recipe recipe;
         List<Recipe> recipeResult = new ArrayList<Recipe>();
         String myRecipeName, myDirection;
         myRecipeName = EOF;
-        List<tag> myTags;
-        myDirection = EOF;
-
-        result = null;
+        String aaa = "";
         try
         {
             cmdString = "Select * from R";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
+
         catch (Exception e)
         {
-            throw new myException(processSQLError(e));
+          throw new myException(processSQLError(e));
+
         }
 
         try
@@ -163,9 +157,8 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                myTags = getTags(myRecipeName);
                 myDirection = rs2.getString("Direction");
-                recipe = new Recipe(myRecipeName, myDirection,myTags);
+                recipe = new Recipe(myRecipeName, myDirection,null);
                 recipeResult.add(recipe);
             }
             rs2.close();
@@ -182,10 +175,8 @@ public class DataAccessObj implements DataAccess{
 
 
     public void insertRecipe(Recipe currentRecipe) throws myException {
-        ResultSet rs2 = null;
         String values;
         String[]tags = tagsInString(currentRecipe.getRecipeTags()).split(",");
-        result = null;
 
         try
         {
@@ -195,7 +186,6 @@ public class DataAccessObj implements DataAccess{
             cmdString = "Insert into R " +" Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -209,11 +199,10 @@ public class DataAccessObj implements DataAccess{
         String values;
         for(int i = 0;i<myTags.length;i++) {
             try {
-                 values = "'" + rName + "','"+myTags[i]+"'";
+                values = "'" + rName + "','"+myTags[i]+"'";
                 cmdString = "Insert into RC " + " Values(" + values + ")";
                 //System.out.println(cmdString);
                 updateCount = st1.executeUpdate(cmdString);
-                result = checkWarning(st1, updateCount);
             } catch (Exception e) {
                 throw new myException(processSQLError(e));
             }
@@ -221,11 +210,9 @@ public class DataAccessObj implements DataAccess{
     }
 
     public void updateRecipe(Recipe currentRecipe) throws myException {
-        ResultSet rs2 = null;
         String values;
         String where;
 
-        result = null;
         try
         {
             // Should check for empty values and not update them
@@ -235,7 +222,6 @@ public class DataAccessObj implements DataAccess{
             cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -246,27 +232,23 @@ public class DataAccessObj implements DataAccess{
     }
     private void deleteRecipeTags(String name) throws myException{
         String values;
-            try {
-                cmdString = "Delete From RC Where RName='"+name+"'";
-                //System.out.println(cmdString);
-                updateCount = st1.executeUpdate(cmdString);
-                result = checkWarning(st1, updateCount);
-            } catch (Exception e) {
-                throw new myException(processSQLError(e));
-            }
+        try {
+            cmdString = "Delete From RC Where RName='"+name+"'";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+        } catch (Exception e) {
+            throw new myException(processSQLError(e));
+        }
     }
     public void deleteRecipe(Recipe currentRecipe) throws myException {
-        ResultSet rs2 = null;
         String values;
 
-        result = null;
         try
         {
             values = currentRecipe.getName();
             cmdString = "Delete from R where UPPER(Name)='" +values.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -276,13 +258,11 @@ public class DataAccessObj implements DataAccess{
     }
 
     public List<String> getFavoriteSequential() throws myException {
-        ResultSet rs2 = null;
         Recipe recipe;
         List<String> favoriteResult = new ArrayList<String>();
         String myRecipeName;
         myRecipeName = EOF;
 
-        result = null;
         try
         {
             cmdString = "Select * from R";
@@ -313,16 +293,13 @@ public class DataAccessObj implements DataAccess{
 
 
     public void insertFavorite(String currentFavorite) throws myException {
-        ResultSet rs2 = null;
         String values;
 
-        result = null;
         try
         {
             cmdString = "Insert into R " +" Values('" +currentFavorite +"')";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -332,15 +309,12 @@ public class DataAccessObj implements DataAccess{
 
 
     public void deleteFavorite(String currentFavorite) throws myException {
-        String values;
 
-        result = null;
         try
         {
             cmdString = "Delete from F where UPPER(Name)='" +currentFavorite.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
@@ -381,7 +355,6 @@ public class DataAccessObj implements DataAccess{
         return result;
     }
     public ArrayList<String> search(String input) throws myException {
-        ResultSet rs2 = null;
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
         myRecipeName = EOF;

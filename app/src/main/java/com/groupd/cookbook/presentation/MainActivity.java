@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         try {
             Main.startUp();
         } catch (myException e) {
-            e.printStackTrace();
+            Messages.warning(this, "1"+e.getMessage());
         }
         AR = new AccessRecipe();
         try {
             Rlist = (ArrayList<Recipe>) AR.getRecipeList();
         } catch (myException e) {
-            e.printStackTrace();
+            Messages.warning(this, "2"+e.getMessage());
         }
         if (Rlist != null) {
 
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 try {
                     AR.insertRecipe(addedRecipe);
                 } catch (myException e) {
-                    e.printStackTrace();
+                    Messages.warning(this, e.getMessage());
                 }
                 RADP.add(addedRecipe);
 
