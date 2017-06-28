@@ -52,23 +52,23 @@ public class update extends AppCompatActivity {
 
         EditText editDec = (EditText) findViewById(R.id.editDec);
         String temp[] = tags.split(",");
-        ArrayList<tag> tagsInObj = new ArrayList<tag>();
+        ArrayList<tag> tagsInObj = new ArrayList<>();
         for(int i = 0;i<temp.length;i++){
             tagsInObj.add(new tag(temp[i]));
         }
         Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tagsInObj);
-        String result = validateRecipeData(newRecipe);
-        Recipe rlt;
-        if (result == null) {
+       // String result = validateRecipeData(newRecipe);
+        //Recipe rlt;
+       // if (result == null) {
              AR.updateRecipe(newRecipe);
                 Intent c;
                 c = new Intent(this, MainActivity.class);
                 update.this.startActivity(c);
-        }
+      //  }
 
     }
 
-    private String validateRecipeData(Recipe recipe) {
+  /*  private String validateRecipeData(Recipe recipe) {
 
         if (recipe.getName().length() == 0) {
             return "RecipeName requierd";
@@ -78,7 +78,7 @@ public class update extends AppCompatActivity {
         //}
 
         return null;
-    }
+    }*/
 
 
     public void onClick11(View v) {

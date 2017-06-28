@@ -60,20 +60,20 @@ public class showRecipe extends AppCompatActivity {
         Intent update = new Intent(this, update.class);
         Bundle a =  new Bundle();
         a.putString("recipeName",vRcy.getName());
-        a.putString("tags",tagsInString(vRcy.getRecipeTags()));
+        a.putString("tags",vRcy.tagToString());
         a.putString("des",vRcy.getDirection());
         update.putExtras(a);
         showRecipe.this.startActivity(update);
 
 
     }
-    private String tagsInString(List<tag> tags){
+   /* private String tagsInString(List<tag> tags){
         String result = tags.get(0).getTagsName();
         for(int i = 1;i<tags.size();i++){
             result = result+","+tags.get(i).getTagsName();
         }
         return result;
-    }
+    }*/
      }
 
 

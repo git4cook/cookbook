@@ -12,6 +12,7 @@ import com.groupd.cookbook.objects.myException;
 public interface DataAccess {
     void open(String string) throws myException;
     void close() throws myException;
+
     List<Recipe> getRecipeSequential() throws myException;
 
     void insertRecipe(Recipe recipe) throws myException;
@@ -20,12 +21,12 @@ public interface DataAccess {
 
     void deleteRecipe(Recipe recipe) throws myException;
 
-    List<String> getFavoriteSequential() throws myException;
+    //List<String> getFavoriteSequential() throws myException;
 
-    void insertFavorite(String favorite) throws myException;
+    //void insertFavorite(String favorite) throws myException;
 
 
-    void deleteFavorite(String favorite) throws myException;
+    //void deleteFavorite(String favorite) throws myException;
     Recipe getRecipe(String name) throws myException;
     List<Recipe> getRecipeList() throws myException;
     ArrayList<String> search(String input) throws myException;
