@@ -18,7 +18,7 @@ public class AccessRecipe implements AccessRecipeInterface {
     public AccessRecipe (){
         dataAccess = Services.getDataAccess(Main.dbName);
 }
-public ArrayList<String>getSearchResult(){
+    public ArrayList<String>getSearchResult(){
     return searchResult;
 }
 
@@ -44,9 +44,9 @@ public ArrayList<String>getSearchResult(){
         return result;
     }
 
-    public List<Recipe> getRecipeList() throws myException {
+    public ArrayList<Recipe> getRecipeList() throws myException {
 
-        return dataAccess.getRecipeSequential();
+        return (ArrayList<Recipe>) dataAccess.getRecipeSequential();
     }
    /* public Recipe getSequential(){
          if(recipe==null) {
