@@ -16,6 +16,7 @@ public class AccessRecipe implements AccessRecipeInterface {
     private List<Recipe> recipes;
     private Recipe recipe;
     private int currentRecipe;
+    private ArrayList<String> searchResult;
 
     public AccessRecipe (){
         dataAccess = Services.getDataAccess(Main.dbName);
@@ -23,8 +24,8 @@ public class AccessRecipe implements AccessRecipeInterface {
         recipe = null;
         currentRecipe = 0;
 }
-public List<Recipe>getSearchResult(){
-    return dataAccess.getSearchResult();
+public ArrayList<String>getSearchResult(){
+    return searchResult;
 }
 
     public Recipe getRecipe(String recipeName) throws myException {
@@ -39,8 +40,12 @@ public List<Recipe>getSearchResult(){
         }
         return result;
     }
-   public String search(ArrayList<Recipe> input) throws myException {
-        String result = dataAccess.search(input);
+   public boolean search(String input) throws myException {
+       boolean result = false;
+        this.searchResult = dataAccess.search(input);
+       if(this.searchResult.size()>0){
+           result = true;
+       }
 
         return result;
     }
@@ -78,9 +83,6 @@ public List<Recipe>getSearchResult(){
 
     public void deleteRecipe(Recipe currentRecipe) throws myException {
         dataAccess.deleteRecipe(currentRecipe);
-    }
-    public void setSearchResult(ArrayList<Recipe> list){
-        dataAccess.setSearchResult(list);
     }
 
 }

@@ -73,20 +73,14 @@ public class search extends AppCompatActivity {
     public void buttonOpenOnClick(View v) throws myException {
         EditText editName = (EditText)findViewById(R.id.recyTitle);
         String inputStr = editName.getText().toString().trim();
-        Recipe input = new Recipe(inputStr,"",null);
-        ArrayList<Recipe> list = new ArrayList<Recipe>();
-        list.add(input);
-        String result = AR.search(list);
+        boolean result = AR.search(inputStr);
 
-            if (result == null) {
-                if(list.size()>0) {
-                    AR.setSearchResult(list);
+                if(result) {
                     Intent c;
                     c = new Intent(this, searchResult.class);
                     search.this.startActivity(c);
                 }
                 else{
-                    AR.setSearchResult(list);
                     AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
                     alertdialogbuilder.setMessage("We can't find anything.");
 
@@ -97,9 +91,7 @@ public class search extends AppCompatActivity {
                     alertdialog1.show();
                 }
 
-            } else {
-                Messages.fatalError(this, result);
-            }
+
 
     }
     private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()

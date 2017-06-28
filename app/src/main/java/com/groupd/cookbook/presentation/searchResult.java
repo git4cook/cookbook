@@ -32,8 +32,8 @@ import java.util.List;
 //
 public class searchResult extends AppCompatActivity {
     private AccessRecipe AR;
-    private List<Recipe> Rlist;
-    private ArrayAdapter<Recipe> RADP;
+    private List<String> Rlist;
+    private ArrayAdapter<String> RADP;
     private int RecyPosy = -1;
     private String name = "";
     final int ADD_REQUEST_CODE = 1; //request code for adding recipes's startActivityForResult
@@ -47,7 +47,7 @@ public class searchResult extends AppCompatActivity {
         setContentView(R.layout.search_result /*list_and_search_menu*/);
         AR = new AccessRecipe();
         Rlist = AR.getSearchResult();
-       RADP = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
+       RADP = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -55,7 +55,7 @@ public class searchResult extends AppCompatActivity {
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 
 
-                    text1.setText(Rlist.get(position).getName());
+                    text1.setText(Rlist.get(position));
 
 
                     return view;
@@ -131,9 +131,9 @@ public class searchResult extends AppCompatActivity {
         }
     }
     public void selectRecipeAtPosition(int position) {
-        Recipe selected = RADP.getItem(position);
+        String selected = RADP.getItem(position);
         EditText editName = (EditText)findViewById(R.id.recyTitle);
-        name = selected.getName();
+        name = selected;
     }
 
 
@@ -156,33 +156,9 @@ public class searchResult extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == ADD_REQUEST_CODE)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                System.out.println("we get here");
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
 
-
-                String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
-                String temp[] = returnedArray[INPUT_TAGS_INDEX].split(",");
-                ArrayList<tag> tagsInObj = new ArrayList<tag>();
-                for(int i = 0;i<temp.length;i++){
-                    tagsInObj.add(new tag(temp[i]));
-                }
-                Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
-                        returnedArray[INPUT_STEPS_INDEX],tagsInObj);
-
-                try {
-                    AR.insertRecipe(addedRecipe);
-                } catch (myException e) {
-                    e.printStackTrace();
-                }
-                RADP.add(addedRecipe);
-
-            }
-        }
     }
+
 
 }
