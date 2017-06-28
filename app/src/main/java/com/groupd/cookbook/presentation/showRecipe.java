@@ -19,6 +19,7 @@ public class showRecipe extends AppCompatActivity {
 
     private String title;
     private Recipe vRcy;
+    private List<tag> Rl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

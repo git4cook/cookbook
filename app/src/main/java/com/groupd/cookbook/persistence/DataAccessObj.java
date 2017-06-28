@@ -42,8 +42,6 @@ public class DataAccessObj implements DataAccess{
             st1 = c1.createStatement();
             st2 = c1.createStatement();
             st3 = c1.createStatement();
-
-
         }
         catch (Exception e)
         {

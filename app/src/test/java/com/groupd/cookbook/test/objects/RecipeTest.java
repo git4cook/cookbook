@@ -1,4 +1,4 @@
-//package com.groupd.cookbook.objects;
+//package com.groupd.cookbook.test.objects;
 //
 //import org.junit.Test;
 //

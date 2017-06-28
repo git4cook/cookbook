@@ -46,6 +46,7 @@ public class AccessRecipe implements AccessRecipeInterface {
 
     public ArrayList<Recipe> getRecipeList() throws myException {
 
+
         return (ArrayList<Recipe>) dataAccess.getRecipeSequential();
     }
    /* public Recipe getSequential(){

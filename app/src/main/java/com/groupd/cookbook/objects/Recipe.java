@@ -47,7 +47,13 @@ public class Recipe implements RecipeInterface
     {
         return tags;
     }
-
+    public String tagToString(){
+        String tag ="";
+        for(int i=0;i<tags.size();i++){
+            tag+=(tags.get(i).getTagsName())+",";
+        }
+        return tag;
+    }
     /*public List<tag> getTagsList()
     {
         return tags;

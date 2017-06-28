@@ -1,5 +1,5 @@
-//package com.groupd.cookbook.persistence;
-//
+package com.groupd.cookbook.test.persistence;
+
 //import com.groupd.cookbook.objects.Recipe;
 //
 //import org.junit.Test;

@@ -1,6 +1,15 @@
-package com.groupd.cookbook.business;
 
+
+package com.groupd.cookbook.test.business;
+
+
+import com.groupd.cookbook.application.Main;
+import com.groupd.cookbook.application.Services;
+import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.test.persistence.DataAccessStub;
+
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,22 +24,28 @@ import static junit.framework.Assert.assertNotNull;
  * Created by siyu on 2017/6/27.
  */
 
-public class AccessRecipeTest {
+public class AccessRecipeTest extends TestCase {
     private AccessRecipe test;
     private String recipeName;
     private Recipe a ;
     private Recipe b;
     private List<Recipe> testRecipes;
+    private static String dbName = Main.dbName;
+    public AccessRecipeTest(String arg0)
+    {
+        super(arg0);
+    }
     @Before
     public void setUp(){
-       // test = new AccessRecipe();
 
-     //   testRecipes =null;
-      //  a = new Recipe("pancake");
-     //   b = new Recipe ("cake");
-     //   testRecipes.add(a);
-     //   testRecipes.add(b);
-      //  recipeName = "pancake";
+        // test = new AccessRecipe();
+
+        //   testRecipes =null;
+        //  a = new Recipe("pancake");
+        //   b = new Recipe ("cake");
+        //   testRecipes.add(a);
+        //   testRecipes.add(b);
+        //  recipeName = "pancake";
     }
     @After
     public void tearDown(){
@@ -40,8 +55,8 @@ public class AccessRecipeTest {
     @Test
     public void testGetRecipeValid(){
 
-       // Recipe result = test.getRecipe("pancake");
-       // assertEquals("error message","pancake",result);
+        // Recipe result = test.getRecipe("pancake");
+        // assertEquals("error message","pancake",result);
     }
    /* @Test
     public void testGetRecipeListValid(){
