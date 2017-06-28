@@ -20,6 +20,7 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
 
 import java.io.File;
@@ -173,7 +174,11 @@ public class searchResult extends AppCompatActivity {
                 Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
                         returnedArray[INPUT_STEPS_INDEX],tagsInObj);
 
-                AR.insertRecipe(addedRecipe);
+                try {
+                    AR.insertRecipe(addedRecipe);
+                } catch (myException e) {
+                    e.printStackTrace();
+                }
                 RADP.add(addedRecipe);
 
             }

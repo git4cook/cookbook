@@ -202,7 +202,11 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
                         returnedArray[INPUT_STEPS_INDEX],tagsInObj);
 
-                AR.insertRecipe(addedRecipe);
+                try {
+                    AR.insertRecipe(addedRecipe);
+                } catch (myException e) {
+                    e.printStackTrace();
+                }
                 RADP.add(addedRecipe);
 
             }

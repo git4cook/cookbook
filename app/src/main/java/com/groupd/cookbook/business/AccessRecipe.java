@@ -68,16 +68,16 @@ public List<Recipe>getSearchResult(){
             return recipe;
      }*/
 
-    public void insertRecipe(Recipe currentRecipe)
-    {
+    public void insertRecipe(Recipe currentRecipe) throws myException {
+        dataAccess.insertRecipe(currentRecipe);
     }
 
-    public void updateRecipe(Recipe currentRecipe)
-  {
-
+    public void updateRecipe(Recipe currentRecipe) throws myException {
+    dataAccess.updateRecipe(currentRecipe);
   }
 
-    public void deleteRecipe(Recipe currentRecipe){
+    public void deleteRecipe(Recipe currentRecipe) throws myException {
+        dataAccess.deleteRecipe(currentRecipe);
     }
     public void setSearchResult(ArrayList<Recipe> list){
         dataAccess.setSearchResult(list);

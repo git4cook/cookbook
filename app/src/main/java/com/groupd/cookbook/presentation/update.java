@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class update extends AppCompatActivity {
         Button tag5 = (Button)findViewById(R.id.b5);*/
     }
 
-    public void buttonConfirmOnClick(View v) {
+    public void buttonConfirmOnClick(View v) throws myException {
         AccessRecipe AR = new AccessRecipe();
 
         TextView editName = (TextView) findViewById(R.id.viewName);
