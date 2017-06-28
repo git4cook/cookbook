@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
         AR = new AccessRecipe();
         try {
-            Rlist = (ArrayList<Recipe>) AR.getRecipeList();
+            Rlist = AR.getRecipeList();
         } catch (myException e) {
             Messages.warning(this, "2"+e.getMessage());
         }
