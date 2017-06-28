@@ -17,9 +17,9 @@ public interface AccessRecipeInterface {
     boolean findRecipe(String name) throws myException;
     List<Recipe> getRecipeList(List<Recipe> recipes);
     //public Recipe getSequential();
-    void insertRecipe(Recipe currentRecipe);
-    void updateRecipe(Recipe currentRecipe);
-    void deleteRecipe(Recipe currentRecipe);
+    void insertRecipe(Recipe currentRecipe) throws myException;
+    void updateRecipe(Recipe currentRecipe) throws myException;
+    void deleteRecipe(Recipe currentRecipe) throws myException;
     String search(ArrayList<Recipe> input) throws myException;
 
     void setSearchResult(ArrayList<Recipe> list);
