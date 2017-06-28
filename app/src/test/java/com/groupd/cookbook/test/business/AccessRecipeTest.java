@@ -7,7 +7,7 @@ import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.application.Services;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.test.persistence.DataAccessStub;
+//import com.groupd.cookbook.test.persistence.DataAccessStub;
 
 import junit.framework.TestCase;
 

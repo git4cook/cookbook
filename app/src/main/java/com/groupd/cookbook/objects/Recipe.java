@@ -13,18 +13,7 @@ public class Recipe implements RecipeInterface
     //private String tags;
     private List<tag> tags;
 
-    public Recipe(String name)
-    {
-        this.name = name;
-        direction = null;
-        tags = null;
-    }
 
-    public Recipe(String direction, String tags)
-    {
-        this.name = tags;
-        this.direction = direction;
-    }
 
     public Recipe(String name, String direction, List<tag> tags)
     {
