@@ -404,7 +404,7 @@ public class DataAccessObj implements DataAccess{
 
         try
         {
-            cmdString = "Select * from R Where Upper(Name) Like '"+inputstr.toUpperCase()+"%'";
+            cmdString = "Select * from R Where Upper(Name) Like %'"+inputstr.toUpperCase()+"%'";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
