@@ -13,16 +13,10 @@ import com.groupd.cookbook.persistence.DataAccess;
 public class AccessRecipe implements AccessRecipeInterface {
    // private DataAccessStub dataAccess;
     private DataAccess dataAccess;
-    private List<Recipe> recipes;
-    private Recipe recipe;
-    private int currentRecipe;
     private ArrayList<String> searchResult;
 
     public AccessRecipe (){
         dataAccess = Services.getDataAccess(Main.dbName);
-        recipes = null;
-        recipe = null;
-        currentRecipe = 0;
 }
 public ArrayList<String>getSearchResult(){
     return searchResult;
@@ -50,10 +44,9 @@ public ArrayList<String>getSearchResult(){
         return result;
     }
 
-    public List<Recipe> getRecipeList(List<Recipe> recipes)
-    {
+    public List<Recipe> getRecipeList() throws myException {
 
-        return recipes;
+        return dataAccess.getRecipeSequential();
     }
    /* public Recipe getSequential(){
          if(recipe==null) {

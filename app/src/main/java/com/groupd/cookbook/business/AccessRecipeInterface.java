@@ -15,7 +15,7 @@ public interface AccessRecipeInterface {
 
     Recipe getRecipe(String recipeName) throws myException;
     boolean findRecipe(String name) throws myException;
-    List<Recipe> getRecipeList(List<Recipe> recipes);
+    List<Recipe> getRecipeList() throws myException;
     //public Recipe getSequential();
     void insertRecipe(Recipe currentRecipe) throws myException;
     void updateRecipe(Recipe currentRecipe) throws myException;

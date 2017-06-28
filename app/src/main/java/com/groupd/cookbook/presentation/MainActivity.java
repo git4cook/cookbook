@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     private AccessRecipe AR;
     private ArrayList<Recipe> Rlist;
     private ArrayAdapter<Recipe> RADP;
-    private int RecyPosy = -1;
     private String name = "";
     final int ADD_REQUEST_CODE = 1; //request code for adding recipes's startActivityForResult
     private final int INPUT_TITLE_INDEX = 0;
@@ -53,9 +52,12 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             e.printStackTrace();
         }
         AR = new AccessRecipe();
-        Rlist = new ArrayList<Recipe>();
-        List<Recipe> rlt = AR.getRecipeList(Rlist);
-        if (rlt != null) {
+        try {
+            Rlist = (ArrayList<Recipe>) AR.getRecipeList();
+        } catch (myException e) {
+            e.printStackTrace();
+        }
+        if (Rlist != null) {
 
             RADP = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, Rlist) {
                 @Override
@@ -78,7 +80,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                    RecyPosy = position;
                     selectRecipeAtPosition(position);
 
                     Intent reIntent = new Intent(MainActivity.this,showRecipe.class);

@@ -37,12 +37,15 @@ public class search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
         AR = new AccessRecipe();
-        Rlist = new ArrayList<Recipe>();
-        List<Recipe> rlt = AR.getRecipeList(Rlist);
+        try {
+            Rlist = (ArrayList<Recipe>) AR.getRecipeList();
+        } catch (myException e) {
+            e.printStackTrace();
+        }
         /*if (rlt != null) {
             Messages.fatalError(this, rlt);
         }*/
-        if (rlt != null) {
+        if (Rlist != null) {
 
             final EditText rn = (EditText) findViewById(R.id.recyTitle);
             final Button buttonOpen = (Button) findViewById(R.id.opRcy);
