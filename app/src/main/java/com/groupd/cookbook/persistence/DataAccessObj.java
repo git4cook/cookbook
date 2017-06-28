@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.tag;
 
 public class DataAccessObj implements DataAccess{
 
@@ -31,8 +32,7 @@ public class DataAccessObj implements DataAccess{
     {
         this.dbName = dbName;
     }
-    public void open(String dbPath)
-    {
+    public void open(String dbPath) throws myException {
         String url;
         try
         {
@@ -49,7 +49,7 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            processSQLError(e);
+            throw new myException(processSQLError(e));
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
     }
@@ -70,16 +70,13 @@ public class DataAccessObj implements DataAccess{
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
-    public List<Recipe> getRecipe(String name) throws myException {
+    public Recipe getRecipe(String name) throws myException {
         ResultSet rs2 = null;
-        Recipe recipe;
-        String myRecipeName, myTags, myDirection;
+        Recipe recipe = null;
+        String myRecipeName, myDirection;
         myRecipeName = EOF;
-        myTags = EOF;
         myDirection = EOF;
-        List<Recipe> result =new ArrayList<Recipe>();
-//        recipe = new Recipe( "aaa", "bbb","ccc");
-//        result.add(recipe);
+        List<tag> tags = new ArrayList<tag>();
         try
         {
             cmdString = "Select * from R Where UPPER(Name) = '"+name.toUpperCase()+"'";
@@ -96,8 +93,6 @@ public class DataAccessObj implements DataAccess{
             {
                 myRecipeName = rs2.getString("Name");
                 myDirection = rs2.getString("Direction");
-                recipe = new Recipe( myRecipeName, myDirection,myTags);
-                result.add(recipe);
             }
             rs2.close();
         }
@@ -105,39 +100,14 @@ public class DataAccessObj implements DataAccess{
         {
             throw new myException(processSQLError(e));
         }
-        try
-        {
-            cmdString = "Select * from R Where UPPER(Name) = '"+name.toUpperCase()+"'";
-            rs2 = st1.executeQuery(cmdString);
-            //ResultSetMetaData md2 = rs2.getMetaData();
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-        try
-        {
-            while (rs2.next())
-            {
-                myRecipeName = rs2.getString("Name");
-                myDirection = rs2.getString("Direction");
-                myTags = getTags(name);
-                recipe = new Recipe( myRecipeName, myDirection,myTags);
-                result.add(recipe);
-            }
-            rs2.close();
-        }
-        catch (Exception e)
-        {
-            processSQLError(e);
-        }
-
-        return result;
+        tags = getTags(name);
+        recipe = new Recipe( myRecipeName, myDirection,tags);
+        return recipe;
     }
-    private String getTags(String name) throws myException {
+    private List<tag> getTags(String name) throws myException {
         ResultSet rs2 = null;
         String result = "";
-        ArrayList<String> tags = new ArrayList<String>();
+        ArrayList<tag> tags = new ArrayList<tag>();
         try
         {
             cmdString = "Select * from RC Where UPPER(RName) = '"+name.toUpperCase()+"'";
@@ -146,13 +116,13 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            processSQLError(e);
+            throw new myException(processSQLError(e));
         }
         try
         {
             while (rs2.next())
             {
-                tags.add(rs2.getString("CName"));
+                tags.add(new tag(rs2.getString("CName")));
             }
             rs2.close();
         }
@@ -160,28 +130,21 @@ public class DataAccessObj implements DataAccess{
         {
             throw new myException(processSQLError(e));
         }
-        for(int i = 0;i<tags.size();i++){
-            if(i!=tags.size()-1){
-                result = result + tags.get(i)+",";
-            }
-            else{
-                result = result + tags.get(i);
-            }
-        }
-        return result;
+
+        return tags;
     }
     public List<Recipe> getRecipeList() throws myException {
         List<Recipe> result = new ArrayList<Recipe>();
-       getRecipeSequential(result);
-        return result;
+       return getRecipeSequential();
     }
 
-    public String getRecipeSequential(List<Recipe> recipeResult) throws myException {
+    public List<Recipe> getRecipeSequential( ) throws myException {
         ResultSet rs2 = null;
         Recipe recipe;
-        String myRecipeName, myTags, myDirection;
+        List<Recipe> recipeResult = new ArrayList<Recipe>();
+        String myRecipeName, myDirection;
         myRecipeName = EOF;
-        myTags = EOF;
+        List<tag> myTags;
         myDirection = EOF;
 
         result = null;
@@ -193,7 +156,6 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-             result = processSQLError(e);
             throw new myException(processSQLError(e));
         }
 
@@ -211,22 +173,19 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
             throw new myException(processSQLError(e));
 
         }
 
-        return result;
+        return recipeResult;
     }
 
 
 
-    public String insertRecipe(Recipe currentRecipe) throws myException {
+    public void insertRecipe(Recipe currentRecipe) throws myException {
         ResultSet rs2 = null;
         String values;
-        String[]tags = currentRecipe.getRecipeTags().split(",");
-        String recipes = "";
-        String where;
+        String[]tags = tagsInString(currentRecipe.getRecipeTags()).split(",");
         result = null;
 
         try
@@ -241,10 +200,10 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
-        insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
-        return result;
+
+        insertRecipeTags(tagsInString(currentRecipe.getRecipeTags()),currentRecipe.getName());
     }
     private void insertRecipeTags(String tags, String rName) throws myException {
         String []myTags = tags.split(",");
@@ -262,7 +221,7 @@ public class DataAccessObj implements DataAccess{
         }
     }
 
-    public String updateRecipe(Recipe currentRecipe) throws myException {
+    public void updateRecipe(Recipe currentRecipe) throws myException {
         ResultSet rs2 = null;
         String values;
         String where;
@@ -281,18 +240,23 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
             throw new myException(processSQLError(e));
         }
         deleteRecipeTags(currentRecipe.getName());
-        insertRecipeTags(currentRecipe.get,currentRecipe.getName());
-        return result;
+        insertRecipeTags(tagsInString(currentRecipe.getRecipeTags()),currentRecipe.getName());
     }
     private void deleteRecipeTags(String name) throws myException{
-
+        String values;
+            try {
+                cmdString = "Delete From RC Where RName='"+name+"'";
+                //System.out.println(cmdString);
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            } catch (Exception e) {
+                throw new myException(processSQLError(e));
+            }
     }
-    public String deleteRecipe(Recipe currentRecipe)
-    {
+    public void deleteRecipe(Recipe currentRecipe) throws myException {
         ResultSet rs2 = null;
         String values;
 
@@ -307,20 +271,17 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
-        return result;
+        deleteRecipeTags(currentRecipe.getName());
     }
 
-    public String getFavoriteSequential(List<Recipe> favoriteResult)
-    {
+    public List<String> getFavoriteSequential() throws myException {
         ResultSet rs2 = null;
         Recipe recipe;
-        String myID, myRecipeName, myTags, myDirection;
+        List<String> favoriteResult = new ArrayList<String>();
+        String myRecipeName;
         myRecipeName = EOF;
-        myTags = EOF;
-        myID = EOF;
-        myDirection = EOF;
 
         result = null;
         try
@@ -331,103 +292,64 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            processSQLError(e);
+            throw new myException(processSQLError(e));
         }
         try
         {
             while (rs2.next())
             {
-                myID = rs2.getString("RecipeID");
                 myRecipeName = rs2.getString("Name");
-                myTags = rs2.getString("tags");
-                myDirection = rs2.getString("Direction");
-                recipe = new Recipe(myRecipeName, myDirection,myTags);
-                favoriteResult.add(recipe);
+                favoriteResult.add(myRecipeName);
             }
             rs2.close();
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
 
-        return result;
+        return favoriteResult;
     }
 
 
 
-    public String insertFavorite(Recipe currentFavorite)
-    {
+    public void insertFavorite(String currentFavorite) throws myException {
         ResultSet rs2 = null;
         String values;
 
         result = null;
         try
         {
-            values = "'"+currentFavorite.getName()
-                    +"', '" +currentFavorite.getRecipeTags()
-                    +"', '" +currentFavorite.getDirection()
-                    +"'";
-            cmdString = "Insert into R " +" Values(" +values +")";
+            cmdString = "Insert into R " +" Values('" +currentFavorite +"')";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
-        return result;
     }
 
-    public String  updateFavorite(Recipe currentFavorite)
-    {
-        String values;
-        String where;
 
-        result = null;
-        try
-        {
-            // Should check for empty values and not update them
-            values = "Name='" +currentFavorite.getName()
-                    +"', Tags='" +currentFavorite.getRecipeTags()
-                    +"', Direction='" +currentFavorite.getDirection()
-                    +"'";
-            where = "where UPPER(Name)='" +currentFavorite.getName().toUpperCase()+"'";
-            cmdString = "Update F " +" Set " +values +" " +where;
-            //System.out.println(cmdString);
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
-        }
-        catch (Exception e)
-        {
-            result = processSQLError(e);
-        }
-        return result;
-    }
-
-    public String deleteFavorite(Recipe currentFavorite)
-    {
+    public void deleteFavorite(String currentFavorite) throws myException {
         String values;
 
         result = null;
         try
         {
-            values = currentFavorite.getName();
-            cmdString = "Delete from F where UPPER(Name)='" +values.toUpperCase()+"'";
+            cmdString = "Delete from F where UPPER(Name)='" +currentFavorite.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
-        return result;
     }
 
-    public String checkWarning(Statement st, int updateCount)
-    {
+    public String checkWarning(Statement st, int updateCount) throws myException {
         String result;
 
         result = null;
@@ -441,7 +363,7 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
         if (updateCount != 1)
         {
@@ -469,7 +391,7 @@ public class DataAccessObj implements DataAccess{
         }
 
     }
-    public String search(ArrayList<Recipe> input){
+    public String search(ArrayList<Recipe> input) throws myException {
         ResultSet rs2 = null;
         Recipe recipe;
         String myRecipeName, myTags, myDirection;
@@ -488,7 +410,7 @@ public class DataAccessObj implements DataAccess{
         }
         catch (Exception e)
         {
-            result = processSQLError(e);
+            throw new myException(processSQLError(e));
         }
         if(rs2!=null) {
             try {
@@ -496,13 +418,29 @@ public class DataAccessObj implements DataAccess{
                     myRecipeName = rs2.getString("Name");
                     myTags = rs2.getString("tags");
                     myDirection = rs2.getString("Direction");
-                    recipe = new Recipe(myRecipeName, myDirection, myTags);
+                    recipe = new Recipe(myRecipeName, myDirection, tagsInObj(myTags));
                     input.add(recipe);
                 }
                 rs2.close();
             } catch (Exception e) {
-                result = processSQLError(e);
+                throw new myException(processSQLError(e));
             }
+        }
+        return result;
+    }
+    private List<tag >tagsInObj(String tags){
+        String temp[] = tags.split(",");
+        ArrayList<tag> tagsInObj = new ArrayList<tag>();
+        for(int i = 0;i<temp.length;i++){
+            tagsInObj.add(new tag(temp[i]));
+        }
+        return tagsInObj;
+    }
+
+    private String tagsInString(List<tag> tags){
+        String result = tags.get(0).getTagsName();
+        for(int i = 1;i<tags.size();i++){
+            result = result+","+tags.get(i).getTagsName();
         }
         return result;
     }

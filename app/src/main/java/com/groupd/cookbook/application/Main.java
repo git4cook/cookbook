@@ -1,5 +1,7 @@
 package com.groupd.cookbook.application;
 
+import com.groupd.cookbook.objects.myException;
+
 /**
  * Created by siyu on 2017/6/2.
  */
@@ -9,8 +11,7 @@ public class Main
 {
     public static final String dbName = "SC";
     private static String dbPathName = "database/SC";
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws myException {
 
         startUp();
 
@@ -18,13 +19,11 @@ public class Main
         System.out.println("All done");
     }
 
-    public static void startUp()
-    {
+    public static void startUp() throws myException {
         Services.createDataAccess(dbName);
     }
 
-    public static void shutDown()
-    {
+    public static void shutDown() throws myException {
         Services.closeDataAccess();
     }
     public static String getDBPathName() {

@@ -7,30 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
+
 public interface DataAccess {
-    void open(String string);
+    void open(String string) throws myException;
     void close() throws myException;
-    String getRecipeSequential(List<Recipe> studentResult) throws myException;
+    List<Recipe> getRecipeSequential() throws myException;
 
-    String insertRecipe(Recipe recipe) throws myException;
+    void insertRecipe(Recipe recipe) throws myException;
 
-    String updateRecipe(Recipe recipe) throws myException;
+    void updateRecipe(Recipe recipe) throws myException;
 
-    String deleteRecipe(Recipe recipe);
+    void deleteRecipe(Recipe recipe) throws myException;
 
-    String getFavoriteSequential(List<Recipe> favorite);
+    List<String> getFavoriteSequential() throws myException;
 
-    String insertFavorite(Recipe favorite);
+    void insertFavorite(String favorite) throws myException;
 
-    String updateFavorite(Recipe favorite);
 
-    String deleteFavorite(Recipe favorite);
-    List<Recipe> getRecipe(String name) throws myException;
+    void deleteFavorite(String favorite) throws myException;
+    Recipe getRecipe(String name) throws myException;
     List<Recipe> getRecipeList() throws myException;
 
     List<Recipe> getSearchResult();
     void setSearchResult( ArrayList<Recipe> searchResult);
-    String search(ArrayList<Recipe> input);
+    String search(ArrayList<Recipe> input) throws myException;
 }
 
 

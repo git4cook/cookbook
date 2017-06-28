@@ -1,16 +1,15 @@
 package com.groupd.cookbook.application;
 
 
+import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.persistence.DataAccess;
 import com.groupd.cookbook.persistence.DataAccessObj;
-import com.groupd.cookbook.persistence.DataAccessStub;
 
 public class Services
 {
     private static DataAccess dataAccessService = null;
 
-    public static DataAccess createDataAccess(String dbName)
-    {
+    public static DataAccess createDataAccess(String dbName) throws myException {
         if (dataAccessService == null)
         {
             dataAccessService = new DataAccessObj(dbName);
@@ -19,8 +18,7 @@ public class Services
         return dataAccessService;
     }
 
-    public static DataAccess createDataAccess(DataAccess alternateDataAccessService)
-    {
+    public static DataAccess createDataAccess(DataAccess alternateDataAccessService) throws myException {
         if (dataAccessService == null)
         {
             dataAccessService = alternateDataAccessService;
@@ -39,8 +37,7 @@ public class Services
         return dataAccessService;
     }
 
-    public static void closeDataAccess()
-    {
+    public static void closeDataAccess() throws myException {
         if (dataAccessService != null)
         {
             dataAccessService.close();

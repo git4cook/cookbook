@@ -5,7 +5,7 @@ package com.groupd.cookbook.business;
  */
 
 import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.persistence.myException;
+import com.groupd.cookbook.objects.myException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ import java.util.List;
 
 public interface AccessRecipeInterface {
 
-    Recipe getRecipe(String recipeName);
+    Recipe getRecipe(String recipeName) throws myException;
     boolean findRecipe(String name) throws myException;
     List<Recipe> getRecipeList(List<Recipe> recipes);
     //public Recipe getSequential();
-    Recipe insertRecipe(Recipe currentRecipe);
-    Recipe updateRecipe(Recipe currentRecipe);
-    Recipe deleteRecipe(Recipe currentRecipe);
-    String search(ArrayList<Recipe> input);
+    void insertRecipe(Recipe currentRecipe);
+    void updateRecipe(Recipe currentRecipe);
+    void deleteRecipe(Recipe currentRecipe);
+    String search(ArrayList<Recipe> input) throws myException;
 
     void setSearchResult(ArrayList<Recipe> list);
 }

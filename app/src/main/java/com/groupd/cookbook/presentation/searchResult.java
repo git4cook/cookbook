@@ -20,11 +20,13 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.tag;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 //
 public class searchResult extends AppCompatActivity {
@@ -163,9 +165,13 @@ public class searchResult extends AppCompatActivity {
 
 
                 String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
-
+                String temp[] = returnedArray[INPUT_TAGS_INDEX].split(",");
+                ArrayList<tag> tagsInObj = new ArrayList<tag>();
+                for(int i = 0;i<temp.length;i++){
+                    tagsInObj.add(new tag(temp[i]));
+                }
                 Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
-                        returnedArray[INPUT_STEPS_INDEX],returnedArray[INPUT_TAGS_INDEX]);
+                        returnedArray[INPUT_STEPS_INDEX],tagsInObj);
 
                 AR.insertRecipe(addedRecipe);
                 RADP.add(addedRecipe);
