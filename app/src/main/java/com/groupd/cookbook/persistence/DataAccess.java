@@ -28,10 +28,7 @@ public interface DataAccess {
     void deleteFavorite(String favorite) throws myException;
     Recipe getRecipe(String name) throws myException;
     List<Recipe> getRecipeList() throws myException;
-
-    List<Recipe> getSearchResult();
-    void setSearchResult( ArrayList<Recipe> searchResult);
-    String search(ArrayList<Recipe> input) throws myException;
+    ArrayList<String> search(String input) throws myException;
 }
 
 
