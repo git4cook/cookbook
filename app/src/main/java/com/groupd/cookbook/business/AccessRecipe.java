@@ -70,14 +70,16 @@ public List<Recipe>getSearchResult(){
 
     public void insertRecipe(Recipe currentRecipe)
     {
+        dataAccess.insertRecipe(currentRecipe);
     }
 
     public void updateRecipe(Recipe currentRecipe)
   {
-
+    dataAccess.updateRecipe(currentRecipe);
   }
 
     public void deleteRecipe(Recipe currentRecipe){
+        dataAccess.deleteRecipe(currentRecipe);
     }
     public void setSearchResult(ArrayList<Recipe> list){
         dataAccess.setSearchResult(list);
