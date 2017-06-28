@@ -14,6 +14,11 @@ import android.widget.TextView;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.tag;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // By Glenn, Tao Wu
 
@@ -57,34 +62,38 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         // Note decided to pass a array instead of making a new record
         // Reason: Keep GUI and Logic separate, GUI is independent of Recipe class - Glenn
 
-        if(AR.findRecipe(titleInput)) {
-            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            alertdialogbuilder.setMessage("This recipe already exist, please use a different name.");
+        try {
+            if(AR.findRecipe(titleInput)) {
+                AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+                alertdialogbuilder.setMessage("This recipe already exist, please use a different name.");
 
-            alertdialogbuilder.setPositiveButton("ok",click1);
+                alertdialogbuilder.setPositiveButton("ok",click1);
 
-            AlertDialog alertdialog1=alertdialogbuilder.create();
+                AlertDialog alertdialog1=alertdialogbuilder.create();
 
-            alertdialog1.show();
-        }
-        //make sure there si no duplicate
-
-        else {
-
-
-            Recipe newRecipe = new Recipe(titleInput, stepsInput, tagsInput);
-            String result = validateRecipeData(newRecipe);
-
-            if (result == null) {
-                System.out.println("The title is: " + titleInput);
-                Log.i("info", "title = " + titleInput);
-                Log.i("info", "tags = " + tagsInput);
-                Log.i("info", "steps = " + stepsInput);
-
-                createInputArray(titleInput, tagsInput, stepsInput);
-            } else {
-                Messages.warning(this, result);
+                alertdialog1.show();
             }
+            //make sure there si no duplicate
+
+            else {
+
+
+                Recipe newRecipe = new Recipe(titleInput, stepsInput, tagsInObj(tagsInput));
+                String result = validateRecipeData(newRecipe);
+
+                if (result == null) {
+                    System.out.println("The title is: " + titleInput);
+                    Log.i("info", "title = " + titleInput);
+                    Log.i("info", "tags = " + tagsInput);
+                    Log.i("info", "steps = " + stepsInput);
+
+                    createInputArray(titleInput, tagsInput, stepsInput);
+                } else {
+                    Messages.warning(this, result);
+                }
+            }
+        } catch (myException e) {
+            e.printStackTrace();
         }
     }
 
@@ -186,7 +195,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
         if (recipe.getName().length() == 0) {
             return "RecipeName requierd";
         }
-        if (recipe.getRecipeTags().length() == 0) {
+        if (recipe.getRecipeTags().size() == 0) {
             return "Tags requierd";
         }
 
@@ -220,5 +229,15 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             arg0.cancel();
         }
     };
+
+
+    private List<tag >tagsInObj(String tags){
+        String temp[] = tags.split(",");
+        ArrayList<tag> tagsInObj = new ArrayList<tag>();
+        for(int i = 0;i<temp.length;i++){
+            tagsInObj.add(new tag(temp[i]));
+        }
+        return tagsInObj;
+    }
 
 }

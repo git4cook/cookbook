@@ -17,6 +17,7 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +70,10 @@ public class search extends AppCompatActivity {
 
 
 
-    public void buttonOpenOnClick(View v) {
+    public void buttonOpenOnClick(View v) throws myException {
         EditText editName = (EditText)findViewById(R.id.recyTitle);
         String inputStr = editName.getText().toString().trim();
-        Recipe input = new Recipe(inputStr,"","");
+        Recipe input = new Recipe(inputStr,"",null);
         ArrayList<Recipe> list = new ArrayList<Recipe>();
         list.add(input);
         String result = AR.search(list);

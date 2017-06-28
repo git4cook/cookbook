@@ -9,6 +9,10 @@ import android.view.View;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.tag;
+
+import java.util.List;
 
 
 public class showRecipe extends AppCompatActivity {
@@ -22,7 +26,11 @@ public class showRecipe extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
-        vRcy = RAC.getRecipe(rcyTitle);
+        try {
+            vRcy = RAC.getRecipe(rcyTitle);
+        } catch (myException e) {
+            e.printStackTrace();
+        }
         title = vRcy.getName();
 
         TextView rti = (TextView) findViewById(R.id.vTitle);
@@ -34,15 +42,13 @@ public class showRecipe extends AppCompatActivity {
 
     }
 
-     public void buttonDeleteOnClick (View v) {
+     public void buttonDeleteOnClick (View v) throws myException {
          AccessRecipe RAC = new AccessRecipe();
          Recipe vRcy = RAC.getRecipe(title);
-         Recipe result = RAC.deleteRecipe(vRcy);
-         if(result == null) {
+         RAC.deleteRecipe(vRcy);
              Intent delete;
              delete = new Intent(this, MainActivity.class);
              showRecipe.this.startActivity(delete);
-         }
 
      }
 
@@ -51,14 +57,20 @@ public class showRecipe extends AppCompatActivity {
         Intent update = new Intent(this, update.class);
         Bundle a =  new Bundle();
         a.putString("recipeName",vRcy.getName());
-        a.putString("tags",vRcy.getRecipeTags());
+        a.putString("tags",tagsInString(vRcy.getRecipeTags()));
         a.putString("des",vRcy.getDirection());
         update.putExtras(a);
         showRecipe.this.startActivity(update);
 
 
     }
-
+    private String tagsInString(List<tag> tags){
+        String result = tags.get(0).getTagsName();
+        for(int i = 1;i<tags.size();i++){
+            result = result+","+tags.get(i).getTagsName();
+        }
+        return result;
+    }
      }
 
 

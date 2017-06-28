@@ -18,6 +18,8 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.tag;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -45,7 +47,11 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_list /*list_and_search_menu*/);
         copyDatabaseToDevice();
-        Main.startUp();
+        try {
+            Main.startUp();
+        } catch (myException e) {
+            e.printStackTrace();
+        }
         AR = new AccessRecipe();
         Rlist = new ArrayList<Recipe>();
         List<Recipe> rlt = AR.getRecipeList(Rlist);
@@ -188,9 +194,13 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
                 String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
-
+                ArrayList<tag> tagsInObj = new ArrayList<tag>();
+                String temp[] = returnedArray[INPUT_TAGS_INDEX].split(",");
+                for(int i = 0;i<temp.length;i++){
+                    tagsInObj.add(new tag(temp[i]));
+                }
                 Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
-                        returnedArray[INPUT_STEPS_INDEX],returnedArray[INPUT_TAGS_INDEX]);
+                        returnedArray[INPUT_STEPS_INDEX],tagsInObj);
 
                 AR.insertRecipe(addedRecipe);
                 RADP.add(addedRecipe);

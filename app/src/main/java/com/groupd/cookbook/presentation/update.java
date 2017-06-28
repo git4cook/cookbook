@@ -10,6 +10,9 @@ import android.widget.Button;
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.tag;
+
+import java.util.ArrayList;
 
 
 public class update extends AppCompatActivity {
@@ -47,17 +50,19 @@ public class update extends AppCompatActivity {
         //TextView edit = (TextView) findViewById(R.id.viewName);
 
         EditText editDec = (EditText) findViewById(R.id.editDec);
-
-        Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tags);
+        String temp[] = tags.split(",");
+        ArrayList<tag> tagsInObj = new ArrayList<tag>();
+        for(int i = 0;i<temp.length;i++){
+            tagsInObj.add(new tag(temp[i]));
+        }
+        Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tagsInObj);
         String result = validateRecipeData(newRecipe);
         Recipe rlt;
         if (result == null) {
-            rlt = AR.updateRecipe(newRecipe);
-            if (rlt != null) {
+             AR.updateRecipe(newRecipe);
                 Intent c;
                 c = new Intent(this, MainActivity.class);
                 update.this.startActivity(c);
-            }
         }
 
     }
