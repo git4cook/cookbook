@@ -30,6 +30,7 @@ public class DataAccessObj implements DataAccess{
     {
         this.dbName = dbName;
     }
+
     public void open(String dbPath) throws myException {
         String url;
         try
