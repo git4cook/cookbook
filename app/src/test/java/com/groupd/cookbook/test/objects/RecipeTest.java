@@ -163,7 +163,6 @@ public class RecipeTest {
     public void getNameEmpty() throws Exception {
          test = new Recipe("","how to cook",tag);
         assertEquals("",test.getName());
-
     }
 
     @Test
