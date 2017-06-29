@@ -37,7 +37,11 @@ public class showRecipe extends AppCompatActivity {
         TextView rta = (TextView) findViewById(R.id.vTags);
         TextView rct = (TextView) findViewById(R.id.vDes);
         rti.setText(/*"Title: \n" + */title);
-        rta.setText("Tags: \n" + vRcy.getRecipeTags());
+        String tags =vRcy.getRecipeTags().get(0).getTagsName();
+        for(int i = 1;i<vRcy.getRecipeTags().size();i++){
+            tags =tags+","+vRcy.getRecipeTags().get(i).getTagsName();
+        }
+        rta.setText("Tags: \n" + tags);
         rct.setText("How to cook: \n" +  vRcy.getDirection());
 
     }

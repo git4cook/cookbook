@@ -76,12 +76,13 @@ public class search extends AppCompatActivity {
     public void buttonOpenOnClick(View v) throws myException {
         EditText editName = (EditText)findViewById(R.id.recyTitle);
         String inputStr = editName.getText().toString().trim();
-        boolean result = AR.search(inputStr);
+        ArrayList<String> result = AR.search(inputStr);
 
-                if(result) {
+                if(result.size()>0) {
                     Intent c;
                     c = new Intent(this, searchResult.class);
-                    search.this.startActivity(c);
+                    c.putStringArrayListExtra("searchResult", result);
+                   search.this.startActivity(c);
                 }
                 else{
                     AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);

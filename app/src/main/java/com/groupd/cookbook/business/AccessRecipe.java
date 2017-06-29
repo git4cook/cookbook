@@ -13,14 +13,11 @@ import com.groupd.cookbook.persistence.DataAccess;
 public class AccessRecipe implements AccessRecipeInterface {
    // private DataAccessStub dataAccess;
     private DataAccess dataAccess;
-    private ArrayList<String> searchResult;
 
     public AccessRecipe (){
         dataAccess = Services.getDataAccess(Main.dbName);
 }
-    public ArrayList<String>getSearchResult(){
-    return searchResult;
-}
+
 
     public Recipe getRecipe(String recipeName) throws myException {
         return dataAccess.getRecipe(recipeName);
@@ -34,14 +31,10 @@ public class AccessRecipe implements AccessRecipeInterface {
         }
         return result;
     }
-   public boolean search(String input) throws myException {
-       boolean result = false;
-        this.searchResult = dataAccess.search(input);
-       if(this.searchResult.size()>0){
-           result = true;
-       }
+   public ArrayList<String> search(String input) throws myException {
 
-        return result;
+
+        return dataAccess.search(input);
     }
 
     public ArrayList<Recipe> getRecipeList() throws myException {

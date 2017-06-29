@@ -20,6 +20,6 @@ public interface AccessRecipeInterface {
     void insertRecipe(Recipe currentRecipe) throws myException;
     void updateRecipe(Recipe currentRecipe) throws myException;
     void deleteRecipe(Recipe currentRecipe) throws myException;
-    boolean search(String input) throws myException;
+    ArrayList<String>  search(String input) throws myException;
 
 }

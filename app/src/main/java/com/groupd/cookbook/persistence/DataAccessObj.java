@@ -157,8 +157,7 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                myDirection = rs2.getString("Direction");
-                recipe = new Recipe(myRecipeName, myDirection,null);
+                recipe = new Recipe(myRecipeName, "",null);
                 recipeResult.add(recipe);
             }
             rs2.close();
@@ -361,10 +360,11 @@ public class DataAccessObj implements DataAccess{
         myTags = EOF;
         myDirection = EOF;
         ArrayList<String> result = new ArrayList<String>();
+
         String inputstr[] = input.split("#");
-        if(inputstr.length==1) {
+       if(inputstr.length==1) {
             try {
-                cmdString = "Select * from R Where Upper(Name) Like %'" + inputstr[0].toUpperCase() + "%'";
+                cmdString = "Select * from R Where Upper(Name) Like '%" + inputstr[0].toUpperCase() + "%'";
                 rs2 = st1.executeQuery(cmdString);
 
 
@@ -375,7 +375,8 @@ public class DataAccessObj implements DataAccess{
             if (rs2 != null) {
                 try {
                     while (rs2.next()) {
-                        result.add(rs2.getString("Name"));
+                        myRecipeName = rs2.getString("Name");
+                        result.add(myRecipeName);
                     }
                     rs2.close();
                 } catch (Exception e) {
@@ -384,31 +385,28 @@ public class DataAccessObj implements DataAccess{
             }
         }
         else if(inputstr.length==2) {
-            String[] tags = inputstr[1].split(",");
-            for(int i = 0;i<tags.length;i++) {
-                try {
-                    cmdString = "Select * from R,RC Where Upper(R.Name)=Upper(RC.RName)" +
-                            ",Upper(RC.CName)='"+tags[i].toUpperCase()+"',Upper(R.Name) Like %'"
-                            + inputstr[0].toUpperCase() + "%'";
-                    rs2 = st1.executeQuery(cmdString);
+
+           try {
+             cmdString = "Select * from RC Where Upper(RName) Like '%" + inputstr[0].toUpperCase() + "%' AND Upper(CName)='"+inputstr[1].toUpperCase()+"'";
+               rs2 = st1.executeQuery(cmdString);
 
 
-                    //ResultSetMetaData md2 = rs2.getMetaData();
-                } catch (Exception e) {
-                    throw new myException(processSQLError(e));
-                }
-                if (rs2 != null) {
-                    try {
-                        while (rs2.next()) {
-                            result.add(rs2.getString("Name"));
-                        }
-                        rs2.close();
-                    } catch (Exception e) {
-                        throw new myException(processSQLError(e));
-                    }
-                }
-            }
-        }
+               //ResultSetMetaData md2 = rs2.getMetaData();
+           } catch (Exception e) {
+               throw new myException(processSQLError(e));
+           }
+           if (rs2 != null) {
+               try {
+                   while (rs2.next()) {
+                       myRecipeName = rs2.getString("RName");
+                       result.add(myRecipeName);
+                   }
+                   rs2.close();
+               } catch (Exception e) {
+                   throw new myException(processSQLError(e));
+               }
+           }
+       }
         return result;
     }
     private List<tag >tagsInObj(String tags){
