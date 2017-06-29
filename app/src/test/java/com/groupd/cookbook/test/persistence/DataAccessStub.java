@@ -192,7 +192,7 @@ public class DataAccessStub
         //4.
         //recipes = new ArrayList<Recipe>();
         tag.add(new tag("breakfast"));
-        recipe = new Recipe("c",
+        recipe = new Recipe("d",
                 "Combine milk with vinegar in a medium bowl and set aside for 5 minutes to \"sour\".\n" +
                         "Combine flour, sugar, baking powder, baking soda, and salt in a large mixing bowl. Whisk egg and butter into \"soured\" milk. Pour the flour mixture into the wet ingredients and whisk until lumps are gone.\n" +
                         "Heat a large skillet over medium heat, and coat with cooking spray. Pour 1/4 cupfuls of batter onto the skillet, and cook until bubbles appear on the surface. Flip with a spatula, and cook until browned on the other side.",
