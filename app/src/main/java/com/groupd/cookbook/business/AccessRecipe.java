@@ -17,7 +17,7 @@ public class AccessRecipe implements AccessRecipeInterface {
 
     public AccessRecipe (){
         dataAccess = Services.getDataAccess(Main.dbName);
-}
+    }
     public ArrayList<String>getSearchResult(){
     return searchResult;
 }
