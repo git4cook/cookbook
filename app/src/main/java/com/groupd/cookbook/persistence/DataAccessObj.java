@@ -23,6 +23,7 @@ public class DataAccessObj implements DataAccess{
     private String dbName;
     private String dbType;
     private String cmdString;
+    private String result;
     private int updateCount;
     private static String EOF = "  ";
 
@@ -174,33 +175,41 @@ public class DataAccessObj implements DataAccess{
 
     public void insertRecipe(Recipe currentRecipe) throws myException {
         String values;
-        String[]tags = tagsInString(currentRecipe.getRecipeTags()).split(",");
-
+        result = null;
         try
         {
             values = "'"+currentRecipe.getName()
                     +"', '" +currentRecipe.getDirection()
                     +"'";
-            cmdString = "Insert into R " +" Values(" +values +")";
+            cmdString = "Insert into R  Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+            if(result !=null){
+                throw new myException(result);
+            }
+
         }
+
         catch (Exception e)
         {
             throw new myException(processSQLError(e));
         }
 
-        insertRecipeTags(tagsInString(currentRecipe.getRecipeTags()),currentRecipe.getName());
+        insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
     }
-    private void insertRecipeTags(String tags, String rName) throws myException {
-        String []myTags = tags.split(",");
+    private void insertRecipeTags(List<tag> tags, String rName) throws myException {
         String values;
-        for(int i = 0;i<myTags.length;i++) {
+        for(int i = 0;i<tags.size();i++) {
             try {
-                values = "'" + rName + "','"+myTags[i]+"'";
+                values = "'" + rName + "','"+tags.get(i).getTagsName()+"'";
                 cmdString = "Insert into RC " + " Values(" + values + ")";
                 //System.out.println(cmdString);
                 updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+                if(result !=null){
+                    throw new myException(result);
+                }
             } catch (Exception e) {
                 throw new myException(processSQLError(e));
             }
@@ -220,21 +229,30 @@ public class DataAccessObj implements DataAccess{
             cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+            if(result !=null){
+                throw new myException(result);
+            }
         }
         catch (Exception e)
         {
             throw new myException(processSQLError(e));
         }
         deleteRecipeTags(currentRecipe.getName());
-        insertRecipeTags(tagsInString(currentRecipe.getRecipeTags()),currentRecipe.getName());
+        insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
     }
     private void deleteRecipeTags(String name) throws myException{
         String values;
         try {
-            cmdString = "Delete From RC Where RName='"+name+"'";
+            cmdString = "Delete From RC Where Upper(RName)='"+name.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
-        } catch (Exception e) {
+            result = checkWarning(st1, updateCount);
+            if(result !=null){
+                throw new myException(result);
+            }
+        }
+        catch (Exception e) {
             throw new myException(processSQLError(e));
         }
     }
@@ -320,28 +338,6 @@ public class DataAccessObj implements DataAccess{
         }
     }
 
-    public String checkWarning(Statement st, int updateCount) throws myException {
-        String result;
-
-        result = null;
-        try
-        {
-            SQLWarning warning = st.getWarnings();
-            if (warning != null)
-            {
-                result = warning.getMessage();
-            }
-        }
-        catch (Exception e)
-        {
-            throw new myException(processSQLError(e));
-        }
-        if (updateCount != 1)
-        {
-            result = "Tuple not inserted correctly.";
-        }
-        return result;
-    }
 
     public String processSQLError(Exception e)
     {
@@ -417,10 +413,27 @@ public class DataAccessObj implements DataAccess{
         return tagsInObj;
     }
 
-    private String tagsInString(List<tag> tags){
-        String result = tags.get(0).getTagsName();
-        for(int i = 1;i<tags.size();i++){
-            result = result+","+tags.get(i).getTagsName();
+
+    public String checkWarning(Statement st, int updateCount)
+    {
+        String result;
+
+        result = null;
+        try
+        {
+            SQLWarning warning = st.getWarnings();
+            if (warning != null)
+            {
+                result = warning.getMessage();
+            }
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        if (updateCount != 1)
+        {
+            result = "Tuple not inserted correctly.";
         }
         return result;
     }

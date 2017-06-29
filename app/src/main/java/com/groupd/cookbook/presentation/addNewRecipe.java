@@ -82,18 +82,15 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
                 String result = validateRecipeData(newRecipe);
 
                 if (result == null) {
-                    System.out.println("The title is: " + titleInput);
-                    Log.i("info", "title = " + titleInput);
-                    Log.i("info", "tags = " + tagsInput);
-                    Log.i("info", "steps = " + stepsInput);
-
-                    createInputArray(titleInput, tagsInput, stepsInput);
+                AR.insertRecipe(newRecipe);
+                    Intent i = new Intent(addNewRecipe.this, MainActivity.class);
+                    addNewRecipe.this.startActivity(i);
                 } else {
                     Messages.warning(this, result);
                 }
             }
         } catch (myException e) {
-            e.printStackTrace();
+            Messages.warning(this, e.getMessage());
         }
     }
 
