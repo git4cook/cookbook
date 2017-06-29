@@ -262,11 +262,13 @@ public class DataAccessStub  implements DataAccess
         return null;
     }
 
-    public List<Recipe> getRecipeSequential()
+    public List<Recipe> getRecipeSequential( )
     {
-
-        return null;
+        List<Recipe> recipeResult = new ArrayList<Recipe>();
+        recipeResult.addAll(recipes);
+        return recipeResult;
     }
+
 
 
     public ArrayList<String> search(String name) throws myException{

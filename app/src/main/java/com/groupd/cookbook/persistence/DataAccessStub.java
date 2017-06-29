@@ -253,10 +253,11 @@ public class DataAccessStub
         return null;
     }
 
-    public List<Recipe> getRecipeSequential()
+    public List<Recipe> getRecipeSequential( )
     {
-
-        return recipes;
+        List<Recipe> recipeResult = new ArrayList<Recipe>();
+        recipeResult.addAll(recipes);
+        return recipeResult;
     }
 
 
