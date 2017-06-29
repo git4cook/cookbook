@@ -24,7 +24,10 @@ public class AccessRecipe implements AccessRecipeInterface {
     }
     public boolean findRecipe(String name) throws myException {
         boolean result = false;
+        if(name==null)
+            return result;
         for(int i = 0; i<dataAccess.getRecipeList().size()&&!result;i++){
+
             if(dataAccess.getRecipeList().get(i).getName().toLowerCase().compareTo(name.toLowerCase())==0){
                 result = true;
             }
