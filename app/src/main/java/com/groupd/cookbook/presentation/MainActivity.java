@@ -21,6 +21,8 @@ import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         }
         AR = new AccessRecipe();
         try {
-            Rlist = (ArrayList<Recipe>) AR.getRecipeList();
+            Rlist = AR.getRecipeList();
         } catch (myException e) {
             Messages.warning(this, "2"+e.getMessage());
         }
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
     }
     public void selectRecipeAtPosition(int position) {
         Recipe selected = RADP.getItem(position);
-        EditText editName = (EditText)findViewById(R.id.recyTitle);
+       // EditText editName = (EditText)findViewById(R.id.recyTitle);
         name = selected.getName();
     }
 

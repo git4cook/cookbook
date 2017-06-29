@@ -30,6 +30,7 @@ public class DataAccessObj implements DataAccess{
     {
         this.dbName = dbName;
     }
+
     public void open(String dbPath) throws myException {
         String url;
         try
@@ -42,8 +43,6 @@ public class DataAccessObj implements DataAccess{
             st1 = c1.createStatement();
             st2 = c1.createStatement();
             st3 = c1.createStatement();
-
-
         }
         catch (Exception e)
         {
