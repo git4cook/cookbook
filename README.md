@@ -93,7 +93,7 @@ For iteration 1 we have implemented
 3. View reciew (test_show) this shows the recipe that was selected by the user.
 There are also other layouts for adding recipes we plan to implement into our next iteration.
 
-**Iteration 2: **
+**Iteration 2:**
 
 **4. Add Recipe Layout to add new recipes.**
 
