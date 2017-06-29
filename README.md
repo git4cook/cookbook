@@ -22,6 +22,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 * User profile with preferences
 * Favorites, we'll simply add as a special category next iteration.
 * Suggestions below view recipe, we'll just show other recipes with same categories.
+* Add priorities to tags/categories.
 * History of actions *Note these last 2, we may not do because they seem unnecessary*
 * Random Recipe Finder.
 
@@ -32,7 +33,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 
 The project is broken up into 5 packages.
 
-**Note Iteration 2 changes/update to pacakges will be in bold clearly appended to the bottom of each section** 
+**Note: Iteration 2 changes/update to packages will be in bold clearly appended to the bottom of each section** 
 1. application
 2. business
 3. objects
@@ -51,17 +52,21 @@ Services is used by other recipes to get access to the Data stub.
 ---
 
 ## 2. Business
-Contains AccessRecipe and search java files.
-These files handle the logic of our program.
-AccessRecipe through the use of the Services java class gets access to the Data access stub.
-AccessRecipe gets recipes and search by name. You can also get a copy of what's inside the data stub.
+Contains AccessRecipe.
+Handles the logic of our program (insert, search, update, delete).
+AccessRecipe through the use of the Services java class gets access to the persistence, database.
+AccessRecipe gets recipes and search by name. You can also get a copy of what's inside the database.
 Search java file is linked to the Search layout in the resources package.
 
-**Current State of Logic**: Currently we can only search for recipes in our menu of recipes. We plan to add more features in future iterations.
+**Added a interface to AccessRecipe, changed access to the new database within AccessRecipe.
 
 ## 3. Objects
-We have one object java file for the recipes. The structure of our recipes containts a name (for the title), directions (steps for the recipe), and tags.
-We plan on having a search by tag feature in the future.
+Object file for recipes. The structure of our recipes contains a name (for the title), directions (steps for the recipe), and tags.
+
+
+**Added an object for exceptions, myException and a tag object that contains a string.
+Recipes now contain a list of tag objects.
+Interfaces for the recipe and tag were also made.**
 
 ## 4. Persistence
 Contains our DataAccessStub java file. This is our "database"/data storage for this iteration. 
