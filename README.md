@@ -2,7 +2,7 @@
 ### Group 14
 ### Members: Glenn Jayasuriya, Jiashen Zhang, Siyu Pan, Tao Wu, Junwei Wang
 
-#Iteration 2
+# Iteration 2
 Iteration 1 had hardcoded recipes and the user was able to search by the exact titles and view the recipe.
 ## Major Changes In Iteration 2
 * Connected a HSQLDB database.
