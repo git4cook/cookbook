@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             Messages.warning(this, e.getMessage());
         }
     }
-
+    //called when program is terminated
+    //onResult is removed since addRecipe is no longer called in this activity
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 

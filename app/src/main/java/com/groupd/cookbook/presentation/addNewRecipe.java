@@ -90,6 +90,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
                     catch (myException e) {
                         Messages.warning(this, e.getMessage());
                     }
+                    //addRecipe is now called here instead of MainActivity
                 } else {
                     Messages.warning(this, result);
                 }
