@@ -157,7 +157,7 @@ public class DataAccessStub
         //1.
         recipes = new ArrayList<Recipe>();
         tag.add(new tag("dinner,meet"));
-        recipe = new Recipe("Baked Chicken Schnitzel",
+        recipe = new Recipe("a",
                 "Preheat oven to 425 degrees F (220 degrees C). Line a large baking sheet with aluminum foil and drizzle olive oil over foil. Place baking sheet in preheated oven.\n" +
                         "    Flatten chicken breasts so they are all about 1/4-inch thick. Season chicken with salt and pepper.\n" +
                         "    Mix flour and paprika together on a large plate. Beat eggs with salt and pepper in a shallow bowl. Mix bread crumbs and lemon zest together on a separate large plate. Dredge each chicken piece in flour mixture, then egg, and then bread crumbs mixture and set aside in 1 layer on a clean plate. Repeat with remaining chicken.\n" +
@@ -169,7 +169,7 @@ public class DataAccessStub
         //2.
         //recipes = new ArrayList<Recipe>();
         tag.add(new tag("dinner"));
-        recipe = new Recipe("Cottage Pudding",
+        recipe = new Recipe("b",
                 "Preheat an oven to 350 degrees F (175 degrees C). Grease a 9-inch square cake pan. Whisk the flour, baking powder, and salt together in a bowl; set aside.\n" +
                         "Beat the shortening and sugar with an electric mixer in a large bowl until light and fluffy. Beat in the egg and vanilla extract until smooth. Pour in the flour mixture alternately with the milk, mixing until just incorporated. Pour the batter into prepared pan.\n" +
                         "Bake in the preheated oven until a toothpick inserted into the center comes out clean, about 25 minutes. Cool in the pans for 10 minutes before removing to cool completely on a wire rack.",
@@ -179,7 +179,7 @@ public class DataAccessStub
         //3.
         //recipes = new ArrayList<Recipe>();
         tag.add(new tag("meat,lunch,dinner"));
-        recipe = new Recipe("Grilled Sausage-Stuffed Calamari",
+        recipe = new Recipe("c",
                 "Heat 1 tablespoon olive oil in a skillet over medium heat. Cook and stir onion and red pepper with a pinch of salt in hot oil until onion is soft and translucent, 5 to 7 minutes. Remove from heat and cool to room temperature.\n" +
                         "Stir sausage, minced tentacles, onion mixture, parsley, egg, smoked paprika, salt, and pepper together in a bowl until evenly combined. Transfer mixture to a piping bag.\n" +
                         "Pipe sausage mixture into tubes, filling about each tube about 2/3 full. Thread a toothpick through the top of each tube to fasten the opening together. Place stuffed tubes on a plate, cover the plate with plastic wrap, and refrigerate until completely chilled, about 1 hour.\n" +
@@ -192,7 +192,7 @@ public class DataAccessStub
         //4.
         //recipes = new ArrayList<Recipe>();
         tag.add(new tag("breakfast"));
-        recipe = new Recipe("Fluffy Pancakes",
+        recipe = new Recipe("c",
                 "Combine milk with vinegar in a medium bowl and set aside for 5 minutes to \"sour\".\n" +
                         "Combine flour, sugar, baking powder, baking soda, and salt in a large mixing bowl. Whisk egg and butter into \"soured\" milk. Pour the flour mixture into the wet ingredients and whisk until lumps are gone.\n" +
                         "Heat a large skillet over medium heat, and coat with cooking spray. Pour 1/4 cupfuls of batter onto the skillet, and cook until bubbles appear on the surface. Flip with a spatula, and cook until browned on the other side.",

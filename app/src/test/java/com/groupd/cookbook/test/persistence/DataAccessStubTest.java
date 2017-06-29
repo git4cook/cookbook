@@ -24,7 +24,7 @@ public class DataAccessStubTest {
     @After
     public void tearDown() {test = null;}
     @Test
-    public void stubInsert() {
+    public void get() {
 
     }
 
