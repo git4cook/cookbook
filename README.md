@@ -2,6 +2,29 @@
 ### Group 14
 ### Members: Glenn Jayasuriya, Jiashen Zhang, Siyu Pan, Tao Wu, Junwei Wang
 
+#Iteration 2
+Iteration 1 had hardcoded recipes and the user was able to search by the exact titles and view the recipe.
+## Major Changes In Iteration 2
+* Connected a HSQLDB database.
+* Connected Add layout, so can now add recipes.
+* Can now search by partial titles.
+* Created a toolbar menu, replaced buttons with icons at top.
+* Changed tags from just a string to it's own objects.
+* Made 5 Categories, Veg, Meat, Breakfast, Lunch Dinner
+* Can add and search by categories as well. (note use hashtags to search by tag, eg) #meat for meat recipes.
+* View recipe now has buttons to update the recipe and delete viewing recipe. 
+
+## Features we weren't able to do, moved to next iteration.
+* User defined tags instead of categories
+* Timer for recipes
+* Some extra recipe info like prep time, easy to do just strings.
+* Multi delete from menu
+* User profile with preferences
+* Favorites, we'll simply add as a special category next iteration.
+* Suggestions below view recipe, we'll just show other recipes with same categories.
+* History of actions *Note these last 2, we may not do because they seem unnecessary*
+* Random Recipe Finder.
+
 The project is broken up into 5 packages.
 1. application
 2. business
