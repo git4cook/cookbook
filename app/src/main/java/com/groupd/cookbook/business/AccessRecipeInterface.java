@@ -19,7 +19,7 @@ public interface AccessRecipeInterface {
     //public Recipe getSequential();
     void insertRecipe(Recipe currentRecipe) throws myException;
     void updateRecipe(Recipe currentRecipe) throws myException;
-    void deleteRecipe(Recipe currentRecipe) throws myException;
+    void deleteRecipe(String currentRecipe) throws myException;
     ArrayList<String>  search(String input) throws myException;
 
 }

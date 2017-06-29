@@ -19,7 +19,7 @@ public interface DataAccess {
 
     void updateRecipe(Recipe recipe) throws myException;
 
-    void deleteRecipe(Recipe recipe) throws myException;
+    void deleteRecipe(String recipe) throws myException;
 
     //List<String> getFavoriteSequential() throws myException;
 

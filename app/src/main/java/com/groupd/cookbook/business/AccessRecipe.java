@@ -67,7 +67,7 @@ public class AccessRecipe implements AccessRecipeInterface {
     dataAccess.updateRecipe(currentRecipe);
   }
 
-    public void deleteRecipe(Recipe currentRecipe) throws myException {
+    public void deleteRecipe(String currentRecipe) throws myException {
         dataAccess.deleteRecipe(currentRecipe);
     }
 

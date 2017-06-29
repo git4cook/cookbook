@@ -182,19 +182,4 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
 
         }
     }
-
-    /*
-    PURPOSE:
-                Runs after the calling startActivityForResult is done
-                Performs action based on the request code.
-                Retrieves input from layout as a string array and adds recipe to GUI and Logic AL
-
-    PARAMETERS:
-                requestCode that identifies which activity we exited from and on.
-                resultCode created by exited activity to say there is data to return.
-                data, holds a string array of input that will be extracted.
-    AUTHOR: Glenn
-     */
-
-
 }

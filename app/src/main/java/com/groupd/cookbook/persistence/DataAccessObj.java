@@ -208,7 +208,7 @@ public class DataAccessObj implements DataAccess{
                 updateCount = st1.executeUpdate(cmdString);
                 result = checkWarning(st1, updateCount);
                 if(result !=null){
-                    throw new myException(result);
+                    throw new myException("insertag");
                 }
             } catch (Exception e) {
                 throw new myException(processSQLError(e));
@@ -223,8 +223,7 @@ public class DataAccessObj implements DataAccess{
         try
         {
             // Should check for empty values and not update them
-            values = "Direction='" +currentRecipe.getDirection()
-                    +"'";
+            values = "Direction='" +currentRecipe.getDirection() +"'";
             where = "where UPPER(Name)='" +currentRecipe.getName().toUpperCase()+"'";
             cmdString = "Update R " +" Set " +values +" " +where;
             //System.out.println(cmdString);
@@ -244,33 +243,32 @@ public class DataAccessObj implements DataAccess{
     private void deleteRecipeTags(String name) throws myException{
         String values;
         try {
-            cmdString = "Delete From RC Where Upper(RName)='"+name.toUpperCase()+"'";
+            cmdString = "Delete from RC where Upper(RName)='" +name.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
-            if(result !=null){
-                throw new myException(result);
-            }
+
         }
         catch (Exception e) {
             throw new myException(processSQLError(e));
         }
     }
-    public void deleteRecipe(Recipe currentRecipe) throws myException {
+    public void deleteRecipe(String currentRecipe) throws myException {
         String values;
 
         try
         {
-            values = currentRecipe.getName();
-            cmdString = "Delete from R where UPPER(Name)='" +values.toUpperCase()+"'";
+            cmdString = "Delete from R where Upper(Name)='" +currentRecipe.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+
         }
         catch (Exception e)
         {
             throw new myException(processSQLError(e));
         }
-        deleteRecipeTags(currentRecipe.getName());
+        deleteRecipeTags(currentRecipe);
     }
 
     public List<String> getFavoriteSequential() throws myException {
@@ -281,7 +279,7 @@ public class DataAccessObj implements DataAccess{
 
         try
         {
-            cmdString = "Select * from R";
+            cmdString = "Select * from F";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData();
         }
@@ -313,7 +311,7 @@ public class DataAccessObj implements DataAccess{
 
         try
         {
-            cmdString = "Insert into R " +" Values('" +currentFavorite +"')";
+            cmdString = "Insert into F " +" Values('" +currentFavorite +"')";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
         }
