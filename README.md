@@ -25,6 +25,8 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 * History of actions *Note these last 2, we may not do because they seem unnecessary*
 * Random Recipe Finder.
 
+# Project Architecture
+
 The project is broken up into 5 packages.
 1. application
 2. business
