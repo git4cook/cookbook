@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -161,26 +163,69 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         name = selected.getName();
     }
 
+    /*
+    UPDATE: Code here for method "onActivityResult" was deleted by someone.
+    Note that startActivityForResult(i, ADD_REQUEST_CODE) is looking for onActivityResult.
+    Leaving these comments here as a marker to get this resolved.
+    Remember to comment if you are editing someone's code else its confusing - Glenn
 
-    public void buttonOpenOnClick(View v) {
+    PURPOSE:
+                Runs after the calling startActivityForResult is done
+                Performs action based on the request code.
+                Retrieves input from layout as a string array and adds recipe to GUI and Logic AL
 
-        // Added by Glenn b/c added new button for add
-        switch (v.getId())
-        {
-            case R.id.opRcy:
-                // moved Tao's code here
-                Intent reIntent = new Intent(MainActivity.this, search.class);
-                MainActivity.this.startActivity(reIntent);
-                break;
+    PARAMETERS:
+                requestCode that identifies which activity we exited from and on.
+                resultCode created by exited activity to say there is data to return.
+                data, holds a string array of input that will be extracted.
+    AUTHOR: Glenn
+     */
 
-           case R.id.addButton:
-               Intent i;
-                i = new Intent(this, addNewRecipe.class);
-               //startActivity(i);
-               // when request code >0 go to onActivityResult when activity exists.
-               startActivityForResult(i, ADD_REQUEST_CODE);
-              break;
+    /*
+    PURPOSE:
+                Replaced buttons with menu icons, saves space, material design, cleaner.
+                Gist of old button code: https://gist.github.com/Glenn-Jaya/1b2c886baf76be5be0f8d3737a43cf07
+                Note: for 2 methods below.
+                Creates the menu (onCreateOptionsMenu)at the top
+                and handles presses of icons (onOptionsItemSelected).
 
+    PARAMETERS:
+                Menu and menuItem object.
+    AUTHOR: Glenn (note I also did main_menu.xml and imported icons :)
+     */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        if (id == R.id.action_add) {
+            Intent i;
+            i = new Intent(this, addNewRecipe.class);
+            //startActivity(i);
+            // when request code >0 go to onActivityResult when activity exists.
+            startActivityForResult(i, ADD_REQUEST_CODE);
+            return true;
+        }
+
+        if (id == R.id.action_search) {
+            Intent reIntent = new Intent(MainActivity.this, search.class);
+            MainActivity.this.startActivity(reIntent);
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
