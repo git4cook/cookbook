@@ -274,6 +274,8 @@ public class DataAccessStub  implements DataAccess
     public ArrayList<String> search(String name) throws myException{
 
         ArrayList<String> result = new ArrayList<String>();
+        if(name ==null)
+            return null;
         for(int i=0;i<recipes.size();i++){
             if(recipes.get(i).getName()==name)
                 result.add(recipes.get(i).getName());
