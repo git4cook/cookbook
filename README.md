@@ -31,6 +31,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 # Project Architecture
 
 The project is broken up into 5 packages.
+
 **Note Iteration 2 changes/update to pacakges will be in bold clearly appended to the bottom of each section** 
 1. application
 2. business
