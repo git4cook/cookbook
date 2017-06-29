@@ -15,7 +15,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 * View recipe now has buttons to update the recipe and delete viewing recipe. 
 
 ## Features we weren't able to do, moved to next iteration.
-* User defined tags instead of categories
+* User defined tags.
 * Timer for recipes
 * Some extra recipe info like prep time, easy to do just strings.
 * Multi delete from menu
