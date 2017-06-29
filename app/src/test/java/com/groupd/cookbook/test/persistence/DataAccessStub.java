@@ -245,12 +245,23 @@ public class DataAccessStub  implements DataAccess
         }
 
     }
-    public Recipe getRecipe(String name) {
 
-        Recipe re =null;
-
-        return re;
+    public void deleteRecipe(String name)
+    {
+        for(int i =0;i<recipes.size();i++) {
+            if(recipes.get(i).getName()==name)
+                recipes.remove(i);
+        }
     }
+
+    public Recipe getRecipe(String name) {
+        for(int i =0;i<recipes.size();i++) {
+            if(recipes.get(i).getName()==name)
+                return recipes.get(i);
+        }
+        return null;
+    }
+
     public List<Recipe> getRecipeSequential()
     {
 
@@ -259,10 +270,6 @@ public class DataAccessStub  implements DataAccess
 
 
     public ArrayList<String> search(String input) throws myException{
-
-
-
-
         return null;
     }
 }
