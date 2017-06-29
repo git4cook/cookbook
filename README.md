@@ -25,9 +25,13 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 * History of actions *Note these last 2, we may not do because they seem unnecessary*
 * Random Recipe Finder.
 
+## Note on running
+* Marker may need to uninstall the app and run the app again
+
 # Project Architecture
 
 The project is broken up into 5 packages.
+**Note Iteration 2 changes/update to pacakges will be in bold clearly appended to the bottom of each section** 
 1. application
 2. business
 3. objects
@@ -40,6 +44,8 @@ Contains the main and services java files.
 The main java file starts the services file.
 The services file creates, verifies connection and closes a Data Access Stub.
 Services is used by other recipes to get access to the Data stub.
+
+**No change in terms of new files/structure**
 
 ---
 
