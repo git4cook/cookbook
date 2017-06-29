@@ -602,6 +602,11 @@ public class DataAccessStubTest {
         ar.add("c");
         assertEquals("error message",ar,test.search("c"));
     }
+    @Test
+    public void testGetRecipeSequential( ) throws myException {
+        assertNotNull(test.getRecipeSequential());
+    }
+
 }
 
 
