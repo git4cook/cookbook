@@ -410,8 +410,6 @@ public class DataAccessObj implements DataAccess{
         }
         return tagsInObj;
     }
-
-
     public String checkWarning(Statement st, int updateCount)
     {
         String result;
