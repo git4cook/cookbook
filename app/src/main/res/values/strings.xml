@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">cookbook</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add">add</string>
+    <string name="action_search">search</string>
     <string name="title_activity_update_recipe">updateRecipe</string>
     <string name="title_activity_search_result">searchResult</string>
 </resources>

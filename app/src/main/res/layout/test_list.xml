@@ -10,20 +10,5 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="409dp"
     android:layout_weight="8.90" />
-<Button
-    android:id="@+id/opRcy"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="buttonOpenOnClick"
-    android:text="search"
-    android:layout_weight="1"
-    />
-
-<Button
-    android:id="@+id/addButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="buttonOpenOnClick"
-    android:text="Add Recipe" />
 
 </LinearLayout>
