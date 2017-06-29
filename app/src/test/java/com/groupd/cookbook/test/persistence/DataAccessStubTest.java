@@ -1,7 +1,10 @@
 package com.groupd.cookbook.test.persistence;
 
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.tag;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -13,8 +16,16 @@ import static org.junit.Assert.*;
 
 
 public class DataAccessStubTest {
-//    @Before
-//    @After
-//    @Test
+    DataAccessStub test;
+
+    @Before
+    public void setUp() {test = new DataAccessStub("testDB");}
+
+    @After
+    public void tearDown() {test = null;}
+    @Test
+    public void get() {
+
+    }
 
 }

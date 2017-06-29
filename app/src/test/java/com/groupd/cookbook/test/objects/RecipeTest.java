@@ -1,119 +1,116 @@
-//package com.groupd.cookbook.test.objects;
-//
-//import org.junit.Test;
-//
-//import static org.junit.Assert.*;
-//
-///**
-// * Created by Glenn on 2017-06-07.
-// */
-//public class RecipeTest {
-//
-//
-//    @Test
-//    public void getNameGeneral() throws Exception {
-//
-//        Recipe namedRecipe = new Recipe("TestingName");
-//        assertEquals("TestingName",namedRecipe.getName());
-//
-//    }
-//
-//    @Test
-//    public void getNameEmpty() throws Exception {
-//
-//        Recipe namedRecipe = new Recipe("");
-//        assertEquals("",namedRecipe.getName());
-//
-//    }
-//
-//    @Test
-//    public void getNameLong() throws Exception {
-//
-//        Recipe namedRecipe = new Recipe("sa;dlfkjas;ldfjl;sadjflk;asdj;glasjdl;kgjas;ldgjasl;" +
-//                "dgjaskl;dgjasdgjasd;lkgjad");
-//        assertEquals("sa;dlfkjas;ldfjl;sadjflk;asdj;glasjdl;kgjas;ldgjasl;dgjaskl;dgjasdgjasd;" +
-//                "lkgjad",namedRecipe.getName());
-//
-//    }
-//
-//    @Test
-//    public void getNameSpecialCharacters() throws Exception {
-//
-//        Recipe namedRecipe = new Recipe("!@#$%^&*()1234567890[]{}||.,?/><");
-//        assertEquals("!@#$%^&*()1234567890[]{}||.,?/><",namedRecipe.getName());
-//
-//    }
-//
-//
-//
-//    @Test
-//    public void getDirection() throws Exception {
-//        // General Case
-//        String testDirections= "1. boil water, 2. pinch of salt, 3 pour pasta cook 15 min";
-//        Recipe namedRecipe = new Recipe(testDirections);
-//        String returnedName = namedRecipe.getName();
-//        assertEquals(testDirections,returnedName);
-//
-//        // Boundary cases
-//        testDirections =""; //empty string
-//        namedRecipe = new Recipe(testDirections);
-//        returnedName = namedRecipe.getName();
-//        assertEquals(testDirections,returnedName);
-//
-//        // long string
-//        testDirections = "sa;dlfkjas;ldfjl;sadjflk;asdj;glasjdl;kgjas;ldgjasl;dgjaskl;dgjasdgjasd;lkgjad";
-//        namedRecipe = new Recipe(testDirections);
-//        returnedName = namedRecipe.getName();
-//        assertEquals(testDirections,returnedName);
-//
-//        testDirections = "!@#$%^&*()1234567890[]{}||.,?/><"; // special characters
-//        namedRecipe = new Recipe(testDirections);
-//        returnedName = namedRecipe.getName();
-//        assertEquals(testDirections,returnedName);
-//    }
-//
-//
-//    @Test
-//    public void equalsSame() throws Exception {
-//        Recipe recipeOne = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat",
-//                "breakfast,easy");
-//        Recipe recipeTwo = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat",
-//                "breakfast,easy");
-//        assertTrue(recipeOne.equals(recipeTwo));
-//    }
-//
-//    @Test
-//    public void equalsDifferent() throws Exception {
-//        Recipe recipeOne = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat",
-//                "breakfast,easy");
-//        Recipe recipeTwo = new Recipe("mac n cheese", "1.boil pasta, 2.add chees mix, 3. wait",
-//                "lunch,supper,cheap,easy,cheesy");
-//        assertFalse(recipeOne.equals(recipeTwo));
-//    }
-//
-//    @Test
-//    public void equalsEmpty() throws Exception {
-//        Recipe recipeOne = new Recipe("","","");
-//        Recipe recipeTwo = new Recipe("","","");
-//        assertTrue(recipeTwo.equals(recipeOne));
-//    }
-//
-//    // Checking if recipe exists, whether it has tags or not shouldn't effect validity
-//    @Test
-//    public void equalsDiffParameters() throws Exception {
-//        Recipe recipeOne = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat",
-//                "breakfast,easy");
-//        Recipe recipeTwo = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat");
-//
-//        assertTrue(recipeTwo.equals(recipeTwo));
-//    }
-//
-//    @Test
-//    public void equalsWrongObject() throws Exception {
-//        Recipe recipeOne = new Recipe("bacon and eggs","1.crack eggs, 2. thaw bacon, 3 heat",
-//                "breakfast,easy");
-//        assertFalse(recipeOne.equals(this));
-//    }
-//
-//
-//}
+package com.groupd.cookbook.test.objects;
+
+import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.tag;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+/**
+ * Created by Glenn on 2017-06-07.
+ */
+public class RecipeTest {
+    private Recipe test;
+    private List<tag> tag;
+
+
+    @Before
+     public void setUp(){
+        tag.add(new tag("dinner"));
+         Recipe test = new Recipe("pancake","how to cook",tag);
+
+
+     }
+    @Test
+    public void getNameGeneral() throws Exception {
+
+
+        assertEquals("pancake",test.getName());
+
+    }
+
+    @Test
+    public void getNameEmpty() throws Exception {
+         test = new Recipe("","how to cook",tag);
+        assertEquals("",test.getName());
+
+    }
+
+    @Test
+    public void getNameLong() throws Exception {
+
+         test = new Recipe("pancakesadddfadfsaasfafdfsfafadfafsafafsfaafasf","how to cook",tag);
+        assertEquals("pancakesadddfadfsaasfafdfsfafadfafsafafsfaafasf",test.getName());
+
+    }
+
+    @Test
+    public void getNameSpecialCharacters() throws Exception {
+
+         test = new Recipe("!@#$%^&*()1234567890[]{}||.,?/><","how to cook",tag);
+        assertEquals("!@#$%^&*()1234567890[]{}||.,?/><",test.getName());
+
+    }
+
+
+
+    @Test
+    public void testGetDirectionValid() throws Exception {
+        // General Case
+        String testDirections = "1. boil water, 2. pinch of salt, 3 pour pasta cook 15 min";
+         test = new Recipe("pancake",testDirections,tag);
+        String returnedName = test.getDirection();
+        assertEquals(testDirections, returnedName);
+    }
+    public void testGetDirectionNull() throws Exception {
+        // Boundary cases
+       String testDirections = ""; //empty string
+        test = new Recipe("pancake",testDirections,tag);
+        String returnedName = test.getDirection();
+        assertEquals(testDirections, returnedName);
+    }
+    public void getDirectionLong() throws Exception {
+        // long string
+        String testDirections = "sa;dlfkjas;ldfjl;sadjflk;asdj;glasjdl;kgjas;ldgjasl;dgjaskl;dgjasdgjasd;lkgjad";
+        test = new Recipe("pancake",testDirections,tag);
+        String returnedName = test.getDirection();
+        assertEquals(testDirections, returnedName);
+    }
+    public void getDirectionSpecial() throws Exception {
+        String testDirections = "!@#$%^&*()1234567890[]{}||.,?/><"; // special characters
+        test = new Recipe("pancake",testDirections,tag);
+        String returnedName = test.getDirection();
+        assertEquals(testDirections, returnedName);
+    }
+
+
+    @Test
+    public void equalsSame() throws Exception {
+        Recipe test = new Recipe("pancake","how to cook",tag);
+        Recipe test1 = new Recipe("pancake","how to cook",tag);
+        assertTrue(test.equals(test1));
+    }
+
+    @Test
+    public void equalsDifferent() throws Exception {
+        Recipe test = new Recipe("pancake","how to cook",tag);
+        Recipe test1 = new Recipe("pancakeasd","how to cook",tag);
+        assertFalse(test.equals(test1));
+    }
+
+    @Test
+    public void equalsEmpty() throws Exception {
+        tag=null;
+        Recipe recipeOne = new Recipe("","",tag);
+        Recipe recipeTwo = new Recipe("","",tag);
+        assertTrue(recipeTwo.equals(recipeOne));
+    }
+
+
+
+
+}

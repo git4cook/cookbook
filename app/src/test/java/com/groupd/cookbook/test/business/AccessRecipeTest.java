@@ -7,6 +7,8 @@ import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.application.Services;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.test.persistence.DataAccessStub;
 //import com.groupd.cookbook.test.persistence.DataAccessStub;
 
 import junit.framework.TestCase;
@@ -36,8 +38,9 @@ public class AccessRecipeTest extends TestCase {
         super(arg0);
     }
     @Before
-    public void setUp(){
-
+    public void setUp() throws myException {
+            Services.closeDataAccess();
+            // Services.createDataAccess(new DataAccessStub(dbName));
         // test = new AccessRecipe();
 
         //   testRecipes =null;
