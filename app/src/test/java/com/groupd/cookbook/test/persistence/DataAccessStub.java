@@ -4,7 +4,9 @@ import android.support.annotation.NonNull;
 
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
+import com.groupd.cookbook.persistence.DataAccess;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 
-public class DataAccessStub
+public class DataAccessStub  implements DataAccess
 {
     private String dbName;
     private String dbType = "stub";
@@ -243,27 +245,26 @@ public class DataAccessStub
         }
 
     }
-    public ArrayList<Recipe> getRecipe(String name) {
-        ArrayList<Recipe> newRecipe;
-        Recipe re;
-        int counter;
+    public Recipe getRecipe(String name) {
 
-        newRecipe = new ArrayList<Recipe>();
-        for (counter = 0; counter < recipes.size(); counter++) {
-            re = recipes.get(counter);
-            if (re.getName().toLowerCase().equals(name.toLowerCase())) {
+        Recipe re =null;
 
-                newRecipe.add(recipes.get(counter));
-            }
-        }
-        return newRecipe;
+        return re;
     }
-    public List<Recipe> getRecipeSequential(List<Recipe> recipeResult)
+    public List<Recipe> getRecipeSequential()
     {
-        recipeResult.addAll(recipes);
+
         return null;
     }
 
+
+    public ArrayList<String> search(String input) throws myException{
+
+
+
+
+        return null;
+    }
 }
 
 

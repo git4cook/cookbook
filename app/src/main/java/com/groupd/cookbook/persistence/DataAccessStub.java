@@ -4,7 +4,9 @@ import android.support.annotation.NonNull;
 
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.objects.Recipe;
+import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
+import com.groupd.cookbook.persistence.DataAccess;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -158,11 +160,11 @@ public class DataAccessStub
         recipes = new ArrayList<Recipe>();
         tag.add(new tag("dinner,meet"));
         recipe = new Recipe("Baked Chicken Schnitzel",
-                    "Preheat oven to 425 degrees F (220 degrees C). Line a large baking sheet with aluminum foil and drizzle olive oil over foil. Place baking sheet in preheated oven.\n" +
-                            "    Flatten chicken breasts so they are all about 1/4-inch thick. Season chicken with salt and pepper.\n" +
-                            "    Mix flour and paprika together on a large plate. Beat eggs with salt and pepper in a shallow bowl. Mix bread crumbs and lemon zest together on a separate large plate. Dredge each chicken piece in flour mixture, then egg, and then bread crumbs mixture and set aside in 1 layer on a clean plate. Repeat with remaining chicken.\n" +
-                            "    Remove baking sheet from oven and arrange chicken in 1 layer on the sheet. Drizzle more olive oil over each piece of coated chicken.\n" +
-                            "    Bake in the preheated oven for 5 to 6 minutes. Flip chicken and continue baking until no longer pink in the center and the breading is lightly browned, 5 to 6 minutes more. An instant-read thermometer inserted into the center should read at least 165 degrees F (74 degrees C).",
+                "Preheat oven to 425 degrees F (220 degrees C). Line a large baking sheet with aluminum foil and drizzle olive oil over foil. Place baking sheet in preheated oven.\n" +
+                        "    Flatten chicken breasts so they are all about 1/4-inch thick. Season chicken with salt and pepper.\n" +
+                        "    Mix flour and paprika together on a large plate. Beat eggs with salt and pepper in a shallow bowl. Mix bread crumbs and lemon zest together on a separate large plate. Dredge each chicken piece in flour mixture, then egg, and then bread crumbs mixture and set aside in 1 layer on a clean plate. Repeat with remaining chicken.\n" +
+                        "    Remove baking sheet from oven and arrange chicken in 1 layer on the sheet. Drizzle more olive oil over each piece of coated chicken.\n" +
+                        "    Bake in the preheated oven for 5 to 6 minutes. Flip chicken and continue baking until no longer pink in the center and the breading is lightly browned, 5 to 6 minutes more. An instant-read thermometer inserted into the center should read at least 165 degrees F (74 degrees C).",
                 tag);
         recipes.add(recipe);
 
@@ -243,27 +245,29 @@ public class DataAccessStub
         }
 
     }
-   public ArrayList<Recipe> getRecipe(String name) {
-       ArrayList<Recipe> newRecipe;
-       Recipe re;
-       int counter;
-
-       newRecipe = new ArrayList<Recipe>();
-       for (counter = 0; counter < recipes.size(); counter++) {
-           re = recipes.get(counter);
-           if (re.getName().toLowerCase().equals(name.toLowerCase())) {
-
-               newRecipe.add(recipes.get(counter));
-           }
-       }
-        return newRecipe;
-   }
-    public List<Recipe> getRecipeSequential(List<Recipe> recipeResult)
-    {
-        recipeResult.addAll(recipes);
+    public Recipe getRecipe(String name) {
+     for(int i =0;i<recipes.size();i++) {
+         if(recipes.get(i).getName()==name)
+             return recipes.get(i);
+     }
         return null;
     }
 
+    public List<Recipe> getRecipeSequential()
+    {
+
+        return recipes;
+    }
+
+
+    public ArrayList<String> search(String input) throws myException{
+
+       for(int i=0;i<recipes.size();i++){
+           if(recipes.get(i))
+
+       }
+        return null;
+    }
 }
 
 
