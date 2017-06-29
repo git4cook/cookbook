@@ -94,6 +94,16 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             });
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        try {
+            Main.shutDown();
+        } catch (myException e) {
+            Messages.warning(this, e.getMessage());
+        }
+    }
 
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
@@ -185,35 +195,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 data, holds a string array of input that will be extracted.
     AUTHOR: Glenn
      */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == ADD_REQUEST_CODE)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                //Uri addURI = data.getData();
-                System.out.println("we get here");
 
-
-                String[] returnedArray = data.getStringArrayExtra("RECIPE_DATA");
-                ArrayList<tag> tagsInObj = new ArrayList<tag>();
-                String temp[] = returnedArray[INPUT_TAGS_INDEX].split(",");
-                for(int i = 0;i<temp.length;i++){
-                    tagsInObj.add(new tag(temp[i]));
-                }
-                Recipe addedRecipe = new Recipe(returnedArray[INPUT_TITLE_INDEX],
-                        returnedArray[INPUT_STEPS_INDEX],tagsInObj);
-
-                try {
-                    AR.insertRecipe(addedRecipe);
-                } catch (myException e) {
-                    Messages.warning(this, e.getMessage());
-                }
-                RADP.add(addedRecipe);
-
-            }
-        }
-    }
 
 }
