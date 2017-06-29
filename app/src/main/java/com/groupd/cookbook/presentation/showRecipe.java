@@ -48,8 +48,7 @@ public class showRecipe extends AppCompatActivity {
 
      public void buttonDeleteOnClick (View v) throws myException {
          AccessRecipe RAC = new AccessRecipe();
-         Recipe vRcy = RAC.getRecipe(title);
-         RAC.deleteRecipe(vRcy);
+         RAC.deleteRecipe(title);
              Intent delete;
              delete = new Intent(this, MainActivity.class);
              showRecipe.this.startActivity(delete);

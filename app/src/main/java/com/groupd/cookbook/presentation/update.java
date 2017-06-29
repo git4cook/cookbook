@@ -57,18 +57,22 @@ public class update extends AppCompatActivity {
             tagsInObj.add(new tag(temp[i]));
         }
         Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tagsInObj);
-       // String result = validateRecipeData(newRecipe);
-        //Recipe rlt;
-       // if (result == null) {
-             AR.updateRecipe(newRecipe);
+        String result = validateRecipeData(newRecipe);
+        Recipe rlt;
+        if (result == null) {
+            try {
+                AR.updateRecipe(newRecipe);
                 Intent c;
                 c = new Intent(this, MainActivity.class);
                 update.this.startActivity(c);
-      //  }
+            }catch (myException e) {
+                Messages.warning(this, e.getMessage());
+            }
+      }
 
     }
 
-  /*  private String validateRecipeData(Recipe recipe) {
+   private String validateRecipeData(Recipe recipe) {
 
         if (recipe.getName().length() == 0) {
             return "RecipeName requierd";
@@ -78,7 +82,7 @@ public class update extends AppCompatActivity {
         //}
 
         return null;
-    }*/
+    }
 
 
     public void onClick11(View v) {

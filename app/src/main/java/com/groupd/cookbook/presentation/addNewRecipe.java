@@ -82,9 +82,14 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
                 String result = validateRecipeData(newRecipe);
 
                 if (result == null) {
-                AR.insertRecipe(newRecipe);
-                    Intent i = new Intent(addNewRecipe.this, MainActivity.class);
-                    addNewRecipe.this.startActivity(i);
+                    try {
+                        AR.insertRecipe(newRecipe);
+                        Intent i = new Intent(addNewRecipe.this, MainActivity.class);
+                        addNewRecipe.this.startActivity(i);
+                    }
+                    catch (myException e) {
+                        Messages.warning(this, e.getMessage());
+                    }
                 } else {
                     Messages.warning(this, result);
                 }
@@ -206,19 +211,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
                 then close activity
     AUTHOR: Glenn
      */
-    public void createInputArray(String titleInput, String tagsInput, String stepsInput)
-    {
-        inputArray[0] = titleInput;
-        inputArray[1] = tagsInput;
-        inputArray[2] = stepsInput;
-
-        Intent createdIntent = new Intent();
-        createdIntent.putExtra("RECIPE_DATA",inputArray);
-        setResult(RESULT_OK, createdIntent);
-        finish();
-    }
-
-    private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
+ private DialogInterface.OnClickListener click1=new DialogInterface.OnClickListener()
     {
         @Override
         public void onClick(DialogInterface arg0,int arg1)
