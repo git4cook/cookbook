@@ -94,7 +94,9 @@ For iteration 1 we have implemented
 There are also other layouts for adding recipes we plan to implement into our next iteration.
 
 **Iteration 2: **
+
 **4. Add Recipe Layout to add new recipes.**
+
 **5. Update layout for editing an existing recipe.**
 
 ---
