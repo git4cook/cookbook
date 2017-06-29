@@ -260,13 +260,14 @@ public class DataAccessStub
     }
 
 
-    public ArrayList<String> search(String input) throws myException{
+    public ArrayList<String> search(String name) throws myException{
 
-       for(int i=0;i<recipes.size();i++){
-
-
-       }
-        return null;
+        ArrayList<String> result = new ArrayList<String>();
+        for(int i=0;i<recipes.size();i++){
+            if(recipes.get(i).getName()==name)
+                result.add(recipes.get(i).getName());
+        }
+        return result;
     }
 }
 
