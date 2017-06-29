@@ -26,7 +26,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 * Random Recipe Finder.
 
 ## Note on running
-* Marker may need to uninstall the app and run the app again
+* Marker may need to uninstall the app and run the app again on the device so that the connections to the database are reset after reading the SC.script file in the assets db folder.
 
 # Project Architecture
 
