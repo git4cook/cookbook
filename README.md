@@ -47,7 +47,7 @@ The main java file starts the services file.
 The services file creates, verifies connection and closes a Data Access Stub.
 Services is used by other recipes to get access to the Data stub.
 
-**No change in terms of new files/structure**
+**Iteration 2: No change in terms of new files/structure**
 
 ---
 
@@ -58,13 +58,13 @@ AccessRecipe through the use of the Services java class gets access to the persi
 AccessRecipe gets recipes and search by name. You can also get a copy of what's inside the database.
 Search java file is linked to the Search layout in the resources package.
 
-**Added a interface to AccessRecipe, changed access to the new database within AccessRecipe.
+**Iteration 2: Added a interface to AccessRecipe, changed access to the new database within AccessRecipe.**
 
 ## 3. Objects
 Object file for recipes. The structure of our recipes contains a name (for the title), directions (steps for the recipe), and tags.
 
 
-**Added an object for exceptions, myException and a tag object that contains a string.
+**Iteration 2: Added an object for exceptions, myException and a tag object that contains a string.
 Recipes now contain a list of tag objects.
 Interfaces for the recipe and tag were also made.**
 
