@@ -2,7 +2,10 @@ package com.groupd.cookbook.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 
@@ -23,6 +26,7 @@ public class showRecipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_show);
+
         Bundle b = getIntent().getExtras();
         String rcyTitle = b.getString("recipeName");
         AccessRecipe RAC = new AccessRecipe();
@@ -43,7 +47,36 @@ public class showRecipe extends AppCompatActivity {
         }
         rta.setText("Tags: \n" + tags);
         rct.setText("How to cook: \n" +  vRcy.getDirection());
+        final EditText et;
+        Button bu;
+        final TextView tv;
 
+        et =(EditText) findViewById(R.id.number);
+
+        bu = (Button) findViewById(R.id.start);
+
+        tv = (TextView)findViewById(R.id.countDown);
+
+        bu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = et.getText().toString();
+                if(!text.equalsIgnoreCase("")){
+                int seconds = Integer.valueOf(text);
+                CountDownTimer countDownTimer = new CountDownTimer(seconds*1000,1000) {
+                    @Override
+                    public void onTick(long millis) {
+                        tv.setText("seconds: "+ (int)(millis/1000));
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        tv.setText("Finished");
+                    }//finish
+                }.start();//countdowntimer
+            }//if
+        }
+        });
     }
 
      public void buttonDeleteOnClick (View v) throws myException {
