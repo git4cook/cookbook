@@ -9,6 +9,8 @@ import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
 import com.groupd.cookbook.persistence.DataAccess;
 
+import junit.framework.TestCase;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,10 +26,15 @@ import java.util.ListIterator;
 import static org.junit.Assert.*;
 
 
-public class DataAccessStubTest {
+public class DataAccessStubTest extends TestCase {
     DataAccess test;
 
     private static String dbName = Main.dbName;
+
+    public DataAccessStubTest(String arg0)
+    {
+        super(arg0);
+    }
     @Before
     public void setUp() throws myException {
         test = Services.createDataAccess(new DataAccessStub(dbName));
