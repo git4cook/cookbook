@@ -14,6 +14,7 @@ import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
+import com.groupd.cookbook.objects.step;
 
 import java.util.List;
 
@@ -45,8 +46,13 @@ public class showRecipe extends AppCompatActivity {
         for(int i = 1;i<vRcy.getRecipeTags().size();i++){
             tags =tags+","+vRcy.getRecipeTags().get(i).getTagsName();
         }
+
+        String steps =vRcy.getRecipeSteps().get(0).getStepsName();
+        for(int i = 1;i<vRcy.getRecipeSteps().size();i++){
+            steps =steps+"\n"+vRcy.getRecipeSteps().get(i).getStepsName();
+        }
         rta.setText("Tags: \n" + tags);
-        rct.setText("How to cook: \n" +  vRcy.getDirection());
+        rct.setText("How to cook: \n" +  steps);
         final EditText et;
         Button bu;
         final TextView tv;
@@ -94,12 +100,22 @@ public class showRecipe extends AppCompatActivity {
         Bundle a =  new Bundle();
         a.putString("recipeName",vRcy.getName());
         a.putString("tags",tagsInString(vRcy.getRecipeTags()));
-        a.putString("des",vRcy.getDirection());
+        a.putString("steps",stepsInString(vRcy.getRecipeSteps()));
+        //a.putString("des",vRcy.getDirection());
         update.putExtras(a);
         showRecipe.this.startActivity(update);
 
 
     }
+
+    private String stepsInString(List<step> steps){
+        String result = steps.get(0).getStepsName();
+        for(int i = 1;i<steps.size();i++){
+            result = result+","+steps.get(i).getStepsName();
+        }
+        return result;
+    }
+
     private String tagsInString(List<tag> tags){
         String result = tags.get(0).getTagsName();
         for(int i = 1;i<tags.size();i++){
@@ -107,6 +123,6 @@ public class showRecipe extends AppCompatActivity {
         }
         return result;
     }
-     }
+}
 
 
