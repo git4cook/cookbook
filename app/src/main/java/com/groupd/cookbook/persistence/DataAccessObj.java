@@ -237,7 +237,7 @@ public class DataAccessObj implements DataAccess{
         insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
     }
 
-    public void insertRecipeSteps(List<tag> steps, String rName) throws myException {
+    public void insertRecipeSteps(List<step> steps, String rName) throws myException {
         String values;
         for(int i = 0;i<steps.size();i++) {
             try {
