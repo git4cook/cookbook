@@ -274,6 +274,7 @@ public class DataAccessObj implements DataAccess{
     }
 
     public void updateRecipe(Recipe currentRecipe) throws myException {
+        /*
         String values;
         String where;
 
@@ -293,10 +294,29 @@ public class DataAccessObj implements DataAccess{
         catch (Exception e)
         {
             throw new myException(processSQLError(e));
-        }
+        }*/
+
+        deleteRecipeSteps(currentRecipe.getName());
+        insertRecipeSteps(currentRecipe.getRecipeSteps(),currentRecipe.getName());
         deleteRecipeTags(currentRecipe.getName());
         insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
     }
+
+    private void deleteRecipeSteps(String name) throws myException{
+        String values;
+        try {
+            cmdString = "Delete from RC where Upper(RName)='" +name.toUpperCase()+"'";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+
+        }
+        catch (Exception e) {
+            throw new myException(processSQLError(e));
+        }
+    }
+
+
     private void deleteRecipeTags(String name) throws myException{
         String values;
         try {
