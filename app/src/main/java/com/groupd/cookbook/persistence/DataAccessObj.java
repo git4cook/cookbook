@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.step;
 import com.groupd.cookbook.objects.tag;
 
 public class DataAccessObj implements DataAccess{
@@ -71,7 +72,8 @@ public class DataAccessObj implements DataAccess{
         Recipe recipe = null;
         String myRecipeName, myDirection;
         myRecipeName = EOF;
-        myDirection = EOF;
+        //myDirection = EOF;
+        List<step> steps = new ArrayList<step>();
         List<tag> tags = new ArrayList<tag>();
         try
         {
@@ -88,7 +90,7 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                myDirection = rs2.getString("Direction");
+                //myDirection = rs2.getString("Direction");
             }
             rs2.close();
         }
@@ -96,10 +98,41 @@ public class DataAccessObj implements DataAccess{
         {
             throw new myException(processSQLError(e));
         }
+        steps = getSteps(name);
         tags = getTags(name);
-        recipe = new Recipe( myRecipeName, myDirection,tags);
+        recipe = new Recipe( myRecipeName, steps, tags);
         return recipe;
     }
+
+    private List<step> getSteps(String name) throws myException {
+        String result = "";
+        ArrayList<step> steps = new ArrayList<step>();
+        try
+        {
+            cmdString = "Select * from RC Where UPPER(RName) = '"+name.toUpperCase()+"'";
+            rs2 = st1.executeQuery(cmdString);
+            //ResultSetMetaData md2 = rs2.getMetaData()
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+        try
+        {
+            while (rs2.next())
+            {
+                steps.add(new step(rs2.getString("CName")));
+            }
+            rs2.close();
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+
+        return steps;
+    }
+
     private List<tag> getTags(String name) throws myException {
         String result = "";
         ArrayList<tag> tags = new ArrayList<tag>();
@@ -157,7 +190,7 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                recipe = new Recipe(myRecipeName, "",null);
+                recipe = new Recipe(myRecipeName, null, null);
                 recipeResult.add(recipe);
             }
             rs2.close();
@@ -178,9 +211,14 @@ public class DataAccessObj implements DataAccess{
         result = null;
         try
         {
+            /*
             values = "'"+currentRecipe.getName()
                     +"', '" +currentRecipe.getDirection()
                     +"'";
+                    */
+
+            values = "'"+currentRecipe.getName();
+            cmdString = "Insert into R  Values(" +values +")";
             cmdString = "Insert into R  Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
@@ -198,6 +236,25 @@ public class DataAccessObj implements DataAccess{
 
         insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
     }
+
+    public void insertRecipeSteps(List<tag> steps, String rName) throws myException {
+        String values;
+        for(int i = 0;i<steps.size();i++) {
+            try {
+                values = "'" + rName + "','"+steps.get(i).getStepsName()+"'";
+                cmdString = "Insert into RC " + " Values(" + values + ")";
+                //System.out.println(cmdString);
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+                if(result !=null){
+                    throw new myException("insertag");
+                }
+            } catch (Exception e) {
+                throw new myException(processSQLError(e));
+            }
+        };
+    }
+
     private void insertRecipeTags(List<tag> tags, String rName) throws myException {
         String values;
         for(int i = 0;i<tags.size();i++) {
@@ -304,8 +361,6 @@ public class DataAccessObj implements DataAccess{
         return favoriteResult;
     }
 
-
-
     public void insertFavorite(String currentFavorite) throws myException {
         String values;
 
@@ -320,7 +375,6 @@ public class DataAccessObj implements DataAccess{
             throw new myException(processSQLError(e));
         }
     }
-
 
     public void deleteFavorite(String currentFavorite) throws myException {
 

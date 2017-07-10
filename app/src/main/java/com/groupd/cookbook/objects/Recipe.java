@@ -9,16 +9,26 @@ import java.util.List;
 public class Recipe implements RecipeInterface
 {
     private String name;
-    private String direction;
+    //private String direction;
+    private List<step> steps;
     //private String tags;
     private List<tag> tags;
 
 
-
+/*
     public Recipe(String name, String direction, List<tag> tags)
     {
         this.name = name;
         this.direction = direction;
+        this.tags=tags;
+        //addTags(tags);
+    }
+    */
+
+    public Recipe(String name, List<step> steps, List<tag> tags)
+    {
+        this.name = name;
+        this.steps = steps;
         this.tags=tags;
         //addTags(tags);
     }
@@ -28,10 +38,24 @@ public class Recipe implements RecipeInterface
         return (name);
     }
 
-    public String getDirection()
+    //public String getDirection() { return (direction); }
+    public List<step> getRecipeSteps()
     {
-        return (direction);
+        return steps;
     }
+
+    public String stepToString(){
+        String step ="";
+        for(int i=0;i<steps.size();i++){
+            if(step=="")
+                step+=(steps.get(i).getStepsName());
+            else
+                step+=","+(steps.get(i).getStepsName());
+        }
+
+        return step;
+    }
+
     public List<tag> getRecipeTags()
     {
         return tags;

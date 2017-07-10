@@ -10,7 +10,9 @@ public interface RecipeInterface {
 
     String getName();
 
-    String getDirection();
+    //String getDirection();
+    String stepToString();
+    List<step> getRecipeSteps();
     String tagToString();
     //List<tag> getTagsList();
     List<tag> getRecipeTags();
