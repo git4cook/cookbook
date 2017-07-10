@@ -16,6 +16,7 @@ import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.objects.tag;
+import com.groupd.cookbook.objects.step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             else {
 
 
-                Recipe newRecipe = new Recipe(titleInput, stepsInput, tagsInObj(tagsInput));
+                Recipe newRecipe = new Recipe(titleInput, stepsInObj(stepsInput), tagsInObj(tagsInput));
                 String result = validateRecipeData(newRecipe);
 
                 if (result == null) {
@@ -229,6 +230,15 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             tagsInObj.add(new tag(temp[i]));
         }
         return tagsInObj;
+    }
+
+    private List<step >stepsInObj(String steps){
+        String temp[] = steps.split("\n");
+        ArrayList<step> stepsInObj = new ArrayList<step>();
+        for(int i = 0;i<temp.length;i++){
+            stepsInObj.add(new step(temp[i]));
+        }
+        return stepsInObj;
     }
 
 }
