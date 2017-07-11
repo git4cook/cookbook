@@ -22,7 +22,7 @@
             android:name=".presentation.showRecipe"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.search"
+            android:name=".business.search"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.addNewRecipe"

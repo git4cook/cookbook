@@ -45,29 +45,12 @@
         android:onClick="buttonDeleteOnClick"
         android:text="delete" />
 
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:ems="10"
-        android:hint="setTime(seconds)"
-        android:inputType="numberDecimal" />
-
     <Button
         android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
+        android:onClick="buttonStartOnClick"
         android:text="START" />
-
-    <TextView
-        android:id="@+id/countDown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.23"
-        android:gravity="center"
-        android:textSize="32dp"
-        android:text="" />
 
 </LinearLayout>

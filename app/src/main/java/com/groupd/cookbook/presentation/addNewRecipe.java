@@ -27,6 +27,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
     private AccessRecipe AR;
     private String[] inputArray = new String[3];
     private String tagString="";
+    private String materialString="";
     //TextView tag = (TextView) findViewById(R.id.tagsS);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,13 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         EditText titleQuery = (EditText)findViewById(R.id.addTitleID);
-        //EditText tagsQuery = (EditText)findViewById(R.id.addTagsID);
+        EditText materialQuery = (EditText)findViewById(R.id.material);
         EditText stepsQuery = (EditText)findViewById(R.id.addStepsID);
 
         String titleInput = titleQuery.getText().toString();
         String tagsInput = tagString;//.getText().toString();
         String stepsInput = stepsQuery.getText().toString();
+        materialString = materialQuery.getText().toString();
 
         // Note decided to pass a array instead of making a new record
         // Reason: Keep GUI and Logic separate, GUI is independent of Recipe class - Glenn
@@ -79,7 +81,7 @@ public class addNewRecipe extends AppCompatActivity implements View.OnClickListe
             else {
 
 
-                Recipe newRecipe = new Recipe(titleInput, stepsInObj(stepsInput), tagsInObj(tagsInput));
+                Recipe newRecipe = new Recipe(titleInput, stepsInObj(stepsInput), tagsInObj(tagsInput),materialString);
                 String result = validateRecipeData(newRecipe);
 
                 if (result == null) {

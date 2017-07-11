@@ -13,6 +13,7 @@ public class Recipe implements RecipeInterface
     private List<step> steps;
     //private String tags;
     private List<tag> tags;
+    private String need;
 
 
 /*
@@ -25,11 +26,12 @@ public class Recipe implements RecipeInterface
     }
     */
 
-    public Recipe(String name, List<step> steps, List<tag> tags)
+    public Recipe(String name, List<step> steps, List<tag> tags,String need)
     {
         this.name = name;
         this.steps = steps;
         this.tags=tags;
+        this.need = need;
         //addTags(tags);
     }
 
@@ -37,8 +39,11 @@ public class Recipe implements RecipeInterface
     {
         return (name);
     }
+    public String getNeed()
+    {
+        return (need);
+    }
 
-    //public String getDirection() { return (direction); }
     public List<step> getRecipeSteps()
     {
         return steps;
@@ -71,24 +76,7 @@ public class Recipe implements RecipeInterface
 
         return tag;
     }
-    /*public List<tag> getTagsList()
-    {
-        return tags;
-    }*/
-    /*public String getRecipeTags(){
-        String result ="";
-        for(int i =0;i<tags.size();i++){
-            result+=tags.get(i).getTagsName();
-            result+=",";
-        }
-        return result;
-    }*/
 
-    /*public String toString()
-    {
-        return "Recipe: " +name +"\nDirection: " +direction+"\nTags: "+tags;
-    }
-*/
     public void addTags(String tag){
         //tags.add(new tag(tag));
 

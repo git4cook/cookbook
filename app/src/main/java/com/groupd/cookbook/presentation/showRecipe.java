@@ -40,49 +40,45 @@ public class showRecipe extends AppCompatActivity {
 
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
-        TextView rct = (TextView) findViewById(R.id.vDes);
+        TextView rct = (TextView) findViewById(R.id.material);
         rti.setText(/*"Title: \n" + */title);
         String tags =vRcy.getRecipeTags().get(0).getTagsName();
         for(int i = 1;i<vRcy.getRecipeTags().size();i++){
             tags =tags+","+vRcy.getRecipeTags().get(i).getTagsName();
         }
 
-        String steps =vRcy.getRecipeSteps().get(0).getStepsName();
-        for(int i = 1;i<vRcy.getRecipeSteps().size();i++){
-            steps =steps+"\n"+vRcy.getRecipeSteps().get(i).getStepsName();
-        }
+        String material =vRcy.getNeed();
+
         rta.setText("Tags: \n" + tags);
-        rct.setText("How to cook: \n" +  steps);
-        final EditText et;
-        Button bu;
-        final TextView tv;
+        rct.setText("Material: \n" +  material);
 
-        et =(EditText) findViewById(R.id.number);
 
-        bu = (Button) findViewById(R.id.start);
-
-        tv = (TextView)findViewById(R.id.countDown);
-
-        bu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = et.getText().toString();
-                if(!text.equalsIgnoreCase("")){
-                int seconds = Integer.valueOf(text);
-                CountDownTimer countDownTimer = new CountDownTimer(seconds*1000,1000) {
-                    @Override
-                    public void onTick(long millis) {
-                        tv.setText("seconds: "+ (int)(millis/1000));
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        tv.setText("Finished");
-                    }//finish
-                }.start();//countdowntimer
-            }//if
-        }
-        });
+//        et =(EditText) findViewById(R.id.number);
+//
+//        bu = (Button) findViewById(R.id.start);
+//
+//        tv = (TextView)findViewById(R.id.countDown);
+//
+//        bu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String text = et.getText().toString();
+//                if(!text.equalsIgnoreCase("")){
+//                int seconds = Integer.valueOf(text);
+//                CountDownTimer countDownTimer = new CountDownTimer(seconds*1000,1000) {
+//                    @Override
+//                    public void onTick(long millis) {
+//                        tv.setText("seconds: "+ (int)(millis/1000));
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        tv.setText("Finished");
+//                    }//finish
+//                }.start();//countdowntimer
+//            }//if
+//        }
+//        });
     }
 
      public void buttonDeleteOnClick (View v) throws myException {
@@ -93,6 +89,17 @@ public class showRecipe extends AppCompatActivity {
              showRecipe.this.startActivity(delete);
 
      }
+    public void buttonStartOnClick (View v) throws myException {
+        AccessRecipe RAC = new AccessRecipe();
+        RAC.deleteRecipe(title);
+        Bundle b = new Bundle();
+        Intent start;
+        start = new Intent(this, showScroll.class);
+        b.putString("recipeName",title);
+        start.putExtras(b);
+        showRecipe.this.startActivity(start);
+
+    }
 
     public void buttonUpdateOnClick(View v){
 

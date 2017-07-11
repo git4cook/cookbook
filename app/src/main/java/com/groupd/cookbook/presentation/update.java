@@ -11,15 +11,19 @@ import com.groupd.cookbook.R;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.objects.step;
 import com.groupd.cookbook.objects.tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class update extends AppCompatActivity {
     private String title;
     private String tags;
     private String des;
+    private String need;
+    private AccessRecipe AR;
     //private String tagString = "";
 
     @Override
@@ -27,16 +31,28 @@ public class update extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update);
         Bundle b = getIntent().getExtras();
-
+        AR = new AccessRecipe();
+        List<step> steps = null;
         title = b.getString("recipeName");
         tags = b.getString("tags");
-        des = b.getString("des");
+        need = b.getString("need");
+        try {steps =  AR.getRecipe(title).getRecipeSteps();
+        } catch (myException e) {
+            e.printStackTrace();
+        }
+        des =steps.get(0).getStepsName();
+            for(int i = 1 ;i< steps.size();i++){
+                des =  des+"\n"+steps.get(i).getStepsName();
+            }
+
         TextView editName = (TextView) findViewById(R.id.viewName);
         TextView tag = (TextView) findViewById(R.id.tagudt);
         EditText editDec = (EditText) findViewById(R.id.editDec);
+        EditText material = (EditText) findViewById(R.id.material);
         editName.setText(title);
         tag.setText(tags);
         editDec.setText(des);
+        material.setText(need);
         /*Button tag1 = (Button)findViewById(R.id.b1);
         Button tag2 = (Button)findViewById(R.id.b2);
         Button tag3 = (Button)findViewById(R.id.b3);
@@ -51,12 +67,13 @@ public class update extends AppCompatActivity {
         //TextView edit = (TextView) findViewById(R.id.viewName);
 
         EditText editDec = (EditText) findViewById(R.id.editDec);
+        EditText material = (EditText) findViewById(R.id.material);
         String temp[] = tags.split(",");
         ArrayList<tag> tagsInObj = new ArrayList<>();
         for(int i = 0;i<temp.length;i++){
             tagsInObj.add(new tag(temp[i]));
         }
-        Recipe newRecipe = new Recipe(editName.getText().toString(), editDec.getText().toString(), tagsInObj);
+        Recipe newRecipe = new Recipe(editName.getText().toString(), stepsInObj(editDec.getText().toString()),tagsInObj,material.getText().toString());
         String result = validateRecipeData(newRecipe);
         Recipe rlt;
         if (result == null) {
@@ -172,6 +189,13 @@ public class update extends AppCompatActivity {
 
         return false;
     }
-
+    private List<step > stepsInObj(String steps){
+        String temp[] = steps.split("\n");
+        ArrayList<step> stepsInObj = new ArrayList<step>();
+        for(int i = 0;i<temp.length;i++){
+            stepsInObj.add(new step(temp[i]));
+        }
+        return stepsInObj;
+    }
 
 }

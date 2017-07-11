@@ -12,25 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 //
 import com.groupd.cookbook.R;
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
+import com.groupd.cookbook.business.search;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
-import com.groupd.cookbook.objects.tag;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/ {

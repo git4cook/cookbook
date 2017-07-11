@@ -42,9 +42,24 @@
         android:visibility="visible" />
 
     <EditText
+        android:id="@+id/material"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_above="@+id/addStepsID"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/holo_orange_light"
+        android:ems="10"
+        android:hint="Enter material"
+        android:inputType="textMultiLine|textImeMultiLine"
+        android:selectAllOnFocus="false"
+        android:textAlignment="textStart"
+        android:textSize="30sp" />
+    <EditText
         android:id="@+id/addStepsID"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_above="@+id/submitButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
@@ -54,7 +69,6 @@
         android:hint="Enter Steps"
         android:inputType="textMultiLine|textImeMultiLine"
         android:selectAllOnFocus="false"
-        android:singleLine="false"
         android:textAlignment="textStart"
         android:textSize="30sp" />
 

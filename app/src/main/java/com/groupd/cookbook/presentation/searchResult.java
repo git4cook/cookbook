@@ -3,9 +3,7 @@
 * */
 package com.groupd.cookbook.presentation;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,16 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.groupd.cookbook.R;
-import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
-import com.groupd.cookbook.objects.Recipe;
-import com.groupd.cookbook.objects.myException;
-import com.groupd.cookbook.objects.tag;
+import com.groupd.cookbook.business.search;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 //
@@ -91,20 +82,8 @@ public class searchResult extends AppCompatActivity {
 
 
     public void buttonOpenOnClick(View v) {
-
-        switch (v.getId())
-        {
-            case R.id.opRcy:
-                Intent reIntent = new Intent(searchResult.this, search.class);
-                searchResult.this.startActivity(reIntent);
-                break;
-
-            case R.id.Back:
-                Intent i = new Intent(searchResult.this, MainActivity.class);
-                searchResult.this.startActivity(i);
-                break;
-
-        }
+        Intent i = new Intent(searchResult.this, MainActivity.class);
+        searchResult.this.startActivity(i);
     }
 
 

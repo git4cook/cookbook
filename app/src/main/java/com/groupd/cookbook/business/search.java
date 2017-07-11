@@ -1,4 +1,4 @@
-package com.groupd.cookbook.presentation;
+package com.groupd.cookbook.business;
 
 
 import android.content.DialogInterface;
@@ -14,13 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 //
 import com.groupd.cookbook.R;
-import com.groupd.cookbook.application.Main;
-import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
+import com.groupd.cookbook.presentation.searchResult;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class search extends AppCompatActivity {

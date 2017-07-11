@@ -72,7 +72,6 @@ public class DataAccessObj implements DataAccess{
         Recipe recipe = null;
         String myRecipeName, myDirection;
         myRecipeName = EOF;
-        //myDirection = EOF;
         List<step> steps = new ArrayList<step>();
         List<tag> tags = new ArrayList<tag>();
         try
@@ -100,16 +99,41 @@ public class DataAccessObj implements DataAccess{
         }
         steps = getSteps(name);
         tags = getTags(name);
-        recipe = new Recipe( myRecipeName, steps, tags);
+        recipe = new Recipe( myRecipeName, steps, tags,getNeed(name));
         return recipe;
     }
 
+    private String getNeed(String name) throws myException {
+        String result = "";
+        try
+        {
+            cmdString = "Select * from RN Where UPPER(RName) = '"+name.toUpperCase()+"'";
+            rs2 = st1.executeQuery(cmdString);
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+        try
+        {
+            while (rs2.next())
+            {
+                result = rs2.getString("Need");
+            }
+            rs2.close();
+        }
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+        return result;
+    }
     private List<step> getSteps(String name) throws myException {
         String result = "";
         ArrayList<step> steps = new ArrayList<step>();
         try
         {
-            cmdString = "Select * from RC Where UPPER(RName) = '"+name.toUpperCase()+"'";
+            cmdString = "Select * from RS Where UPPER(STEP) = '"+name.toUpperCase()+"'";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData()
         }
@@ -190,7 +214,7 @@ public class DataAccessObj implements DataAccess{
             while (rs2.next())
             {
                 myRecipeName = rs2.getString("Name");
-                recipe = new Recipe(myRecipeName, null, null);
+                recipe = new Recipe(myRecipeName, null, null,"");
                 recipeResult.add(recipe);
             }
             rs2.close();
@@ -217,8 +241,7 @@ public class DataAccessObj implements DataAccess{
                     +"'";
                     */
 
-            values = "'"+currentRecipe.getName();
-            cmdString = "Insert into R  Values(" +values +")";
+            values = "'"+currentRecipe.getName()+"'";
             cmdString = "Insert into R  Values(" +values +")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
@@ -233,8 +256,37 @@ public class DataAccessObj implements DataAccess{
         {
             throw new myException(processSQLError(e));
         }
-
+        insertRecipeSteps(currentRecipe.getRecipeSteps(),currentRecipe.getName());
         insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
+        insertNeed(currentRecipe.getName(),currentRecipe.getNeed());
+    }
+    public void insertNeed(String currentRecipe,String need) throws myException {
+        String values;
+        result = null;
+        try
+        {
+            /*
+            values = "'"+currentRecipe.getName()
+                    +"', '" +currentRecipe.getDirection()
+                    +"'";
+                    */
+
+            values = "'" + currentRecipe + "','"+need+"'";
+            cmdString = "Insert into RN  Values(" +values +")";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+            if(result !=null){
+                throw new myException(result);
+            }
+
+        }
+
+        catch (Exception e)
+        {
+            throw new myException(processSQLError(e));
+        }
+
     }
 
     public void insertRecipeSteps(List<step> steps, String rName) throws myException {
@@ -242,12 +294,12 @@ public class DataAccessObj implements DataAccess{
         for(int i = 0;i<steps.size();i++) {
             try {
                 values = "'" + rName + "','"+steps.get(i).getStepsName()+"'";
-                cmdString = "Insert into RC " + " Values(" + values + ")";
+                cmdString = "Insert into RS " + " Values(" + values + ")";
                 //System.out.println(cmdString);
                 updateCount = st1.executeUpdate(cmdString);
                 result = checkWarning(st1, updateCount);
                 if(result !=null){
-                    throw new myException("insertag");
+                    throw new myException("insertag steps");
                 }
             } catch (Exception e) {
                 throw new myException(processSQLError(e));
@@ -274,38 +326,19 @@ public class DataAccessObj implements DataAccess{
     }
 
     public void updateRecipe(Recipe currentRecipe) throws myException {
-        /*
-        String values;
-        String where;
-
-        try
-        {
-            // Should check for empty values and not update them
-            values = "Direction='" +currentRecipe.getDirection() +"'";
-            where = "where UPPER(Name)='" +currentRecipe.getName().toUpperCase()+"'";
-            cmdString = "Update R " +" Set " +values +" " +where;
-            //System.out.println(cmdString);
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
-            if(result !=null){
-                throw new myException(result);
-            }
-        }
-        catch (Exception e)
-        {
-            throw new myException(processSQLError(e));
-        }*/
 
         deleteRecipeSteps(currentRecipe.getName());
         insertRecipeSteps(currentRecipe.getRecipeSteps(),currentRecipe.getName());
         deleteRecipeTags(currentRecipe.getName());
         insertRecipeTags(currentRecipe.getRecipeTags(),currentRecipe.getName());
+        deleteNeed(currentRecipe.getName());
+        insertNeed(currentRecipe.getName(),currentRecipe.getNeed());
     }
 
     private void deleteRecipeSteps(String name) throws myException{
         String values;
         try {
-            cmdString = "Delete from RC where Upper(RName)='" +name.toUpperCase()+"'";
+            cmdString = "Delete from RS where Upper(RName)='" +name.toUpperCase()+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -316,6 +349,19 @@ public class DataAccessObj implements DataAccess{
         }
     }
 
+    private void deleteNeed(String name) throws myException{
+        String values;
+        try {
+            cmdString = "Delete from RN where Upper(RName)='" +name.toUpperCase()+"'";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+
+        }
+        catch (Exception e) {
+            throw new myException(processSQLError(e));
+        }
+    }
 
     private void deleteRecipeTags(String name) throws myException{
         String values;
@@ -345,7 +391,9 @@ public class DataAccessObj implements DataAccess{
         {
             throw new myException(processSQLError(e));
         }
+        deleteRecipeSteps(currentRecipe);
         deleteRecipeTags(currentRecipe);
+        deleteNeed(currentRecipe);
     }
 
     public List<String> getFavoriteSequential() throws myException {
