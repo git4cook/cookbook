@@ -52,8 +52,10 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             Messages.warning(this, "1"+e.getMessage());
         }
         AR = new AccessRecipe();
+
         try {
             Rlist = AR.getRecipeList();
+
         } catch (myException e) {
             Messages.warning(this, "2"+e.getMessage());
         }

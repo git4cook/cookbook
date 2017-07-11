@@ -133,7 +133,7 @@ public class DataAccessObj implements DataAccess{
         ArrayList<step> steps = new ArrayList<step>();
         try
         {
-            cmdString = "Select * from RS Where UPPER(STEP) = '"+name.toUpperCase()+"'";
+            cmdString = "Select * from RS Where UPPER(RName) = '"+name.toUpperCase()+"'";
             rs2 = st1.executeQuery(cmdString);
             //ResultSetMetaData md2 = rs2.getMetaData()
         }
@@ -145,7 +145,7 @@ public class DataAccessObj implements DataAccess{
         {
             while (rs2.next())
             {
-                steps.add(new step(rs2.getString("CName")));
+                steps.add(new step(rs2.getString("Step")));
             }
             rs2.close();
         }
@@ -187,7 +187,7 @@ public class DataAccessObj implements DataAccess{
     }
     public List<Recipe> getRecipeList() throws myException {
         List<Recipe> result = new ArrayList<Recipe>();
-        return getRecipeSequential();
+        return result;
     }
 
     public List<Recipe> getRecipeSequential( ) throws myException {
@@ -500,9 +500,14 @@ public class DataAccessObj implements DataAccess{
             }
         }
         else if(inputstr.length==2) {
+           String[]tags = inputstr[1].split(",");
 
+           cmdString = "Select RName from RC Where Upper(RName) Like '%" + inputstr[0].toUpperCase() + "%' AND Upper(CName)='" + tags[0].toUpperCase() + "'";
+           for(int i = 1;i<tags.length;i++){
+
+               cmdString =cmdString+ "INTERSECT Select RName from RC Where Upper(RName) Like '%" + inputstr[0].toUpperCase() + "%' AND Upper(CName)='" + tags[i].toUpperCase() + "'";
+           }
            try {
-             cmdString = "Select * from RC Where Upper(RName) Like '%" + inputstr[0].toUpperCase() + "%' AND Upper(CName)='"+inputstr[1].toUpperCase()+"'";
                rs2 = st1.executeQuery(cmdString);
 
 
@@ -521,7 +526,9 @@ public class DataAccessObj implements DataAccess{
                    throw new myException(processSQLError(e));
                }
            }
+
        }
+
         return result;
     }
     private List<tag >tagsInObj(String tags){

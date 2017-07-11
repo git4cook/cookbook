@@ -72,7 +72,7 @@
             android:text="dinner" />
 
         <EditText
-            android:id="@+id/material"
+            android:id="@+id/editDec"
             style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,10 +82,11 @@
             android:ems="10"
             android:inputType="textMultiLine|textImeMultiLine"
             android:selectAllOnFocus="false"
-            android:layout_above="@+id/editDec" />
+            android:layout_above="@+id/material"
+            android:layout_below="@+id/b1"/>
 
         <EditText
-            android:id="@+id/editDec"
+            android:id="@+id/material"
             style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +96,8 @@
             android:ems="10"
             android:inputType="textMultiLine|textImeMultiLine"
             android:selectAllOnFocus="false"
-            android:layout_above="@+id/button" />
+            android:layout_above="@+id/button"
+            />
 
         <Button
             android:id="@+id/button"

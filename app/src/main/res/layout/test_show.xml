@@ -23,7 +23,7 @@
         android:textSize="0.1in" />
 
     <TextView
-        android:id="@+id/vDes"
+        android:id="@+id/material"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"

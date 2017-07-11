@@ -38,7 +38,7 @@ public class update extends AppCompatActivity {
         need = b.getString("need");
         try {steps =  AR.getRecipe(title).getRecipeSteps();
         } catch (myException e) {
-            e.printStackTrace();
+            Messages.warning(this,e.getMessage());
         }
         des =steps.get(0).getStepsName();
             for(int i = 1 ;i< steps.size();i++){

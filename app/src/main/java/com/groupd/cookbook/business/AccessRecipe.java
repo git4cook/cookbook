@@ -1,12 +1,13 @@
 package com.groupd.cookbook.business;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.application.Services;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
 import com.groupd.cookbook.persistence.DataAccess;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -24,11 +25,12 @@ public class AccessRecipe implements AccessRecipeInterface {
     }
     public boolean findRecipe(String name) throws myException {
         boolean result = false;
+        List<Recipe> recipes = dataAccess.getRecipeList();
         if(name==null)
             return result;
-        for(int i = 0; i<dataAccess.getRecipeList().size()&&!result;i++){
+        for(int i = 0; i<recipes.size()&&!result;i++){
 
-            if(dataAccess.getRecipeList().get(i).getName().toLowerCase().compareTo(name.toLowerCase())==0){
+            if(recipes.get(i).getName().toLowerCase().compareTo(name.toLowerCase())==0){
                 result = true;
             }
         }

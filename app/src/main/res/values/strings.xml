@@ -5,4 +5,6 @@
     <string name="action_search">search</string>
     <string name="title_activity_update_recipe">updateRecipe</string>
     <string name="title_activity_search_result">searchResult</string>
+    <string name="title_activity_show_steps">showSteps</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>

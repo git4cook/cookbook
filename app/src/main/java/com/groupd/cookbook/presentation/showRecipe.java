@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.view.View;
 
 import com.groupd.cookbook.R;
+import com.groupd.cookbook.application.Main;
 import com.groupd.cookbook.business.AccessRecipe;
 import com.groupd.cookbook.objects.Recipe;
 import com.groupd.cookbook.objects.myException;
@@ -34,9 +35,9 @@ public class showRecipe extends AppCompatActivity {
         try {
             vRcy = RAC.getRecipe(rcyTitle);
         } catch (myException e) {
-            e.printStackTrace();
+            Messages.warning(this,e.getMessage());
         }
-        title = vRcy.getName();
+        title = rcyTitle;
 
         TextView rti = (TextView) findViewById(R.id.vTitle);
         TextView rta = (TextView) findViewById(R.id.vTags);
@@ -48,7 +49,6 @@ public class showRecipe extends AppCompatActivity {
         }
 
         String material =vRcy.getNeed();
-
         rta.setText("Tags: \n" + tags);
         rct.setText("Material: \n" +  material);
 
@@ -90,25 +90,21 @@ public class showRecipe extends AppCompatActivity {
 
      }
     public void buttonStartOnClick (View v) throws myException {
-        AccessRecipe RAC = new AccessRecipe();
-        RAC.deleteRecipe(title);
         Bundle b = new Bundle();
         Intent start;
         start = new Intent(this, showScroll.class);
-        b.putString("recipeName",title);
+        b.putString("steps",stepsInString(vRcy.getRecipeSteps()));
         start.putExtras(b);
         showRecipe.this.startActivity(start);
-
     }
-
     public void buttonUpdateOnClick(View v){
 
         Intent update = new Intent(this, update.class);
         Bundle a =  new Bundle();
         a.putString("recipeName",vRcy.getName());
         a.putString("tags",tagsInString(vRcy.getRecipeTags()));
-        a.putString("steps",stepsInString(vRcy.getRecipeSteps()));
-        //a.putString("des",vRcy.getDirection());
+        a.putString("need",vRcy.getNeed());
+       a.putString("steps",stepsInString(vRcy.getRecipeSteps()));
         update.putExtras(a);
         showRecipe.this.startActivity(update);
 
@@ -118,7 +114,7 @@ public class showRecipe extends AppCompatActivity {
     private String stepsInString(List<step> steps){
         String result = steps.get(0).getStepsName();
         for(int i = 1;i<steps.size();i++){
-            result = result+","+steps.get(i).getStepsName();
+            result = result+"\n"+steps.get(i).getStepsName();
         }
         return result;
     }
@@ -130,6 +126,7 @@ public class showRecipe extends AppCompatActivity {
         }
         return result;
     }
+
 }
 
 
