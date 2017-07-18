@@ -167,7 +167,6 @@ public class BusinessPersistenceSeamTest extends TestCase {
             }
         };
         stepss.add(tstep);
-        //assertEquals(null,stepss);
         tag ttag = new tag("meat");
         List<tag> tagss=new List<tag>() {
             @Override
@@ -291,7 +290,6 @@ public class BusinessPersistenceSeamTest extends TestCase {
             }
         };
         tagss.add(ttag);
-        //assertEquals(null,tagss);
 
 
         rcp = new Recipe("testname",stepss,tagss,"testneeds");
