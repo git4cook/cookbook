@@ -161,36 +161,6 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         name = selected.getName();
     }
 
-    /*
-    UPDATE: Code here for method "onActivityResult" was deleted by someone.
-    Note that startActivityForResult(i, ADD_REQUEST_CODE) is looking for onActivityResult.
-    Leaving these comments here as a marker to get this resolved.
-    Remember to comment if you are editing someone's code else its confusing - Glenn
-
-    PURPOSE:
-                Runs after the calling startActivityForResult is done
-                Performs action based on the request code.
-                Retrieves input from layout as a string array and adds recipe to GUI and Logic AL
-
-    PARAMETERS:
-                requestCode that identifies which activity we exited from and on.
-                resultCode created by exited activity to say there is data to return.
-                data, holds a string array of input that will be extracted.
-    AUTHOR: Glenn
-     */
-
-    /*
-    PURPOSE:
-                Replaced buttons with menu icons, saves space, material design, cleaner.
-                Gist of old button code: https://gist.github.com/Glenn-Jaya/1b2c886baf76be5be0f8d3737a43cf07
-                Note: for 2 methods below.
-                Creates the menu (onCreateOptionsMenu)at the top
-                and handles presses of icons (onOptionsItemSelected).
-
-    PARAMETERS:
-                Menu and menuItem object.
-    AUTHOR: Glenn (note I also did main_menu.xml and imported icons :)
-     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
