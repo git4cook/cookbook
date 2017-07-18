@@ -36,10 +36,6 @@ public class BusinessPersistenceSeamTest extends TestCase {
             Services.closeDataAccess();
         }catch(Exception e){}
 
-
-
-
-        System.out.println("\nStarting Integration test of AccessStudents to persistence");
         try{
             Services.createDataAccess(Main.dbName);
         }catch(Exception e){
