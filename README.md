@@ -2,9 +2,11 @@
 ### Group 14
 ### Members: Glenn Jayasuriya, Jiashen Zhang, Siyu Pan, Tao Wu, Junwei Wang
 
-# Iteration 2
+# Iteration 3
+Note for Iteration 3 we had a lot off issues with Iteration 2. The app kept crashing. It even crashed during the presentation.
+Most of the work done in Iteration 3 was trying to make the app stable, therefore we weren't able to add very many features.
 Iteration 1 had hardcoded recipes and the user was able to search by the exact titles and view the recipe.
-## Major Changes In Iteration 2
+## Major Changes In Iteration 3
 * Connected a HSQLDB database.
 * Connected Add layout, so can now add recipes.
 * Can now search by partial titles.
@@ -33,7 +35,7 @@ Iteration 1 had hardcoded recipes and the user was able to search by the exact t
 
 The project is broken up into 5 packages.
 
-**Note: Iteration 2 major changes/update to packages will be in bold clearly appended to the bottom of each section** 
+**Note: Iteration 3 major changes/update to packages will be in bold clearly appended to the bottom of each section** 
 1. application
 2. business
 3. objects
@@ -47,7 +49,7 @@ The main java file starts the services file.
 The services file creates, verifies connection and closes a Data Access Stub.
 Services is used by other recipes to get access to the Data stub.
 
-**Iteration 2: No change in terms of new files/structure**
+**Iteration 3: No change in terms of new files/structure**
 
 ---
 
@@ -58,13 +60,13 @@ AccessRecipe through the use of the Services java class gets access to the persi
 AccessRecipe gets recipes and search by name. You can also get a copy of what's inside the database.
 Search java file is linked to the Search layout in the resources package.
 
-**Iteration 2: Added a interface to AccessRecipe, changed access to the new database within AccessRecipe.**
+**Iteration 3: Added a interface to AccessRecipe, changed access to the new database within AccessRecipe.**
 
 ## 3. Objects
 Object file for recipes. The structure of our recipes contains a name (for the title), directions (steps for the recipe), and tags.
 
 
-**Iteration 2: Added an object for exceptions, myException and a tag object that contains a string.
+**Iteration 3: Added an object for exceptions, myException and a tag object that contains a string.
 Recipes now contain a list of tag objects.
 Interfaces for the recipe and tag were also made.**
 
@@ -72,7 +74,7 @@ Interfaces for the recipe and tag were also made.**
 Contains our DataAccessStub java file. Our "database"/data storage for this iteration 1. 
 Iteration 2 now uses a HSQLDB database.
 
-**Iteration 2: Added class DataAccessObj for use of HSQLDB database, stub is still used for initial recipes.
+**Iteration 3: Added class DataAccessObj for use of HSQLDB database, stub is still used for initial recipes.
 Also added a interface for the DataAccessObj.**
 
 ## 5. Presentation
@@ -80,7 +82,7 @@ Contains our files that link to our layout files in the resources folders.
 These files handle logic in regards to gui handling. For instance what to do when this button of the GUI is pressed.
 It works in relation to the logic files in the business class to connect with the layout files.
 
-**Iteration 2: Created update class for editing the recipe. Linked the addNewRecipe class because it wasn't linked in iteration 1.
+**Iteration 3: Created update class for editing the recipe. Linked the addNewRecipe class because it wasn't linked in iteration 1.
 Created Messages, a class for dialog notifications to user.**
 
 -----
@@ -93,7 +95,7 @@ For iteration 1 we have implemented
 3. View reciew (test_show) this shows the recipe that was selected by the user.
 There are also other layouts for adding recipes we plan to implement into our next iteration.
 
-**Iteration 2:**
+**Iteration 3:**
 
 **4. Add Recipe Layout to add new recipes.**
 
